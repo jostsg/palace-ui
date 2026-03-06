@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Palace UI — Component Catalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="palace.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════ NAVBAR ════════════════════════════════════════ -->
+
+<nav class="navbar">
+  <a href="#" class="navbar-brand">Palace UI</a>
+  <div class="navbar-right">
+    <span class="navbar-user">v0.8.0</span>
+  </div>
+</nav>
+
+<hr class="gradient-stripe" style="margin-top: 0;">
+
+<main>
+
+<!-- ════════════════════════════════════════ HERO ════════════════════════════════════════ -->
+
+<div class="container" style="padding-top: 48px; padding-bottom: 32px;">
+  <h1 class="h1-hero">Palace UI</h1>
+  <p class="tagline" style="margin-bottom: 24px;">
+    Retro-technical design system. Hard edges, vibrant gradients, chunky shadows. CSS-only, no build step.
+  </p>
+  <div class="stat-row">
+    <div>
+      <div class="stat" style="--accent: var(--p-accent-1);">30+</div>
+      <div class="stat-label">Components</div>
+    </div>
+    <div>
+      <div class="stat" style="--accent: var(--p-accent-2);">50+</div>
+      <div class="stat-label">Tokens</div>
+    </div>
+    <div>
+      <div class="stat" style="--accent: var(--p-accent-3);">0px</div>
+      <div class="stat-label">Border Radius</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ TOC NAV ════════════════════════════════════════ -->
+
+<nav aria-label="Sections" class="container" style="padding-top: 0; padding-bottom: 0;">
+  <div style="display: flex; flex-wrap: wrap; gap: 6px 10px;">
+    <a href="#colors" style="font-size: 11px;">Colors</a>
+    <a href="#typography" style="font-size: 11px;">Typography</a>
+    <a href="#spacing" style="font-size: 11px;">Spacing</a>
+    <a href="#shadows" style="font-size: 11px;">Shadows</a>
+    <a href="#buttons" style="font-size: 11px;">Buttons</a>
+    <a href="#cards" style="font-size: 11px;">Cards</a>
+    <a href="#forms" style="font-size: 11px;">Forms</a>
+    <a href="#tables" style="font-size: 11px;">Tables</a>
+    <a href="#code" style="font-size: 11px;">Code</a>
+    <a href="#tags" style="font-size: 11px;">Tags</a>
+    <a href="#status" style="font-size: 11px;">Status</a>
+    <a href="#steps" style="font-size: 11px;">Steps</a>
+    <a href="#stats" style="font-size: 11px;">Stats</a>
+    <a href="#dividers" style="font-size: 11px;">Dividers</a>
+    <a href="#layout" style="font-size: 11px;">Layout</a>
+    <a href="#navbars" style="font-size: 11px;">Navbars</a>
+    <a href="#animations" style="font-size: 11px;">Animations</a>
+    <a href="#misc" style="font-size: 11px;">Misc</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════ COLORS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-1); margin-bottom: 8px;">Tokens</p>
+  <h2 id="colors">Colors</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">The 3-accent rotation, neutrals, and status colors.</p>
+
+  <h3 style="margin-bottom: 12px;">Accents</h3>
+  <div data-source style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-accent-1); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-accent-1</div>
+      <code style="font-size: 11px;">#ff2d9b</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-accent-2); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-accent-2</div>
+      <code style="font-size: 11px;">#5b4cff</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-accent-3); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-accent-3</div>
+      <code style="font-size: 11px;">#00e5ff</code>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Neutrals</h3>
+  <div data-source style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-text); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-text</div>
+      <code style="font-size: 11px;">#0a0a0a</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-text-secondary); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-text-secondary</div>
+      <code style="font-size: 11px;">#444</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-text-muted); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-text-muted</div>
+      <code style="font-size: 11px;">#666</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-text-faint); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-text-faint</div>
+      <code style="font-size: 11px;">#6b6b6b</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-bg); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-bg</div>
+      <code style="font-size: 11px;">#f0f0f0</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-surface); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-surface</div>
+      <code style="font-size: 11px;">#fff</code>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Surfaces</h3>
+  <div data-source style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-surface-inset); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-surface-inset</div>
+      <code style="font-size: 11px;">#f7f7f7</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-dark); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-dark</div>
+      <code style="font-size: 11px;">#0a0a0a</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-overlay); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-overlay</div>
+      <code style="font-size: 11px;">rgba(10,10,10,0.7)</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-hover-bg); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-hover-bg</div>
+      <code style="font-size: 11px;">#e8e8e8</code>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Status</h3>
+  <div data-source style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-error); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-error</div>
+      <code style="font-size: 11px;">#ff4444</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-success); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-success</div>
+      <code style="font-size: 11px;">#00ff88</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-warning); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-warning</div>
+      <code style="font-size: 11px;">#ffcc00</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-info); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-info</div>
+      <code style="font-size: 11px;">#00e5ff</code>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Borders</h3>
+  <div data-source style="display: flex; gap: 12px; flex-wrap: wrap;">
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-border); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-border</div>
+      <code style="font-size: 11px;">#ddd</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-border-light); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-border-light</div>
+      <code style="font-size: 11px;">#eee</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-border-dark); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-border-dark</div>
+      <code style="font-size: 11px;">#333</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; background: var(--p-border-dashed); border: 2px solid var(--p-text);"></div>
+      <div class="stat-label" style="margin-top: 6px;">--p-border-dashed</div>
+      <code style="font-size: 11px;">#ccc</code>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ TYPOGRAPHY ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-2); margin-bottom: 8px;">Tokens</p>
+  <h2 id="typography">Typography</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Space Grotesk for UI, JetBrains Mono for code.</p>
+
+  <div data-source class="stack-lg">
+    <div>
+      <div class="stat-label" style="margin-bottom: 4px;">h1 / .h1 &mdash; 2rem / 700</div>
+      <h1>Gradient Headline</h1>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 4px;">.h1-hero &mdash; 2.6rem / 700</div>
+      <h1 class="h1-hero">Hero Headline</h1>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 4px;">h2 / .h2 &mdash; 18px / 700</div>
+      <h2>Section Heading</h2>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 4px;">h3 / .h3 &mdash; 14px / 600</div>
+      <h3>Subsection Heading</h3>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 4px;">.brand &mdash; 11px / 700</div>
+      <p class="brand">Brand Label</p>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 4px;">.eyebrow &mdash; 10px / 700</div>
+      <p class="eyebrow">Category Eyebrow</p>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 4px;">.subtitle &mdash; 14px / 400</div>
+      <p class="subtitle">A helpful subtitle below headings</p>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 4px;">.tagline &mdash; 18px / 400</div>
+      <p class="tagline">A slightly larger body text for hero sections and introductions.</p>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 4px;">Body &mdash; 14px / 400</div>
+      <p>Regular body text. The only text that isn't uppercase. Clean and readable at 14px with 1.5 line-height.</p>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 4px;">code &mdash; JetBrains Mono 13px</div>
+      <code>const config = { radius: 0 };</code>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px; margin-top: 24px;">Brand Lockup</h3>
+  <div data-source>
+    <div class="brand-lockup">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="border: 2px solid var(--p-text);">
+        <rect x="16" y="16" width="32" height="32" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+        <line x1="24" y1="28" x2="40" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+        <line x1="24" y1="36" x2="34" y2="36" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+      </svg>
+      <div>
+        <p class="brand" style="font-size: 17px; letter-spacing: 3px;">App Name</p>
+        <p class="subtitle">Short descriptor for the app</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ SPACING ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-3); margin-bottom: 8px;">Tokens</p>
+  <h2 id="spacing">Spacing</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">6-step scale from 4px to 48px.</p>
+
+  <div data-source class="stack-md">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 4px; height: 24px; background: var(--p-accent-1);"></div>
+      <code style="font-size: 12px;">--p-space-xs: 4px</code>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 8px; height: 24px; background: var(--p-accent-1);"></div>
+      <code style="font-size: 12px;">--p-space-sm: 8px</code>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 16px; height: 24px; background: var(--p-accent-2);"></div>
+      <code style="font-size: 12px;">--p-space-md: 16px</code>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 24px; height: 24px; background: var(--p-accent-2);"></div>
+      <code style="font-size: 12px;">--p-space-lg: 24px</code>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 32px; height: 24px; background: var(--p-accent-3);"></div>
+      <code style="font-size: 12px;">--p-space-xl: 32px</code>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 48px; height: 24px; background: var(--p-accent-3);"></div>
+      <code style="font-size: 12px;">--p-space-2xl: 48px</code>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ SHADOWS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-1); margin-bottom: 8px;">Tokens</p>
+  <h2 id="shadows">Shadows</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Hard shadows only. Zero blur, always.</p>
+
+  <div data-source style="display: flex; gap: 24px; flex-wrap: wrap;">
+    <div style="text-align: center;">
+      <div style="width: 100px; height: 100px; background: var(--p-surface); border: 2px solid var(--p-text); box-shadow: var(--p-shadow-sm) var(--p-accent-1);"></div>
+      <div class="stat-label" style="margin-top: 8px;">--p-shadow-sm</div>
+      <code style="font-size: 11px;">2px 2px 0</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 100px; height: 100px; background: var(--p-surface); border: 2px solid var(--p-text); box-shadow: var(--p-shadow-md) var(--p-accent-2);"></div>
+      <div class="stat-label" style="margin-top: 8px;">--p-shadow-md</div>
+      <code style="font-size: 11px;">3px 3px 0</code>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 100px; height: 100px; background: var(--p-surface); border: 2px solid var(--p-text); box-shadow: var(--p-shadow-lg) var(--p-accent-3);"></div>
+      <div class="stat-label" style="margin-top: 8px;">--p-shadow-lg</div>
+      <code style="font-size: 11px;">4px 4px 0</code>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ BUTTONS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-2); margin-bottom: 8px;">Components</p>
+  <h2 id="buttons">Buttons</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">4 variants, 3 sizes, disabled + CTA.</p>
+
+  <h3 style="margin-bottom: 12px;">Variants (default size)</h3>
+  <div data-source style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-outline">Outline</button>
+    <button class="btn btn-danger">Danger</button>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Sizes</h3>
+  <div data-source style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 24px;">
+    <button class="btn btn-sm btn-primary">Small</button>
+    <button class="btn btn-primary">Default</button>
+    <button class="btn btn-lg btn-primary">Large</button>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Disabled</h3>
+  <div data-source style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+    <button class="btn btn-primary" disabled>Disabled</button>
+    <button class="btn btn-secondary" disabled>Disabled</button>
+    <button class="btn btn-outline" disabled>Disabled</button>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Block</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <button class="btn btn-primary btn-block">Full Width Button</button>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">CTA (hero sections)</h3>
+  <div data-source style="display: flex; gap: 12px; flex-wrap: wrap;">
+    <a href="#" class="cta cta-primary">Sign Up</a>
+    <a href="#" class="cta cta-secondary">Learn More</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ CARDS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-3); margin-bottom: 8px;">Components</p>
+  <h2 id="cards">Cards</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">3-color accent rotation. Hover for lift + shadow.</p>
+
+  <div data-source>
+    <div class="card">
+      <span class="h2">First Card</span>
+      <p>Accent 1 (pink). Headings pick up the accent color automatically. Hover to see the lift and hard shadow.</p>
+    </div>
+    <div class="card">
+      <span class="h2">Second Card</span>
+      <p>Accent 2 (purple). The rotation cycles through all three accent colors on sibling cards.</p>
+    </div>
+    <div class="card">
+      <span class="h2">Third Card</span>
+      <p>Accent 3 (cyan shadow on hover). Heading uses dark text for accessible contrast.</p>
+    </div>
+    <div class="card">
+      <span class="h2">Fourth Card</span>
+      <p>Back to accent 1 (pink). The rotation repeats every 3 cards.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px; margin-top: 24px;">Static Card (no hover)</h3>
+  <div data-source>
+    <div class="card-static">
+      <span class="h2">Form Container</span>
+      <p style="color: var(--p-text-secondary); font-size: 14px;">Use <code>.card-static</code> for cards that hold forms or content that shouldn't lift on hover.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ FORMS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-1); margin-bottom: 8px;">Components</p>
+  <h2 id="forms">Forms</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Labels, text inputs, number input, textarea.</p>
+
+  <div data-source class="card-static" style="margin-bottom: 16px;">
+    <div class="stack-md">
+      <div>
+        <label for="cat-name">Full Name</label>
+        <input type="text" id="cat-name" placeholder="Enter your name">
+      </div>
+      <div>
+        <label for="cat-email">Email Address</label>
+        <input type="email" id="cat-email" placeholder="you@example.com">
+      </div>
+      <div>
+        <label for="cat-password">Password</label>
+        <input type="password" id="cat-password" placeholder="At least 8 characters">
+      </div>
+      <div>
+        <label for="cat-search">Search</label>
+        <input type="search" id="cat-search" placeholder="Search...">
+      </div>
+      <div>
+        <label for="cat-num">Quantity</label>
+        <input type="number" id="cat-num" value="5" min="0" max="99">
+      </div>
+      <div>
+        <label for="cat-notes">Notes</label>
+        <textarea id="cat-notes" placeholder="Write something..."></textarea>
+      </div>
+      <div>
+        <button class="btn btn-primary btn-block">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Inline Form</h3>
+  <div data-source style="display: flex; gap: 8px;">
+    <input type="text" placeholder="Add a label" aria-label="Add a label" style="flex: 1;">
+    <button class="btn btn-primary">Create</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ TABLES ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-2); margin-bottom: 8px;">Components</p>
+  <h2 id="tables">Tables</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Full-width with uppercase headers.</p>
+
+  <div data-source>
+    <table>
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th style="text-align: right;">Lines</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight: 600;">Buttons</td>
+          <td>Interactive</td>
+          <td><span class="badge">Stable</span></td>
+          <td style="text-align: right;">120</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">Cards</td>
+          <td>Layout</td>
+          <td><span class="badge">Stable</span></td>
+          <td style="text-align: right;">45</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">Forms</td>
+          <td>Interactive</td>
+          <td><span class="badge">Stable</span></td>
+          <td style="text-align: right;">80</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">Status</td>
+          <td>Feedback</td>
+          <td><span class="badge">Updated</span></td>
+          <td style="text-align: right;">30</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">Navbar</td>
+          <td>Navigation</td>
+          <td><span class="badge">Updated</span></td>
+          <td style="text-align: right;">55</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ CODE ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-3); margin-bottom: 8px;">Components</p>
+  <h2 id="code">Code</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Pre blocks and code-reveal panels.</p>
+
+  <h3 style="margin-bottom: 12px;">Pre Block</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <pre>:root {
+  --p-accent-1: #ff2d9b;
+  --p-accent-2: #5b4cff;
+  --p-accent-3: #00e5ff;
+  --p-radius: 0;
+}</pre>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Code Reveal</h3>
+  <div data-source>
+    <div class="code-reveal">
+      <p class="eyebrow" style="color: var(--p-accent-3); margin-bottom: 10px;">
+        API Key &mdash; copy this, you won't see it again
+      </p>
+      <code>pk_live_a1b2c3d4e5f6g7h8i9j0</code>
+      <div style="display: flex; gap: 8px; margin-top: 12px;">
+        <button class="btn btn-secondary btn-sm">Copy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ TAGS & BADGES ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-1); margin-bottom: 8px;">Components</p>
+  <h2 id="tags">Tags &amp; Badges</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Tags, badges, and sticker tags with rotation.</p>
+
+  <h3 style="margin-bottom: 12px;">Tags</h3>
+  <div data-source style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+    <span class="tag">Volume Spacer</span>
+    <span class="tag">Custom Tune</span>
+    <span class="tag">Bleed Kit</span>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Badges</h3>
+  <div data-source style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
+    <span class="badge">Stable</span>
+    <span class="badge">New</span>
+    <span class="badge">Clicks</span>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Sticker Tags</h3>
+  <div data-source style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <span class="tag-sticker" style="--accent: var(--p-accent-1);">Volume Spacer</span>
+    <span class="tag-sticker" style="--accent: var(--p-accent-2);">Custom Tune</span>
+    <span class="tag-sticker" style="--accent: var(--p-accent-3);">Bleed Kit</span>
+    <span class="tag-sticker" style="--accent: var(--p-accent-1);">Pro Setup</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ STATUS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-2); margin-bottom: 8px;">Components</p>
+  <h2 id="status">Status Messages</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Success, error, warning, info, and base.</p>
+
+  <div data-source class="stack-sm">
+    <div class="status status-success" role="status">Account created successfully</div>
+    <div class="status status-error" role="alert">Something went wrong — please try again</div>
+    <div class="status status-warning" role="alert">Your session will expire in 5 minutes</div>
+    <div class="status status-info" role="status">New features are available in v0.8.0</div>
+    <div class="status">Neutral status message</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ STEPS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-3); margin-bottom: 8px;">Components</p>
+  <h2 id="steps">Steps</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Numbered instruction lists.</p>
+
+  <div data-source>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <p><strong>Install the package</strong> via npm or copy palace.css directly</p>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <p><strong>Add the stylesheet</strong> and Google Fonts to your HTML head</p>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <p><strong>Use the classes.</strong> No build step needed — just write HTML</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ STATS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-1); margin-bottom: 8px;">Components</p>
+  <h2 id="stats">Stats</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Oversized numbers with labels. Picks up accent colors.</p>
+
+  <h3 style="margin-bottom: 12px;">Stat Row</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <div class="stat-row">
+      <div>
+        <div class="stat" style="--accent: var(--p-accent-1);">180mm</div>
+        <div class="stat-label">Travel</div>
+      </div>
+      <div>
+        <div class="stat" style="--accent: var(--p-accent-2);">20%</div>
+        <div class="stat-label">Sag</div>
+      </div>
+      <div>
+        <div class="stat" style="--accent: var(--p-accent-3);">450</div>
+        <div class="stat-label">Spring Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Single Stat</h3>
+  <div data-source>
+    <div class="stat" style="--accent: var(--p-accent-2);">1,024</div>
+    <div class="stat-label">Total Clicks</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ DIVIDERS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-2); margin-bottom: 8px;">Components</p>
+  <h2 id="dividers">Dividers</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Dashed dividers, danger dividers, and gradient stripes.</p>
+
+  <h3 style="margin-bottom: 12px;">Standard Divider</h3>
+  <div data-source style="margin-bottom: 8px;">
+    <hr class="divider">
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Danger Divider</h3>
+  <div data-source style="margin-bottom: 8px;">
+    <hr class="divider-danger">
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Gradient Stripe</h3>
+  <div data-source>
+    <hr class="gradient-stripe">
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ LAYOUT ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-3); margin-bottom: 8px;">Layout</p>
+  <h2 id="layout">Containers &amp; Stacks</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Content containers, page headers, and vertical spacing utilities.</p>
+
+  <h3 style="margin-bottom: 12px;">Container Widths</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <div style="max-width: 640px; background: var(--p-surface); border: 2px solid var(--p-text); padding: 12px; margin-bottom: 8px;">
+      <code style="font-size: 12px;">.container</code> <span style="color: var(--p-text-muted); font-size: 12px;">&mdash; 640px</span>
+    </div>
+    <div style="max-width: 420px; background: var(--p-surface); border: 2px solid var(--p-text); padding: 12px;">
+      <code style="font-size: 12px;">.container-narrow</code> <span style="color: var(--p-text-muted); font-size: 12px;">&mdash; 420px</span>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Page Header</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <div class="container page-header" style="border: 2px dashed var(--p-border-dashed); padding-left: 20px; padding-right: 20px;">
+      <h1>Page Title</h1>
+      <p class="subtitle">A helpful subtitle for the page</p>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Stack Spacing</h3>
+  <div data-source style="display: flex; gap: 24px; flex-wrap: wrap;">
+    <div>
+      <div class="stat-label" style="margin-bottom: 8px;">stack-xs (4px)</div>
+      <div class="stack-xs">
+        <div style="background: var(--p-accent-1); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-1); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-1); height: 20px; width: 100px;"></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 8px;">stack-sm (8px)</div>
+      <div class="stack-sm">
+        <div style="background: var(--p-accent-2); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-2); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-2); height: 20px; width: 100px;"></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 8px;">stack-md (16px)</div>
+      <div class="stack-md">
+        <div style="background: var(--p-accent-3); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-3); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-3); height: 20px; width: 100px;"></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 8px;">stack-lg (24px)</div>
+      <div class="stack-lg">
+        <div style="background: var(--p-accent-1); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-1); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-1); height: 20px; width: 100px;"></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 8px;">stack-xl (32px)</div>
+      <div class="stack-xl">
+        <div style="background: var(--p-accent-2); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-2); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-2); height: 20px; width: 100px;"></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom: 8px;">stack-2xl (48px)</div>
+      <div class="stack-2xl">
+        <div style="background: var(--p-accent-3); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-3); height: 20px; width: 100px;"></div>
+        <div style="background: var(--p-accent-3); height: 20px; width: 100px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ NAVBAR VARIANTS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-1); margin-bottom: 8px;">Components</p>
+  <h2 id="navbars">Navbar</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Dark (default) and light variants.</p>
+
+  <h3 style="margin-bottom: 12px;">Dark (default)</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <nav class="navbar">
+      <a href="#" class="navbar-brand">App Name</a>
+      <div class="navbar-right">
+        <span class="navbar-user">Username</span>
+        <button class="btn btn-sm">Log Out</button>
+      </div>
+    </nav>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Light (.navbar-light)</h3>
+  <div data-source>
+    <nav class="navbar navbar-light" style="border: 2px solid var(--p-border);">
+      <a href="#" class="navbar-brand">App Name</a>
+      <div class="navbar-right">
+        <span class="navbar-user">Username</span>
+        <button class="btn btn-sm">Log Out</button>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ ANIMATIONS ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-2); margin-bottom: 8px;">Motion</p>
+  <h2 id="animations">Animations</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Fade-up entrance and gradient stripe. Respects prefers-reduced-motion.</p>
+
+  <h3 style="margin-bottom: 12px;">Fade Up (staggered)</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <div class="card fade-up" style="animation-delay: 0s;">
+      <span class="h2">First</span>
+      <p>Fades in immediately.</p>
+    </div>
+    <div class="card fade-up" style="animation-delay: 0.1s;">
+      <span class="h2">Second</span>
+      <p>Fades in after 100ms.</p>
+    </div>
+    <div class="card fade-up" style="animation-delay: 0.2s;">
+      <span class="h2">Third</span>
+      <p>Fades in after 200ms.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Gradient Stripe (infinite)</h3>
+  <div data-source>
+    <hr class="gradient-stripe">
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ MISC ════════════════════════════════════════ -->
+
+<hr class="gradient-stripe">
+
+<div class="container">
+  <p class="eyebrow" style="color: var(--p-accent-3); margin-bottom: 8px;">Components</p>
+  <h2 id="misc">Miscellaneous</h2>
+  <p class="subtitle" style="margin-bottom: 24px;">Empty states, danger zones, watermarks, links, and lists.</p>
+
+  <h3 style="margin-bottom: 12px;">Empty State</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <p class="empty">No items yet</p>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Danger Zone</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <hr class="divider-danger">
+    <div class="danger-zone">
+      <span class="h2">Danger Zone</span>
+      <p style="margin-bottom: 12px;">This will permanently delete your account. This cannot be undone.</p>
+      <button class="btn btn-danger btn-block">Delete My Account</button>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Watermarks</h3>
+  <p style="font-size: 13px; color: var(--p-text-secondary); margin-bottom: 12px;">
+    <code>.watermarks</code> is a specialized utility for fixed-position SVG backgrounds. It creates subtle, non-interactive visual texture behind page content. No live demo (it would cover the entire catalog), but here is the markup:
+  </p>
+  <div data-source style="margin-bottom: 24px;">
+    <div class="watermarks">
+      <svg style="top: 10%; left: -5%;"><!-- SVG content --></svg>
+      <svg style="top: 50%; right: -5%;"><!-- SVG content --></svg>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Links</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <p>This is a paragraph with a <a href="#">link to somewhere</a> in the middle of it. Links use border-bottom, not text-decoration.</p>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Lists</h3>
+  <div data-source>
+    <div style="display: flex; gap: 48px; flex-wrap: wrap;">
+      <div class="container" style="padding: 0; max-width: 250px;">
+        <p style="font-weight: 600; margin-bottom: 8px;">Unordered</p>
+        <ul>
+          <li>Hard edges everywhere</li>
+          <li>2px borders, always</li>
+          <li>Zero border radius</li>
+        </ul>
+      </div>
+      <div class="container" style="padding: 0; max-width: 250px;">
+        <p style="font-weight: 600; margin-bottom: 8px;">Ordered</p>
+        <ol>
+          <li>Install palace.css</li>
+          <li>Add Google Fonts</li>
+          <li>Write HTML</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ════════════════════════════════════════ FOOTER ════════════════════════════════════════ -->
+
+<div class="container">
+  <div class="footer">
+    Palace UI v0.8.0 &mdash; CSS-only design system. <a href="#">GitHub</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ SOURCE DISPLAY SCRIPT ════════════════════════════════════════ -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-source]').forEach(el => {
+    const lines = el.innerHTML.split('\n');
+    const minIndent = lines
+      .filter(l => l.trim())
+      .reduce((min, l) => Math.min(min, l.match(/^\s*/)[0].length), Infinity);
+    const html = lines
+      .map(l => l.slice(minIndent))
+      .join('\n')
+      .trim();
+    const escaped = html
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    const pre = document.createElement('pre');
+    pre.innerHTML = escaped;
+    pre.style.marginTop = '12px';
+    el.after(pre);
+  });
+});
+</script>
+
+<noscript><p class="status" style="margin: 16px 20px;">Source code examples require JavaScript.</p></noscript>
+
+</body>
+</html>
