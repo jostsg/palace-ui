@@ -1,0 +1,32 @@
+name: release
+
+# release-please keeps a release pull request open with the next version and
+# changelog, computed from conventional commits. Nothing is published until a
+# person merges it.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write   # npm trusted publishing and provenance, no stored token
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - id: rp
+        uses: googleapis/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+      - if: steps.rp.outputs.release_created == 'true'
+        uses: actions/checkout@v4
+      - if: steps.rp.outputs.release_created == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+      - if: steps.rp.outputs.release_created == 'true'
+        run: npm install -g npm@latest && npm publish --provenance --access public
