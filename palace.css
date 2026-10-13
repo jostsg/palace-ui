@@ -1,10 +1,23 @@
-/*! palace-ui v0.9.0 | MIT License */
+/*! palace-ui v0.10.0 | MIT License | fonts: SIL OFL 1.1, see fonts/ */
+
+/* ══════════════════════════════════════════
+   FONTS (self-hosted; no third-party requests)
+   ══════════════════════════════════════════ */
+
+@font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/space-grotesk-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/space-grotesk-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/space-grotesk-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/jetbrains-mono-latin-600-normal.woff2') format('woff2'); }
 
 /* ══════════════════════════════════════════
    DESIGN TOKENS
    ══════════════════════════════════════════ */
 
 :root {
+  /* palace is a light system. Without this, a browser set to dark renders
+     UA widgets (number inputs, scrollbars) dark against white surfaces. */
+  color-scheme: light;
   /* ── Accent colors (the signature 3-color rotation) ── */
   --p-accent-1: #ff2d9b;  /* hot pink */
   --p-accent-2: #5b4cff;  /* electric purple */
@@ -1010,4 +1023,49 @@ pre {
   .container { padding-left: 16px; padding-right: 16px; }
   .card { padding: 18px; }
   .stat { font-size: 1.6rem; }
+}
+
+/* ══════════════════════════════════════════
+   DIALOG
+   ══════════════════════════════════════════ */
+
+dialog {
+  padding: var(--p-space-lg);
+  max-width: var(--p-container-narrow);
+  width: 100%;
+  background: var(--p-surface);
+  border: var(--p-border-width) solid var(--p-text);
+  box-shadow: var(--p-shadow-lg) var(--p-accent-2);
+  /* The reset's `margin: 0` wipes the UA's `dialog { margin: auto }`,
+     which is what centres a modal dialog. Restored here. */
+  margin: auto;
+}
+
+dialog::backdrop { background: var(--p-overlay); }
+dialog h2 { margin-bottom: var(--p-space-xs); }
+dialog .subtitle { margin-bottom: var(--p-space-lg); }
+dialog p { margin-bottom: var(--p-space-sm); }
+
+dialog menu {
+  display: flex;
+  gap: var(--p-space-sm);
+  padding: 0;
+  margin: var(--p-space-lg) 0 0;
+  list-style: none;
+}
+
+dialog menu .btn { flex: 1; }
+
+/* ══════════════════════════════════════════
+   KBD
+   ══════════════════════════════════════════ */
+
+kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  border: var(--p-border-thin) solid var(--p-text);
+  box-shadow: 1px 1px 0 var(--p-accent-1);
+  background: var(--p-surface-inset);
+  font: 600 11px/1.5 var(--p-font-mono);
+  text-transform: uppercase;
 }

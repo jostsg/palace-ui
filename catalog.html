@@ -4,9 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Palace UI — Component Catalog</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="palace.css">
 </head>
 <body>
@@ -623,7 +620,7 @@
       </div>
       <div class="step">
         <span class="step-num">2</span>
-        <p><strong>Add the stylesheet</strong> and Google Fonts to your HTML head</p>
+        <p><strong>Add the stylesheet</strong> to your HTML head (keep fonts/ next to palace.css)</p>
       </div>
       <div class="step">
         <span class="step-num">3</span>
@@ -859,6 +856,23 @@
     </div>
   </div>
 
+  <h3 style="margin-bottom: 12px;">Dialog</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <dialog open style="position: static;">
+      <h2>Delete project?</h2>
+      <p class="subtitle">This cannot be undone.</p>
+      <menu>
+        <li><button class="btn">Cancel</button></li>
+        <li><button class="btn btn-danger">Delete</button></li>
+      </menu>
+    </dialog>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Kbd</h3>
+  <div data-source style="margin-bottom: 24px;">
+    <kbd>Ctrl</kbd> + <kbd>Z</kbd>
+  </div>
+
   <h3 style="margin-bottom: 12px;">Watermarks</h3>
   <p style="font-size: 13px; color: var(--p-text-secondary); margin-bottom: 12px;">
     <code>.watermarks</code> is a specialized utility for fixed-position SVG backgrounds. It creates subtle, non-interactive visual texture behind page content. No live demo (it would cover the entire catalog), but here is the markup:
@@ -890,7 +904,7 @@
         <p style="font-weight: 600; margin-bottom: 8px;">Ordered</p>
         <ol>
           <li>Install palace.css</li>
-          <li>Add Google Fonts</li>
+          <li>Keep fonts/ next to it</li>
           <li>Write HTML</li>
         </ol>
       </div>

@@ -18,19 +18,11 @@
 
 ### Fonts
 
-Include these Google Fonts in every page `<head>`:
-
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-```
-
-Only include JetBrains Mono if the page has code blocks. Otherwise just Space Grotesk:
-
-```html
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-```
+palace-ui ships Space Grotesk and JetBrains Mono as woff2 files in `fonts/`
+(SIL Open Font License 1.1) and loads them from `palace.css` itself. Do not add
+Google Fonts links: they send every visitor's IP address to Google, which German
+courts have held to violate the GDPR without consent. Keep `fonts/` next to
+`palace.css` when serving.
 
 ### Stylesheet
 
@@ -123,11 +115,7 @@ Every page follows this structure:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page Title</title>
-  <!-- fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- palace -->
+  <!-- palace (keep fonts/ next to palace.css) -->
   <link rel="stylesheet" href="/vendor/palace-ui/palace.css">
 </head>
 <body>
@@ -583,6 +571,30 @@ Lists inside `.container` or `.container-narrow` are automatically styled with p
     <li>Another item</li>
   </ol>
 </div>
+```
+
+### Dialog
+
+A native `<dialog>` styled as a card: border, purple offset shadow, overlay backdrop. Actions go in a `<menu>`; its buttons share the width equally.
+
+```html
+<dialog>
+  <h2>Title</h2>
+  <p class="subtitle">Supporting line</p>
+  <p>Body text.</p>
+  <menu>
+    <li><button class="btn">Cancel</button></li>
+    <li><button class="btn btn-primary">Confirm</button></li>
+  </menu>
+</dialog>
+```
+
+### Kbd
+
+Inline keyboard key: bordered, uppercase mono, with a small pink offset shadow.
+
+```html
+<kbd>Ctrl</kbd> + <kbd>Z</kbd>
 ```
 
 ## Accessibility
