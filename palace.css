@@ -41,6 +41,7 @@
 
   /* ── Status ── */
   --p-error: #ff4444;
+  --p-error-text: #c40000; /* red for text: 6.3:1 on white, where #ff4444 is 3.4:1 */
   --p-success: #00ff88;
   --p-warning: #ffcc00;
   --p-info: var(--p-accent-3);
@@ -109,6 +110,9 @@
   margin: 0;
   padding: 0;
 }
+
+/* The hidden attribute always hides, even on elements palace gives a display (buttons, .btn). */
+[hidden] { display: none !important; }
 
 body {
   font-family: var(--p-font);
@@ -367,12 +371,12 @@ button, .btn {
 
 .btn-danger {
   background: transparent;
-  color: var(--p-error);
+  color: var(--p-error-text);
   border-color: var(--p-error);
 }
 .btn-danger:hover {
   background: var(--p-error);
-  color: #fff;
+  color: var(--p-text);
   transform: var(--p-lift-sm);
   box-shadow: var(--p-shadow-sm) var(--p-dark);
 }
@@ -534,6 +538,32 @@ input[type="tel"]:focus {
   transform: var(--p-lift-sm);
 }
 
+select {
+  width: 100%;
+  appearance: none;
+  padding: 12px 2.5rem 12px 12px;
+  border: var(--p-border-width) solid var(--p-text);
+  border-radius: var(--p-radius);
+  background-color: var(--p-surface);
+  /* A chevron drawn with two gradients: no image, no font. */
+  background-image: linear-gradient(45deg, transparent 50%, var(--p-text) 50%), linear-gradient(135deg, var(--p-text) 50%, transparent 50%);
+  background-position: calc(100% - 1.25rem) 50%, calc(100% - 0.9rem) 50%;
+  background-size: 0.35rem 0.35rem;
+  background-repeat: no-repeat;
+  font-family: var(--p-font);
+  font-size: 1rem;
+  color: var(--p-text);
+  outline: none;
+  transition: var(--p-transition);
+}
+select[multiple], select[size]:not([size="1"]) { padding-right: 12px; background-image: none; }
+
+select:focus {
+  border-color: var(--p-accent-2);
+  box-shadow: var(--p-shadow-md) var(--p-accent-2);
+  transform: var(--p-lift-sm);
+}
+
 input::placeholder {
   color: var(--p-border-dashed);
 }
@@ -583,12 +613,11 @@ textarea:focus {
    STATUS MESSAGES
    ══════════════════════════════════════════ */
 
+/* A status message is a sentence, so it reads in sentence case, like body text. */
 .status {
   padding: 12px;
   font-size: 13px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   border: var(--p-border-width) solid var(--p-text);
 }
 
@@ -600,7 +629,7 @@ textarea:focus {
 
 .status-error {
   background: var(--p-error);
-  color: #fff;
+  color: var(--p-text); /* 5.8:1 on #ff4444; white would be 3.4:1 */
   border-color: var(--p-text);
 }
 
@@ -878,7 +907,7 @@ pre {
    DANGER ZONE
    ══════════════════════════════════════════ */
 
-.danger-zone h2 { color: var(--p-error); }
+.danger-zone h2 { color: var(--p-error-text); }
 .danger-zone p {
   color: var(--p-text-muted);
   font-size: 13px;
