@@ -9,7 +9,7 @@
 - **Retro-technical.** Hard edges (border-radius: 0 everywhere), thick 2px borders, chunky offset box-shadows. Gradients on text, thin decorative stripes (≤3px), and narrow fixed bars (e.g. sticky CTAs) only — never on large surfaces or card backgrounds.
 - **Three-color accent system.** Hot pink `#ff2d9b`, electric purple `#5b4cff`, cyan `#00e5ff`. These rotate across card lists and provide visual rhythm.
 - **Snappy interactions.** All transitions are `0.1s`. Hovers lift elements up-left and cast a hard shadow down-right. Fast, mechanical feedback.
-- **Uppercase everything.** All headings, labels, buttons, and status text are `text-transform: uppercase` with tracked letter-spacing. Body text is the exception.
+- **Uppercase everything.** All headings, labels and buttons are `text-transform: uppercase` with tracked letter-spacing. Body text and status messages, which are sentences, are the exception.
 - **Dark on light.** `#0a0a0a` text on `#f0f0f0` background. Cards are white `#fff`. Code blocks invert to dark `#0a0a0a` backgrounds.
 - **No border radius.** Ever. `border-radius: 0` is the rule, not the exception.
 - **Content-width containers.** Max-width `640px` for main content, `420px` for auth/narrow forms.
@@ -53,7 +53,8 @@ Or if consuming via npm with a build tool:
 | `--p-surface` | `#fff` | Card/container backgrounds |
 | `--p-surface-inset` | `#f7f7f7` | Inset/recessed surfaces |
 | `--p-dark` | `#0a0a0a` | Dark backgrounds (navbar, code, hover fills) |
-| `--p-error` | `#ff4444` | Error states, danger zones |
+| `--p-error` | `#ff4444` | Error states, danger zones: fills, borders, the error box |
+| `--p-error-text` | `#c40000` | Red text (danger buttons, error text): 6.3:1 on white, where `#ff4444` is 3.4:1 |
 | `--p-success` | `#00ff88` | Success states |
 | `--p-warning` | `#ffcc00` | Warning states |
 | `--p-info` | `var(--p-accent-3)` | Informational states (semantic alias for cyan) |
@@ -319,6 +320,13 @@ Size modifiers compose with any color variant:
   <input type="text" id="name" placeholder="Enter your name" style="margin-bottom: 16px;">
   <button class="btn-primary" style="width: 100%;">Submit</button>
 </div>
+```
+
+A `<select>` is styled like the text inputs, with a drawn chevron:
+
+```html
+<label for="direction">Direction</label>
+<select id="direction"><option>Anticlockwise</option><option>Clockwise</option></select>
 ```
 
 Inline form (input + button side by side):
@@ -697,12 +705,12 @@ Full container, no navbar. Hero section, then card list, then footer.
 - **accent-3 (cyan):** Navbar user name, code highlights, key reveal borders, third card
 - **Never mix** accent colors in a single element (except the gradient on h1 text)
 - **The 3-color rotation** applies to any list of sibling cards: 1=pink, 2=purple, 3=cyan, 4=pink...
-- **Error is always `#ff4444`**, success is always `#00ff88`, warning is `#ffcc00`, info is `#00e5ff`. Status colors are not accent colors.
+- **Error is always `#ff4444`**, success is always `#00ff88`, warning is `#ffcc00`, info is `#00e5ff`. Status colors are not accent colors. Text on a status color is always dark `--p-text`; red text uses `--p-error-text`, never `#ff4444`.
 
 ## Do's and Don'ts
 
 ### Do
-- Use uppercase for headings, labels, buttons, badges, and status messages
+- Use uppercase for headings, labels, buttons and badges; status messages are sentences in sentence case
 - Use the 3-color card rotation for any list of cards
 - Keep `border-radius: 0` everywhere
 - Use `2px solid` borders on cards, buttons, inputs
