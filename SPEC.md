@@ -138,6 +138,27 @@ Every page follows this structure:
 </nav>
 ```
 
+A navbar menu for the signed-in user is a `<details class="navbar-menu">`: the summary looks like `.navbar-user`, and the panel's links and buttons are its items. A form in the panel (sign out) sits under a thin rule. It works without JavaScript; a script can add Escape and closing from outside.
+
+```html
+<nav class="navbar">
+  <a href="/" class="navbar-brand">App Name</a>
+  <div class="navbar-right">
+    <details class="navbar-menu">
+      <summary><span class="visually-hidden">Account: </span>Username</summary>
+      <div class="navbar-menu-panel">
+        <p class="navbar-menu-label" aria-hidden="true">Your teams</p>
+        <ul aria-label="Your teams"><li><a href="/a" aria-current="true">Team A</a></li></ul>
+        <a href="/account">Account</a>
+        <form method="post" action="/logout"><button type="submit">Sign out</button></form>
+      </div>
+    </details>
+  </div>
+</nav>
+```
+
+`.visually-hidden` hides text visually and keeps it for screen readers.
+
 With an icon beside the brand name (`.navbar-brand` uses `inline-flex` layout with `gap: 10px`; images/SVGs are auto-sized to 24×24):
 
 ```html
