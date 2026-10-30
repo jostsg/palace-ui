@@ -630,7 +630,7 @@ Inline keyboard key: bordered, uppercase mono, with a small pink offset shadow.
 
 ### Focus Visible
 
-All interactive elements (buttons, links, inputs) have `:focus-visible` styles with a `2px` outline in accent-2 (purple) and `2px` offset. Buttons also get a lift + shadow on focus.
+All interactive elements (buttons, links, inputs, checkboxes, radio buttons, `<summary>`) have `:focus-visible` styles with a `2px` outline in accent-2 (purple) and `2px` offset. Buttons also get a lift + shadow on focus. Text inputs show focus with a purple border and shadow instead. The navbar menu's summary keeps its own cyan ring.
 
 ### Reduced Motion
 

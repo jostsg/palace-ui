@@ -473,6 +473,23 @@
     </div>
   </div>
 
+  <h3 style="margin-bottom: 12px;">Checkboxes, radio buttons and disclosures</h3>
+  <p style="margin-bottom: 12px;">Tab through them: each gets the same focus ring as links and buttons.</p>
+  <div data-source id="focus-controls" class="card-static" style="margin-bottom: 16px;">
+    <div class="stack-md">
+      <label><input type="checkbox" checked> Show lap times</label>
+      <fieldset style="border: 0;">
+        <legend class="visually-hidden">Direction</legend>
+        <label><input type="radio" name="cat-dir" checked> Anticlockwise</label>
+        <label><input type="radio" name="cat-dir"> Clockwise</label>
+      </fieldset>
+      <details>
+        <summary>More options</summary>
+        <p>Hidden until the summary is opened.</p>
+      </details>
+    </div>
+  </div>
+
   <h3 style="margin-bottom: 12px;">Inline Form</h3>
   <div data-source style="display: flex; gap: 8px;">
     <input type="text" placeholder="Add a label" aria-label="Add a label" style="flex: 1;">

@@ -626,6 +626,15 @@ textarea:focus {
   transform: var(--p-lift-sm);
 }
 
+/* Checkboxes, radio buttons and disclosure summaries: the focus ring of links
+   and buttons, without the lift. */
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible,
+summary:focus-visible {
+  outline: var(--p-border-width) solid var(--p-accent-2);
+  outline-offset: 2px;
+}
+
 
 /* ══════════════════════════════════════════
    STATUS MESSAGES
