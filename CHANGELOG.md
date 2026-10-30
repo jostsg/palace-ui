@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.1](https://github.com/jostsg/palace-ui/compare/v0.12.0...v0.12.1) (2026-10-30)
+
+
+### Bug Fixes
+
+* equal button heights, focus rings, a sturdier visually-hidden; feat: navbar menu groups and setting rows ([#6](https://github.com/jostsg/palace-ui/issues/6)) ([a002c16](https://github.com/jostsg/palace-ui/commit/a002c163cd9009c6ea12bba4d404274930fdfbad))
+
 ## [0.12.0](https://github.com/jostsg/palace-ui/compare/v0.11.0...v0.12.0) (2026-10-19)
 
 
