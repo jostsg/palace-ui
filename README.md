@@ -13,4 +13,10 @@ rotation, chunky offset shadows. One stylesheet, no build step, no JavaScript.
 - `SPEC.md`: the design specification, written to be followed exactly by people and AI agents alike
 - `catalog.html`: every component on one page; open it in a browser
 
+## Utilities
+
+- `.visually-hidden`: text for screen readers only. A scrolling container
+  (`overflow-x: auto`) that holds it needs `position: relative`, or the hidden
+  text widens the page.
+
 MIT licensed.

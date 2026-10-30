@@ -157,7 +157,17 @@ A navbar menu for the signed-in user is a `<details class="navbar-menu">`: the s
 </nav>
 ```
 
-`.visually-hidden` hides text visually and keeps it for screen readers.
+Group items with `.navbar-menu-group`: a thin rule above, like the one before sign out, and an optional `.navbar-menu-label` as its heading. A setting that is switched on and off is a `button.navbar-menu-setting` with `aria-pressed`: its name sits on the left and a small square switch on the right, pink when pressed. Toggle `aria-pressed` with a script, or submit a form that renders the new state. Use it for on/off settings, not for links.
+
+```html
+<div class="navbar-menu-group" role="group" aria-labelledby="menu-settings">
+  <p class="navbar-menu-label" id="menu-settings">Settings</p>
+  <button type="button" class="navbar-menu-setting" aria-pressed="true">Notifications</button>
+  <button type="button" class="navbar-menu-setting" aria-pressed="false">Sound</button>
+</div>
+```
+
+`.visually-hidden` hides text visually and keeps it for screen readers (see Visually Hidden).
 
 With an icon beside the brand name (`.navbar-brand` uses `inline-flex` layout with `gap: 10px`; images/SVGs are auto-sized to 24×24):
 
@@ -302,7 +312,7 @@ Use `.card-static` instead of `.card` when the card is a container (e.g. auth fo
 
 ### Buttons
 
-Size modifiers compose with any color variant:
+Size modifiers compose with any color variant. `.btn` works on `<button>` and on `<a>` alike: each size sets its own line height, so a button and a link button of the same size are the same height (41px default, 28px `.btn-sm`, 51px `.btn-lg` and `.cta`) and line up side by side.
 
 ```html
 <!-- Size modifiers -->
@@ -626,11 +636,27 @@ Inline keyboard key: bordered, uppercase mono, with a small pink offset shadow.
 <kbd>Ctrl</kbd> + <kbd>Z</kbd>
 ```
 
+### Visually Hidden
+
+`.visually-hidden` keeps text for screen readers and draws nothing: a label for an icon-only column, the name of the row an "Edit" button acts on.
+
+```html
+<button class="btn btn-sm btn-outline">Edit<span class="visually-hidden"> Ada</span></button>
+```
+
+It is absolutely positioned where the text would have been, with no `top` or `left`, so it stays where the text is and a screen reader moving to it does not jump the page. That means it still counts toward the width of its containing block. **A scrolling container (`overflow-x: auto`) holding `.visually-hidden` text needs `position: relative`**; without it the hidden text's containing block is the page, and a wide table makes the whole page scroll sideways on a phone.
+
+```html
+<div style="overflow-x: auto; position: relative;">
+  <table>…<th><span class="visually-hidden">Actions</span></th>…</table>
+</div>
+```
+
 ## Accessibility
 
 ### Focus Visible
 
-All interactive elements (buttons, links, inputs) have `:focus-visible` styles with a `2px` outline in accent-2 (purple) and `2px` offset. Buttons also get a lift + shadow on focus.
+All interactive elements (buttons, links, inputs, checkboxes, radio buttons, `<summary>`) have `:focus-visible` styles with a `2px` outline in accent-2 (purple) and `2px` offset. Buttons also get a lift + shadow on focus. Text inputs show focus with a purple border and shadow instead. The navbar menu's summary keeps its own cyan ring.
 
 ### Reduced Motion
 

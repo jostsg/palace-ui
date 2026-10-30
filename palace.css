@@ -114,11 +114,17 @@
 /* The hidden attribute always hides, even on elements palace gives a display (buttons, .btn). */
 [hidden] { display: none !important; }
 
-/* Text for screen readers only: off screen, still read. */
+/* Text for screen readers only: not drawn, still read. It is absolutely
+   positioned where it would have been, so inside a scrolling container that is
+   not positioned it still widens the page: give that container
+   position: relative. */
 .visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
@@ -321,12 +327,17 @@ button, .btn {
   transition: var(--p-transition);
   text-decoration: none;
   display: inline-block;
+  /* One line height for <button> and <a class="btn">, so both are the same
+     height: a button does not inherit the body's line height, a link does. */
+  line-height: calc(17 / 13);
+  text-align: center;
 }
 
 /* Size modifiers */
 .btn-sm {
   padding: 6px 14px;
   font-size: 11px;
+  line-height: calc(14 / 11);
   letter-spacing: 1px;
   border-width: var(--p-border-thin);
 }
@@ -334,6 +345,7 @@ button, .btn {
 .btn-lg {
   padding: 14px 28px;
   font-size: 15px;
+  line-height: calc(19 / 15);
   letter-spacing: 1px;
 }
 
@@ -397,6 +409,8 @@ button, .btn {
   padding: 14px 28px;
   font-family: var(--p-font);
   font-size: 15px;
+  line-height: calc(19 / 15);
+  text-align: center;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -616,6 +630,15 @@ textarea:focus {
   border-color: var(--p-accent-2);
   box-shadow: var(--p-shadow-md) var(--p-accent-2);
   transform: var(--p-lift-sm);
+}
+
+/* Checkboxes, radio buttons and disclosure summaries: the focus ring of links
+   and buttons, without the lift. */
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible,
+summary:focus-visible {
+  outline: var(--p-border-width) solid var(--p-accent-2);
+  outline-offset: 2px;
 }
 
 
@@ -842,10 +865,37 @@ textarea:focus {
 /* The current item: a pink bar, beside any focus outline, never instead of it. */
 .navbar-menu-panel a[aria-current],
 .navbar-menu-panel a[aria-current]:focus-visible { box-shadow: inset 3px 0 0 var(--p-accent-1); }
-.navbar-menu-panel form {
+.navbar-menu-panel form,
+.navbar-menu-group {
   margin: var(--p-space-xs) 0 0;
   padding-top: var(--p-space-xs);
   border-top: var(--p-border-thin) solid var(--p-border);
+}
+/* A group of items under a thin rule, with an optional .navbar-menu-label. */
+.navbar-menu-group { display: grid; }
+.navbar-menu-group:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+/* A setting: its name on the left, a switch on the right, on and off from
+   aria-pressed. The switch is square-edged like everything else. */
+.navbar-menu-panel .navbar-menu-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--p-space-md);
+}
+.navbar-menu-setting::after {
+  content: '';
+  flex: none;
+  width: 28px;
+  height: 16px;
+  border: var(--p-border-width) solid var(--p-text);
+  background: var(--p-surface) linear-gradient(var(--p-text), var(--p-text)) no-repeat left 2px center / 8px 8px;
+}
+.navbar-menu-setting[aria-pressed="true"]::after {
+  background: var(--p-accent-1) linear-gradient(var(--p-text), var(--p-text)) no-repeat right 2px center / 8px 8px;
+}
+@media (forced-colors: active) {
+  .navbar-menu-setting::after { forced-color-adjust: none; border-color: CanvasText; background-color: Canvas; background-image: linear-gradient(CanvasText, CanvasText); }
+  .navbar-menu-setting[aria-pressed="true"]::after { background-color: Highlight; }
 }
 
 /* ══════════════════════════════════════════

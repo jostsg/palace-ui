@@ -361,6 +361,17 @@
     <button class="btn btn-lg btn-primary">Large</button>
   </div>
 
+  <h3 style="margin-bottom: 12px;">Buttons and links side by side</h3>
+  <p style="margin-bottom: 12px;">A <code>&lt;button&gt;</code> and an <code>&lt;a class="btn"&gt;</code> of the same size are the same height and line up.</p>
+  <div data-source id="btn-match" style="display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; margin-bottom: 24px;">
+    <button class="btn btn-sm btn-outline">Button</button>
+    <a href="#" class="btn btn-sm btn-outline">Link</a>
+    <button class="btn btn-primary">Button</button>
+    <a href="#" class="btn btn-primary">Link</a>
+    <button class="btn btn-lg btn-secondary">Button</button>
+    <a href="#" class="btn btn-lg btn-secondary">Link</a>
+  </div>
+
   <h3 style="margin-bottom: 12px;">Disabled</h3>
   <div data-source style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">
     <button class="btn btn-primary" disabled>Disabled</button>
@@ -462,6 +473,23 @@
     </div>
   </div>
 
+  <h3 style="margin-bottom: 12px;">Checkboxes, radio buttons and disclosures</h3>
+  <p style="margin-bottom: 12px;">Tab through them: each gets the same focus ring as links and buttons.</p>
+  <div data-source id="focus-controls" class="card-static" style="margin-bottom: 16px;">
+    <div class="stack-md">
+      <label><input type="checkbox" checked> Show lap times</label>
+      <fieldset style="border: 0;">
+        <legend class="visually-hidden">Direction</legend>
+        <label><input type="radio" name="cat-dir" checked> Anticlockwise</label>
+        <label><input type="radio" name="cat-dir"> Clockwise</label>
+      </fieldset>
+      <details>
+        <summary>More options</summary>
+        <p>Hidden until the summary is opened.</p>
+      </details>
+    </div>
+  </div>
+
   <h3 style="margin-bottom: 12px;">Inline Form</h3>
   <div data-source style="display: flex; gap: 8px;">
     <input type="text" placeholder="Add a label" aria-label="Add a label" style="flex: 1;">
@@ -519,6 +547,20 @@
           <td><span class="badge">Updated</span></td>
           <td style="text-align: right;">55</td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-bottom: 12px; margin-top: 24px;">Scrolling table</h3>
+  <p style="margin-bottom: 12px;">A wide table scrolls inside its wrapper. The wrapper is <code>position: relative</code>, so <code>.visually-hidden</code> text in it stays inside it and the page never grows wider.</p>
+  <div data-source id="scroll-table" style="overflow-x: auto; position: relative;">
+    <table style="min-width: 640px;">
+      <thead>
+        <tr><th>Driver</th><th>Laps</th><th>Best</th><th>Last</th><th><span class="visually-hidden">Actions</span></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ada</td><td>12</td><td>4.812</td><td>4.977</td><td><button class="btn btn-sm btn-outline">Edit<span class="visually-hidden"> Ada</span></button></td></tr>
+        <tr><td>Grace</td><td>11</td><td>4.903</td><td>5.120</td><td><button class="btn btn-sm btn-outline">Edit<span class="visually-hidden"> Grace</span></button></td></tr>
       </tbody>
     </table>
   </div>
@@ -794,7 +836,7 @@
   </div>
 
   <h3 style="margin-bottom: 12px;">With a navbar menu (open it)</h3>
-  <div data-source style="margin-bottom: 24px; padding-bottom: 180px;">
+  <div data-source style="margin-bottom: 24px; padding-bottom: 300px;">
     <nav class="navbar">
       <a href="#" class="navbar-brand">App Name</a>
       <div class="navbar-right">
@@ -804,6 +846,11 @@
             <p class="navbar-menu-label" aria-hidden="true">Your teams</p>
             <ul aria-label="Your teams"><li><a href="#" aria-current="true">Team A</a></li><li><a href="#">Team B</a></li></ul>
             <a href="#">Account</a>
+            <div class="navbar-menu-group" role="group" aria-labelledby="cat-menu-settings">
+              <p class="navbar-menu-label" id="cat-menu-settings">Settings</p>
+              <button type="button" class="navbar-menu-setting" aria-pressed="true">Notifications</button>
+              <button type="button" class="navbar-menu-setting" aria-pressed="false">Sound</button>
+            </div>
             <form><button type="button">Sign out</button></form>
           </div>
         </details>
