@@ -550,6 +550,20 @@
       </tbody>
     </table>
   </div>
+
+  <h3 style="margin-bottom: 12px; margin-top: 24px;">Scrolling table</h3>
+  <p style="margin-bottom: 12px;">A wide table scrolls inside its wrapper. The wrapper is <code>position: relative</code>, so <code>.visually-hidden</code> text in it stays inside it and the page never grows wider.</p>
+  <div data-source id="scroll-table" style="overflow-x: auto; position: relative;">
+    <table style="min-width: 640px;">
+      <thead>
+        <tr><th>Driver</th><th>Laps</th><th>Best</th><th>Last</th><th><span class="visually-hidden">Actions</span></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ada</td><td>12</td><td>4.812</td><td>4.977</td><td><button class="btn btn-sm btn-outline">Edit<span class="visually-hidden"> Ada</span></button></td></tr>
+        <tr><td>Grace</td><td>11</td><td>4.903</td><td>5.120</td><td><button class="btn btn-sm btn-outline">Edit<span class="visually-hidden"> Grace</span></button></td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- ════════════════════════════════════════ CODE ════════════════════════════════════════ -->

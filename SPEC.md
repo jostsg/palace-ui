@@ -157,7 +157,7 @@ A navbar menu for the signed-in user is a `<details class="navbar-menu">`: the s
 </nav>
 ```
 
-`.visually-hidden` hides text visually and keeps it for screen readers.
+`.visually-hidden` hides text visually and keeps it for screen readers (see Visually Hidden).
 
 With an icon beside the brand name (`.navbar-brand` uses `inline-flex` layout with `gap: 10px`; images/SVGs are auto-sized to 24×24):
 
@@ -624,6 +624,22 @@ Inline keyboard key: bordered, uppercase mono, with a small pink offset shadow.
 
 ```html
 <kbd>Ctrl</kbd> + <kbd>Z</kbd>
+```
+
+### Visually Hidden
+
+`.visually-hidden` keeps text for screen readers and draws nothing: a label for an icon-only column, the name of the row an "Edit" button acts on.
+
+```html
+<button class="btn btn-sm btn-outline">Edit<span class="visually-hidden"> Ada</span></button>
+```
+
+It is absolutely positioned where the text would have been, with no `top` or `left`, so it stays where the text is and a screen reader moving to it does not jump the page. That means it still counts toward the width of its containing block. **A scrolling container (`overflow-x: auto`) holding `.visually-hidden` text needs `position: relative`**; without it the hidden text's containing block is the page, and a wide table makes the whole page scroll sideways on a phone.
+
+```html
+<div style="overflow-x: auto; position: relative;">
+  <table>…<th><span class="visually-hidden">Actions</span></th>…</table>
+</div>
 ```
 
 ## Accessibility

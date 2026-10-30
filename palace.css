@@ -114,11 +114,17 @@
 /* The hidden attribute always hides, even on elements palace gives a display (buttons, .btn). */
 [hidden] { display: none !important; }
 
-/* Text for screen readers only: off screen, still read. */
+/* Text for screen readers only: not drawn, still read. It is absolutely
+   positioned where it would have been, so inside a scrolling container that is
+   not positioned it still widens the page: give that container
+   position: relative. */
 .visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
