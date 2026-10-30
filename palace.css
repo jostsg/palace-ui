@@ -865,10 +865,37 @@ summary:focus-visible {
 /* The current item: a pink bar, beside any focus outline, never instead of it. */
 .navbar-menu-panel a[aria-current],
 .navbar-menu-panel a[aria-current]:focus-visible { box-shadow: inset 3px 0 0 var(--p-accent-1); }
-.navbar-menu-panel form {
+.navbar-menu-panel form,
+.navbar-menu-group {
   margin: var(--p-space-xs) 0 0;
   padding-top: var(--p-space-xs);
   border-top: var(--p-border-thin) solid var(--p-border);
+}
+/* A group of items under a thin rule, with an optional .navbar-menu-label. */
+.navbar-menu-group { display: grid; }
+.navbar-menu-group:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+/* A setting: its name on the left, a switch on the right, on and off from
+   aria-pressed. The switch is square-edged like everything else. */
+.navbar-menu-panel .navbar-menu-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--p-space-md);
+}
+.navbar-menu-setting::after {
+  content: '';
+  flex: none;
+  width: 28px;
+  height: 16px;
+  border: var(--p-border-width) solid var(--p-text);
+  background: var(--p-surface) linear-gradient(var(--p-text), var(--p-text)) no-repeat left 2px center / 8px 8px;
+}
+.navbar-menu-setting[aria-pressed="true"]::after {
+  background: var(--p-accent-1) linear-gradient(var(--p-text), var(--p-text)) no-repeat right 2px center / 8px 8px;
+}
+@media (forced-colors: active) {
+  .navbar-menu-setting::after { forced-color-adjust: none; border-color: CanvasText; background-color: Canvas; background-image: linear-gradient(CanvasText, CanvasText); }
+  .navbar-menu-setting[aria-pressed="true"]::after { background-color: Highlight; }
 }
 
 /* ══════════════════════════════════════════

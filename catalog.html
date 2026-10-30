@@ -836,7 +836,7 @@
   </div>
 
   <h3 style="margin-bottom: 12px;">With a navbar menu (open it)</h3>
-  <div data-source style="margin-bottom: 24px; padding-bottom: 180px;">
+  <div data-source style="margin-bottom: 24px; padding-bottom: 300px;">
     <nav class="navbar">
       <a href="#" class="navbar-brand">App Name</a>
       <div class="navbar-right">
@@ -846,6 +846,11 @@
             <p class="navbar-menu-label" aria-hidden="true">Your teams</p>
             <ul aria-label="Your teams"><li><a href="#" aria-current="true">Team A</a></li><li><a href="#">Team B</a></li></ul>
             <a href="#">Account</a>
+            <div class="navbar-menu-group" role="group" aria-labelledby="cat-menu-settings">
+              <p class="navbar-menu-label" id="cat-menu-settings">Settings</p>
+              <button type="button" class="navbar-menu-setting" aria-pressed="true">Notifications</button>
+              <button type="button" class="navbar-menu-setting" aria-pressed="false">Sound</button>
+            </div>
             <form><button type="button">Sign out</button></form>
           </div>
         </details>

@@ -157,6 +157,16 @@ A navbar menu for the signed-in user is a `<details class="navbar-menu">`: the s
 </nav>
 ```
 
+Group items with `.navbar-menu-group`: a thin rule above, like the one before sign out, and an optional `.navbar-menu-label` as its heading. A setting that is switched on and off is a `button.navbar-menu-setting` with `aria-pressed`: its name sits on the left and a small square switch on the right, pink when pressed. Toggle `aria-pressed` with a script, or submit a form that renders the new state. Use it for on/off settings, not for links.
+
+```html
+<div class="navbar-menu-group" role="group" aria-labelledby="menu-settings">
+  <p class="navbar-menu-label" id="menu-settings">Settings</p>
+  <button type="button" class="navbar-menu-setting" aria-pressed="true">Notifications</button>
+  <button type="button" class="navbar-menu-setting" aria-pressed="false">Sound</button>
+</div>
+```
+
 `.visually-hidden` hides text visually and keeps it for screen readers (see Visually Hidden).
 
 With an icon beside the brand name (`.navbar-brand` uses `inline-flex` layout with `gap: 10px`; images/SVGs are auto-sized to 24×24):
