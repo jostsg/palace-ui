@@ -302,7 +302,7 @@ Use `.card-static` instead of `.card` when the card is a container (e.g. auth fo
 
 ### Buttons
 
-Size modifiers compose with any color variant:
+Size modifiers compose with any color variant. `.btn` works on `<button>` and on `<a>` alike: each size sets its own line height, so a button and a link button of the same size are the same height (41px default, 28px `.btn-sm`, 51px `.btn-lg` and `.cta`) and line up side by side.
 
 ```html
 <!-- Size modifiers -->

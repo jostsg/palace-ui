@@ -321,12 +321,17 @@ button, .btn {
   transition: var(--p-transition);
   text-decoration: none;
   display: inline-block;
+  /* One line height for <button> and <a class="btn">, so both are the same
+     height: a button does not inherit the body's line height, a link does. */
+  line-height: calc(17 / 13);
+  text-align: center;
 }
 
 /* Size modifiers */
 .btn-sm {
   padding: 6px 14px;
   font-size: 11px;
+  line-height: calc(14 / 11);
   letter-spacing: 1px;
   border-width: var(--p-border-thin);
 }
@@ -334,6 +339,7 @@ button, .btn {
 .btn-lg {
   padding: 14px 28px;
   font-size: 15px;
+  line-height: calc(19 / 15);
   letter-spacing: 1px;
 }
 
@@ -397,6 +403,8 @@ button, .btn {
   padding: 14px 28px;
   font-family: var(--p-font);
   font-size: 15px;
+  line-height: calc(19 / 15);
+  text-align: center;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
