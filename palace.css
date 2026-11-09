@@ -325,6 +325,10 @@ button, .btn {
   border: var(--p-border-width) solid;
   border-radius: var(--p-radius);
   transition: var(--p-transition);
+  /* Only what a button's states change. A size that follows its container
+     (font size, padding, width) must never animate, or it passes through
+     sizes in between whenever the container settles. */
+  transition-property: background-color, border-color, color, box-shadow, transform, outline-color;
   text-decoration: none;
   display: inline-block;
   /* One line height for <button> and <a class="btn">, so both are the same
