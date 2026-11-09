@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.2](https://github.com/jostsg/palace-ui/compare/v0.12.1...v0.12.2) (2026-11-09)
+
+
+### Bug Fixes
+
+* buttons transition only what their states change ([#9](https://github.com/jostsg/palace-ui/issues/9)) ([e274065](https://github.com/jostsg/palace-ui/commit/e274065abb45dcf0c988eee1391a42a07d448186))
+
 ## [0.12.1](https://github.com/jostsg/palace-ui/compare/v0.12.0...v0.12.1) (2026-10-30)
 
 
