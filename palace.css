@@ -637,20 +637,21 @@ textarea:focus {
 }
 
 /* A field with a button inside, at its right end (show/hide a password, paste,
-   copy). The input reserves the button's width; the button is centred in the
+   copy). The input reserves the button's width plus its 8px inset; the button is centred in the
    input's box and lifts with it, so the two stay aligned on focus. Set
-   --input-action-width for a wider button. */
+   --input-action-width to the button's width when it is wider. */
 .input-action {
   position: relative;
   --input-action-width: 4.75rem;
 }
-.input-action > input { padding-right: var(--input-action-width); }
+.input-action > input[type] { padding-inline-end: calc(var(--input-action-width) + 8px); }
 .input-action > .btn,
 .input-action > button {
   position: absolute;
   inset-block: 0;
-  right: 8px;
+  inset-inline-end: 8px;
   height: fit-content;
+  white-space: nowrap;
   margin-block: auto;
 }
 .input-action > input:focus ~ .btn,

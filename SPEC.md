@@ -369,13 +369,13 @@ Inline form (input + button side by side):
 </div>
 ```
 
-A field with a button inside, at its right end (show/hide a password, paste, copy). The input reserves the button's width (`--input-action-width`, default `4.75rem`); the button is centred in the input's box and lifts with the input on focus, so they stay aligned. Use `.btn-sm`, a real `<button type="button">`, and name it for assistive tech (`aria-label`, plus `aria-pressed` for a toggle).
+A field with a button inside, at its right end (show/hide a password, paste, copy). The input reserves the button's width plus its 8px inset from the edge (`--input-action-width` is the button's width, default `4.75rem`); the button is centred in the input's box and lifts with the input on focus, so they stay aligned. Use `.btn-sm`, a real `<button type="button">`, and for a toggle let the visible text and the accessible name change together ("Show" / `aria-label="Show password"` and "Hide" / "Hide password"). Pick one way to say the state: a changing name, or a fixed name with `aria-pressed` — never both.
 
 ```html
 <label for="pw">Password</label>
 <div class="input-action">
   <input type="password" id="pw" autocomplete="off">
-  <button type="button" class="btn btn-sm btn-outline" aria-controls="pw" aria-pressed="false" aria-label="Show password">Show</button>
+  <button type="button" class="btn btn-sm btn-outline" aria-label="Show password">Show</button>
 </div>
 ```
 
