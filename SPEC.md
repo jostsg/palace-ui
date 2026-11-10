@@ -369,6 +369,16 @@ Inline form (input + button side by side):
 </div>
 ```
 
+A field with a button inside, at its right end (show/hide a password, paste, copy). The input reserves the button's width (`--input-action-width`, default `4.75rem`); the button is centred in the input's box and lifts with the input on focus, so they stay aligned. Use `.btn-sm`, a real `<button type="button">`, and name it for assistive tech (`aria-label`, plus `aria-pressed` for a toggle).
+
+```html
+<label for="pw">Password</label>
+<div class="input-action">
+  <input type="password" id="pw" autocomplete="off">
+  <button type="button" class="btn btn-sm btn-outline" aria-controls="pw" aria-pressed="false" aria-label="Show password">Show</button>
+</div>
+```
+
 ### Status Messages
 
 ```html
@@ -389,6 +399,8 @@ Inline form (input + button side by side):
 ```
 
 Use `role="alert"` for error and warning messages (assertive — interrupts the user). Use `role="status"` for success and info messages (polite — announced at the next opportunity). Omit the role for neutral/static messages that don't need to be announced.
+
+Status boxes carry palace's hard shadow (`--p-shadow-lg` in `--p-text`); leave room for it (4px right and below) inside containers that clip.
 
 Show/hide with JavaScript:
 ```js
