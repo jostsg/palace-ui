@@ -636,6 +636,29 @@ textarea:focus {
   transform: var(--p-lift-sm);
 }
 
+/* A field with a button inside, at its right end (show/hide a password, paste,
+   copy). The input reserves the button's width plus its 8px inset; the button is centred in the
+   input's box and lifts with it, so the two stay aligned on focus. Set
+   --input-action-width to the button's width when it is wider. */
+.input-action {
+  position: relative;
+  --input-action-width: 4.75rem;
+}
+.input-action > input[type] { padding-inline-end: calc(var(--input-action-width) + 8px); }
+.input-action > .btn,
+.input-action > button {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 8px;
+  height: fit-content;
+  white-space: nowrap;
+  margin-block: auto;
+}
+.input-action > input:focus ~ .btn,
+.input-action > input:focus ~ button {
+  transform: var(--p-lift-sm);
+}
+
 /* Checkboxes, radio buttons and disclosure summaries: the focus ring of links
    and buttons, without the lift. */
 input[type="checkbox"]:focus-visible,
@@ -656,6 +679,7 @@ summary:focus-visible {
   font-size: 13px;
   font-weight: 600;
   border: var(--p-border-width) solid var(--p-text);
+  box-shadow: var(--p-shadow-lg) var(--p-text);
 }
 
 .status-success {
