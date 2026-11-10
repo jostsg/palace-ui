@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/jostsg/palace-ui/compare/v0.12.2...v0.13.0) (2026-11-10)
+
+
+### Features
+
+* a field with a button inside (.input-action), hard shadow on status boxes ([#11](https://github.com/jostsg/palace-ui/issues/11)) ([8595ede](https://github.com/jostsg/palace-ui/commit/8595ede81ec26ca90abe4cf477a1a0dae59fa2ef))
+
 ## [0.12.2](https://github.com/jostsg/palace-ui/compare/v0.12.1...v0.12.2) (2026-11-09)
 
 
