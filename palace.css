@@ -253,13 +253,23 @@ h3, .h3 {
   margin-bottom: 32px;
 }
 
-/* ── Stack spacing (vertical rhythm between children) ── */
-.stack-xs > * + * { margin-top: var(--p-space-xs); }
-.stack-sm > * + * { margin-top: var(--p-space-sm); }
-.stack-md > * + * { margin-top: var(--p-space-md); }
-.stack-lg > * + * { margin-top: var(--p-space-lg); }
-.stack-xl > * + * { margin-top: var(--p-space-xl); }
-.stack-2xl > * + * { margin-top: var(--p-space-2xl); }
+/* ── Space and gap (the spacing scale between children) ──
+   space-*: vertical rhythm between children, with the owl selector.
+   gap-*: the gap of a flex or grid container.
+   stack-*: deprecated alias of space-*, kept so existing markup works. */
+.space-xs > * + *, .stack-xs > * + * { margin-top: var(--p-space-xs); }
+.space-sm > * + *, .stack-sm > * + * { margin-top: var(--p-space-sm); }
+.space-md > * + *, .stack-md > * + * { margin-top: var(--p-space-md); }
+.space-lg > * + *, .stack-lg > * + * { margin-top: var(--p-space-lg); }
+.space-xl > * + *, .stack-xl > * + * { margin-top: var(--p-space-xl); }
+.space-2xl > * + *, .stack-2xl > * + * { margin-top: var(--p-space-2xl); }
+
+.gap-xs { gap: var(--p-space-xs); }
+.gap-sm { gap: var(--p-space-sm); }
+.gap-md { gap: var(--p-space-md); }
+.gap-lg { gap: var(--p-space-lg); }
+.gap-xl { gap: var(--p-space-xl); }
+.gap-2xl { gap: var(--p-space-2xl); }
 
 /* ── Lists (restore styling inside containers) ── */
 .container ul,
@@ -850,9 +860,11 @@ summary:focus-visible {
   border: var(--p-border-width) solid var(--p-text);
   box-shadow: var(--p-shadow-md) var(--p-accent-2);
 }
-.navbar-menu-panel ul { list-style: none; margin: 0; padding: 0; display: grid; }
+/* The margin resets sit in :where() so a space-* utility on the panel beats them. */
+:where(.navbar-menu-panel ul) { margin: 0; }
+.navbar-menu-panel ul { list-style: none; padding: 0; display: grid; }
+:where(.navbar-menu-label) { margin: 0; }
 .navbar-menu-label {
-  margin: 0;
   padding: var(--p-space-sm) var(--p-space-md) var(--p-space-xs);
   font-size: 11px;
   font-weight: 600;
