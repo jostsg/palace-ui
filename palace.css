@@ -696,12 +696,12 @@ textarea:focus {
 :is(input, select, textarea)[aria-invalid="true"]:focus {
   border-color: var(--p-error-text);
 }
-:is(input, select, textarea)[aria-invalid="true"]:focus {
+:is(input:not([type="checkbox"], [type="radio"]), select, textarea)[aria-invalid="true"]:focus {
   box-shadow: var(--p-shadow-md) var(--p-error-text);
 }
 
 /* Fields and buttons in one row, bottoms aligned; the row wraps when narrow.
-   Fields, inputs and selects grow from --control-row-min; buttons keep their
+   Fields, inputs, selects and textareas grow from --control-row-min; buttons keep their
    natural width but may shrink and wrap their label. */
 .control-row {
   --control-row-min: 12rem;
@@ -710,7 +710,7 @@ textarea:focus {
   align-items: end;
   gap: var(--p-space-sm);
 }
-.control-row > :is(.field, input, select) {
+.control-row > :is(.field, .input-action, input, select, textarea) {
   flex: 1 1 var(--control-row-min);
   min-width: 0;
 }

@@ -176,3 +176,40 @@ test('a button keeps the spaces between its inline children', async () => {
   assert.ok(k.left - s.right > 0, `gap ${k.left - s.right}`);
   assert.ok(ck.left - cs.right > 0, `gap ${ck.left - cs.right}`);
 });
+
+test("a control-row's error goes below the row and leaves the button in line", async () => {
+  const page = await render(
+    `<div class="space-sm"><form class="control-row"><div class="field"><label>Name</label><input type=text id=i aria-invalid="true"></div>
+     <button id=b>Save</button></form><p class="field-error">Wrong</p></div>`,
+  );
+  const [i, b] = [await box(page, '#i'), await box(page, '#b')];
+  await page.close();
+  assert.equal(i.bottom, b.bottom);
+});
+
+test('an input-action grows in a control-row', async () => {
+  const page = await render(
+    '<form class="control-row"><div class="input-action" id=a><input type=password><button>Show</button></div><button>Save</button></form>',
+  );
+  const a = await box(page, '#a');
+  await page.close();
+  assert.ok(a.width > 500, `width ${a.width}`);
+});
+
+test('a textarea grows in a control-row', async () => {
+  const page = await render('<form class="control-row"><textarea id=t></textarea><button>Save</button></form>');
+  const t = await box(page, '#t');
+  await page.close();
+  assert.ok(t.width > 500, `width ${t.width}`);
+});
+
+for (const type of ['checkbox', 'radio']) {
+  test(`a focused invalid ${type} gets no error shadow`, async () => {
+    const page = await render(`<input type=${type} id=c aria-invalid="true">`);
+    await page.focus('#c');
+    await page.evaluate(() => Promise.allSettled(document.getAnimations().map((a) => a.finished)));
+    const sh = await page.$eval('#c', (el) => getComputedStyle(el).boxShadow);
+    await page.close();
+    assert.doesNotMatch(sh, /rgb\(196, 0, 0\)/);
+  });
+}
