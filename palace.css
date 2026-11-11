@@ -101,6 +101,14 @@
 }
 
 
+/* ── Controls ── */
+:root {
+  --p-control-height: 44px;
+  --p-control-height-sm: 32px;
+  --p-control-height-lg: 52px;
+}
+
+
 /* ══════════════════════════════════════════
    RESET
    ══════════════════════════════════════════ */
@@ -320,7 +328,8 @@ a:focus-visible {
    ══════════════════════════════════════════ */
 
 button, .btn {
-  padding: 10px 16px;
+  height: var(--p-control-height);
+  padding: 0 16px;
   font-family: var(--p-font);
   font-size: 13px;
   font-weight: 700;
@@ -335,26 +344,25 @@ button, .btn {
      sizes in between whenever the container settles. */
   transition-property: background-color, border-color, color, box-shadow, transform, outline-color;
   text-decoration: none;
-  display: inline-block;
-  /* One line height for <button> and <a class="btn">, so both are the same
-     height: a button does not inherit the body's line height, a link does. */
-  line-height: calc(17 / 13);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
 /* Size modifiers */
 .btn-sm {
-  padding: 6px 14px;
+  height: var(--p-control-height-sm);
+  padding: 0 14px;
   font-size: 11px;
-  line-height: calc(14 / 11);
   letter-spacing: 1px;
   border-width: var(--p-border-thin);
 }
 
 .btn-lg {
-  padding: 14px 28px;
+  height: var(--p-control-height-lg);
+  padding: 0 28px;
   font-size: 15px;
-  line-height: calc(19 / 15);
   letter-spacing: 1px;
 }
 
@@ -414,11 +422,13 @@ button, .btn {
 
 /* CTA buttons (larger, for hero sections) */
 .cta {
-  display: inline-block;
-  padding: 14px 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--p-control-height-lg);
+  padding: 0 28px;
   font-family: var(--p-font);
   font-size: 15px;
-  line-height: calc(19 / 15);
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;
@@ -547,7 +557,8 @@ input[type="search"],
 input[type="url"],
 input[type="tel"] {
   width: 100%;
-  padding: 12px;
+  height: var(--p-control-height);
+  padding: 0 12px;
   border: var(--p-border-width) solid var(--p-text);
   border-radius: var(--p-radius);
   font-family: var(--p-font);
@@ -571,7 +582,8 @@ input[type="tel"]:focus {
 select {
   width: 100%;
   appearance: none;
-  padding: 12px 2.5rem 12px 12px;
+  height: var(--p-control-height);
+  padding: 0 2.5rem 0 12px;
   border: var(--p-border-width) solid var(--p-text);
   border-radius: var(--p-radius);
   background-color: var(--p-surface);
@@ -586,7 +598,7 @@ select {
   outline: none;
   transition: var(--p-transition);
 }
-select[multiple], select[size]:not([size="1"]) { padding-right: 12px; background-image: none; }
+select[multiple], select[size]:not([size="1"]) { height: auto; padding: 12px; background-image: none; }
 
 select:focus {
   border-color: var(--p-accent-2);
@@ -606,7 +618,8 @@ input[type="number"] {
   text-align: center;
   border: var(--p-border-width) solid var(--p-text);
   border-radius: var(--p-radius);
-  padding: 4px;
+  height: var(--p-control-height);
+  padding: 0 4px;
   outline: none;
   background: var(--p-surface);
   transition: var(--p-transition);
@@ -626,7 +639,7 @@ textarea {
   border-radius: var(--p-radius);
   padding: var(--p-space-sm);
   resize: vertical;
-  min-height: 50px;
+  min-height: var(--p-control-height);
   background: var(--p-surface);
   outline: none;
   transition: var(--p-transition);
@@ -646,13 +659,12 @@ textarea:focus {
   position: relative;
   --input-action-width: 4.75rem;
 }
-.input-action > input[type] { padding-inline-end: calc(var(--input-action-width) + 8px); }
+.input-action > input[type] { padding-inline-end: calc(var(--input-action-width) + var(--p-space-sm)); }
 .input-action > .btn,
 .input-action > button {
   position: absolute;
   inset-block: 0;
-  inset-inline-end: 8px;
-  height: fit-content;
+  inset-inline-end: var(--p-space-sm);
   white-space: nowrap;
   margin-block: auto;
 }
@@ -868,6 +880,7 @@ summary:focus-visible {
 .navbar-menu-panel button {
   display: block;
   width: 100%;
+  height: auto;
   box-sizing: border-box;
   padding: var(--p-space-sm) var(--p-space-md);
   border: 0;

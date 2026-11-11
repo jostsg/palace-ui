@@ -4,9 +4,6 @@ import { render, close, box } from './render.js';
 
 after(close);
 
-// Cards transition their border and padding when the stylesheet lands; measure once settled.
-const settled = (page) => page.evaluate(() => Promise.all(document.getAnimations().map((a) => a.finished)));
-
 const sizes = { xs: 4, sm: 8, md: 16, lg: 24, xl: 32, '2xl': 48 };
 
 async function between(cls) {
@@ -49,7 +46,6 @@ test('a card in space-md is 16px from the next card', async () => {
   const page = await render(
     '<div class="space-md"><div class="card" id=a>a</div><div class="card" id=b>b</div></div>',
   );
-  await settled(page);
   const [a, b] = [await box(page, '#a'), await box(page, '#b')];
   await page.close();
   assert.equal(b.top - a.bottom, 16);
@@ -59,7 +55,6 @@ test('a card in a gap-md grid is 16px from the next', async () => {
   const page = await render(
     '<div class="gap-md" style="display:grid"><div class="card" id=a>a</div><div class="card" id=b>b</div></div>',
   );
-  await settled(page);
   const [a, b] = [await box(page, '#a'), await box(page, '#b')];
   await page.close();
   assert.equal(b.top - a.bottom, 16);

@@ -9,6 +9,8 @@ export async function render(html, { width = 800 } = {}) {
   const page = await browser.newPage({ viewport: { width, height: 600 } });
   await page.setContent(html);
   await page.addStyleTag({ path: css });
+  // Controls and cards transition when the stylesheet lands; measure once they settle.
+  await page.evaluate(() => Promise.allSettled(document.getAnimations().map((a) => a.finished)));
   return page;
 }
 
