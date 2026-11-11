@@ -239,19 +239,13 @@ h3, .h3 {
   padding: 32px 16px;
 }
 
-/* Page header — standard spacing after navbar for non-hero pages */
+/* Page header — top padding for non-hero pages; no outer margin, the
+   space after it comes from the parent's space-* or gap-* */
 .page-header {
   padding-top: var(--p-space-2xl);
 }
 
-.page-header h1,
-.page-header .h1 {
-  margin-bottom: var(--p-space-sm);
-}
-
-.page-header .subtitle {
-  margin-bottom: 32px;
-}
+:where(.page-header) > * + * { margin-top: var(--p-space-sm); }
 
 /* ── Space and gap (the spacing scale between children) ──
    space-*: vertical rhythm between children, with the owl selector.
@@ -291,10 +285,11 @@ h3, .h3 {
 
 .container li,
 .container-narrow li {
-  margin-bottom: 4px;
   font-size: 14px;
   line-height: 1.5;
 }
+
+:where(.container, .container-narrow) li + li { margin-top: var(--p-space-xs); }
 
 
 /* ══════════════════════════════════════════
@@ -484,7 +479,6 @@ button:disabled, .btn:disabled, .cta:disabled {
   background: var(--p-surface);
   border: var(--p-border-width) solid var(--p-text);
   padding: var(--p-space-lg);
-  margin-bottom: var(--p-space-md);
   transition: var(--p-transition);
 }
 
@@ -525,7 +519,6 @@ button:disabled, .btn:disabled, .cta:disabled {
   background: var(--p-surface);
   border: var(--p-border-width) solid var(--p-text);
   padding: var(--p-space-lg);
-  margin-bottom: var(--p-space-md);
 }
 
 .card-static:hover {
@@ -545,7 +538,6 @@ label {
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--p-text-muted);
-  margin-bottom: 6px;
 }
 
 input[type="text"],
@@ -1000,13 +992,14 @@ pre {
 .code-reveal code {
   word-break: break-all;
   display: block;
-  margin-bottom: 12px;
   background: var(--p-code-bg);
   padding: 12px;
   border: var(--p-border-thin) solid var(--p-border-dark);
   color: var(--p-code-highlight);
   user-select: all;
 }
+
+:where(.code-reveal) > * + * { margin-top: var(--p-space-sm); }
 
 
 /* ══════════════════════════════════════════
@@ -1232,7 +1225,6 @@ pre {
   display: flex;
   flex-wrap: wrap;
   gap: var(--p-space-lg);
-  margin-bottom: 12px;
 }
 
 
@@ -1278,15 +1270,16 @@ dialog {
 }
 
 dialog::backdrop { background: var(--p-overlay); }
-dialog h2 { margin-bottom: var(--p-space-xs); }
-dialog .subtitle { margin-bottom: var(--p-space-lg); }
-dialog p { margin-bottom: var(--p-space-sm); }
+/* The dialog spaces its own children; later rules win over earlier ones. */
+:where(dialog) > p + * { margin-top: var(--p-space-sm); }
+:where(dialog) > h2 + * { margin-top: var(--p-space-xs); }
+:where(dialog) > .subtitle + *,
+:where(dialog) > menu { margin-top: var(--p-space-lg); }
 
 dialog menu {
   display: flex;
   gap: var(--p-space-sm);
   padding: 0;
-  margin: var(--p-space-lg) 0 0;
   list-style: none;
 }
 
