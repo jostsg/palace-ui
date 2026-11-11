@@ -163,3 +163,16 @@ for (const focused of [false, true]) {
     });
   }
 }
+
+test('a button keeps the spaces between its inline children', async () => {
+  const page = await render(
+    `<button id=a>Save <strong>now</strong></button> <button id=b>Save<strong>now</strong></button>
+     <a class="btn" id=l href="#"><span id=s>Pair</span> <kbd id=k>P</kbd></a>
+     <a class="cta cta-primary" id=c href="#"><span id=cs>Start</span> <kbd id=ck>S</kbd></a>`,
+  );
+  const [a, b, s, k, cs, ck] = await Promise.all(['#a', '#b', '#s', '#k', '#cs', '#ck'].map((sel) => box(page, sel)));
+  await page.close();
+  assert.ok(a.width > b.width, `${a.width} vs ${b.width}`);
+  assert.ok(k.left - s.right > 0, `gap ${k.left - s.right}`);
+  assert.ok(ck.left - cs.right > 0, `gap ${ck.left - cs.right}`);
+});
