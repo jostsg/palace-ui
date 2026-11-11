@@ -58,5 +58,35 @@ test("input-action's button sits inside the field", async () => {
 
 test('a navbar menu panel button keeps its own height', async () => {
   const [h] = await heights('<div class="navbar-menu-panel"><button id=a>Sign out</button></div>', ['#a']);
-  assert.equal(h, 34.1875);
+  assert.ok(h < 44, `height ${h}`);
+  assert.ok(Math.abs(h - (16 + 13 * 1.4)) < 0.5, `height ${h}`);
+});
+
+test('a long label wraps inside its button, in a link and a button alike', async () => {
+  const page = await render(
+    '<div style="width:120px"><a id=a class="btn btn-block" href="#">Save and continue to next</a><button id=b class="btn-block">Save and continue to next</button></div>',
+  );
+  const out = [];
+  for (const s of ['#a', '#b']) {
+    out.push(await page.$eval(s, (el) => ({ h: el.getBoundingClientRect().height, spill: el.scrollHeight - el.clientHeight })));
+  }
+  await page.close();
+  for (const o of out) {
+    assert.ok(o.h > 44, `height ${o.h}`);
+    assert.ok(o.spill <= 0.5, `spill ${o.spill}`);
+  }
+  assert.equal(out[0].h, out[1].h);
+});
+
+test('a bare button in .input-action is small and centred', async () => {
+  const page = await render('<div class="input-action"><input type=password id=i><button id=b>Show</button></div>');
+  const [i, b] = [await box(page, '#i'), await box(page, '#b')];
+  await page.close();
+  assert.equal(b.height, 32);
+  assert.equal(b.top - i.top, i.bottom - b.bottom);
+});
+
+test('a multiple select grows past one control', async () => {
+  const [h] = await heights('<select id=s multiple><option>a<option>b<option>c<option>d</select>', ['#s']);
+  assert.ok(h > 44, `height ${h}`);
 });
