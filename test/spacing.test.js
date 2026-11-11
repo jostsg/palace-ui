@@ -105,3 +105,46 @@ test('list items and code-reveal keep their inside spacing', async () => {
   assert.equal(b.top - a.bottom, 4);
   assert.equal(d.top - c.bottom, 8);
 });
+
+test('a dialog menu in a container keeps its buttons level', async () => {
+  const page = await render(
+    '<div class="container"><dialog open><p>c</p><menu><li><button id=a>No</button></li><li><button id=b>Yes</button></li></menu></dialog></div>',
+  );
+  const [a, b] = [await box(page, '#a'), await box(page, '#b')];
+  await page.close();
+  assert.equal(a.top, b.top);
+});
+
+test('dialog menu buttons share the width', async () => {
+  const page = await render(
+    '<dialog open><p>c</p><menu><li><button id=a>No</button></li><li><button id=b class="btn btn-primary">Delete it now</button></li></menu></dialog>',
+  );
+  const [a, b] = [await box(page, '#a'), await box(page, '#b')];
+  await page.close();
+  assert.equal(a.width, b.width);
+});
+
+test('a dialog spaces the children of its form', async () => {
+  const page = await render(
+    '<dialog open><form method="dialog"><h2 id=a>t</h2><p class="subtitle" id=b>s</p><p id=c>c</p><menu id=d><li><button>x</button></li></menu></form></dialog>',
+  );
+  const [a, b, c, d] = [await box(page, '#a'), await box(page, '#b'), await box(page, '#c'), await box(page, '#d')];
+  await page.close();
+  assert.deepEqual([b.top - a.bottom, c.top - b.bottom, d.top - c.bottom], [4, 24, 24]);
+});
+
+test('a modal dialog in a space-* container is centred', async () => {
+  const page = await render('<div class="container space-lg"><p>a</p><dialog id=d><p>c</p></dialog></div>');
+  await page.$eval('#d', (el) => el.showModal());
+  const d = await box(page, '#d');
+  const vh = await page.evaluate(() => innerHeight);
+  await page.close();
+  assert.ok(Math.abs(d.top - (vh - d.bottom)) <= 1, `top ${d.top}, bottom gap ${vh - d.bottom}`);
+});
+
+test('a stat-label in space-md sits 16px below the stat', async () => {
+  const page = await render('<div class="space-md"><div class="stat" id=a>3</div><div class="stat-label" id=b>laps</div></div>');
+  const [a, b] = [await box(page, '#a'), await box(page, '#b')];
+  await page.close();
+  assert.equal(b.top - a.bottom, 16);
+});

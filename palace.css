@@ -294,7 +294,8 @@ h3, .h3 {
   line-height: 1.5;
 }
 
-:where(.container, .container-narrow) li + li { margin-top: var(--p-space-xs); }
+/* Items of a list, never items laid out by a component (a dialog's <menu>). */
+:where(.container, .container-narrow) :where(ul, ol) > :where(li + li) { margin-top: var(--p-space-xs); }
 
 
 /* ══════════════════════════════════════════
@@ -1278,8 +1279,9 @@ pre {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--p-text-faint);
-  margin-top: 2px;
 }
+/* Optical: 2px off the stat above. In :where() so space-* wins. */
+:where(.stat-label) { margin-top: 2px; }
 
 .stat-row {
   display: flex;
@@ -1328,13 +1330,19 @@ dialog {
      which is what centres a modal dialog. Restored here. */
   margin: auto;
 }
+/* An open modal stays centred even in a space-* container, whose
+   `> * + *` margin is more specific than `dialog`. */
+dialog:modal { margin: auto; }
 
 dialog::backdrop { background: var(--p-overlay); }
-/* The dialog spaces its own children; later rules win over earlier ones. */
-:where(dialog) > p + * { margin-top: var(--p-space-sm); }
-:where(dialog) > h2 + * { margin-top: var(--p-space-xs); }
-:where(dialog) > .subtitle + *,
-:where(dialog) > menu { margin-top: var(--p-space-lg); }
+/* The dialog spaces its own children, or those of a direct <form>.
+   Specificity decides first: `.subtitle + *` has a class and beats the
+   element rules. Among those (p, h2, menu), all equally specific, the later
+   one in this file wins, so a <menu> after a <p> still gets lg. */
+:where(dialog, dialog > form) > p + * { margin-top: var(--p-space-sm); }
+:where(dialog, dialog > form) > h2 + * { margin-top: var(--p-space-xs); }
+:where(dialog, dialog > form) > .subtitle + *,
+:where(dialog, dialog > form) > menu { margin-top: var(--p-space-lg); }
 
 dialog menu {
   display: flex;
@@ -1343,7 +1351,9 @@ dialog menu {
   list-style: none;
 }
 
-dialog menu .btn { flex: 1; }
+/* The buttons share the row's width. */
+dialog menu > li { flex: 1; }
+dialog menu > li > :is(button, .btn) { width: 100%; }
 
 /* ══════════════════════════════════════════
    KBD
