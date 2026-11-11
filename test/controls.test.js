@@ -141,3 +141,25 @@ test('an input-action sits in a field as its control', async () => {
   await page.close();
   assert.equal(a.top - l.bottom, 8);
 });
+
+for (const focused of [false, true]) {
+  for (const [name, html] of [
+    ['text input', '<input type=text id=c aria-invalid="true">'],
+    ['number input', '<input type=number id=c aria-invalid="true">'],
+    ['select', '<select id=c aria-invalid="true"><option>x</select>'],
+    ['textarea', '<textarea id=c aria-invalid="true"></textarea>'],
+  ]) {
+    if (!focused && name.endsWith('input')) continue;
+    test(`an invalid ${name} keeps its error border${focused ? ' and shadow when focused' : ''}`, async () => {
+      const page = await render(html);
+      if (focused) {
+        await page.focus('#c');
+        await page.evaluate(() => Promise.allSettled(document.getAnimations().map((a) => a.finished)));
+      }
+      const s = await page.$eval('#c', (el) => ({ b: getComputedStyle(el).borderTopColor, sh: getComputedStyle(el).boxShadow }));
+      await page.close();
+      assert.equal(s.b, 'rgb(196, 0, 0)');
+      if (focused) assert.match(s.sh, /^rgb\(196, 0, 0\)/);
+    });
+  }
+}

@@ -683,6 +683,7 @@ textarea:focus {
 }
 .field-hint,
 .field-error {
+  /* palace has no font-size tokens; 12px matches the file's other small text */
   font-size: 12px;
 }
 .field-hint { color: var(--p-text-muted); }
@@ -690,10 +691,12 @@ textarea:focus {
   color: var(--p-error-text);
   font-weight: 600;
 }
-input[aria-invalid="true"],
-select[aria-invalid="true"],
-textarea[aria-invalid="true"] {
+:is(input, select, textarea)[aria-invalid="true"],
+:is(input, select, textarea)[aria-invalid="true"]:focus {
   border-color: var(--p-error-text);
+}
+:is(input, select, textarea)[aria-invalid="true"]:focus {
+  box-shadow: var(--p-shadow-md) var(--p-error-text);
 }
 
 /* Fields and buttons in one row, bottoms aligned; the row wraps when narrow.
