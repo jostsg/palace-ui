@@ -676,6 +676,45 @@ textarea:focus {
   transform: var(--p-lift-sm);
 }
 
+/* A label, its control and an optional hint or error, spaced by --p-space-sm. */
+.field {
+  display: grid;
+  gap: var(--p-space-sm);
+}
+.field-hint,
+.field-error {
+  font-size: 12px;
+}
+.field-hint { color: var(--p-text-muted); }
+.field-error {
+  color: var(--p-error-text);
+  font-weight: 600;
+}
+input[aria-invalid="true"],
+select[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: var(--p-error-text);
+}
+
+/* Fields and buttons in one row, bottoms aligned; the row wraps when narrow.
+   Fields, inputs and selects grow from --control-row-min; buttons keep their
+   natural width but may shrink and wrap their label. */
+.control-row {
+  --control-row-min: 12rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--p-space-sm);
+}
+.control-row > :is(.field, input, select) {
+  flex: 1 1 var(--control-row-min);
+  min-width: 0;
+}
+.control-row > :is(button, .btn) {
+  flex: 0 1 auto;
+  max-width: 100%;
+}
+
 /* Checkboxes, radio buttons and disclosure summaries: the focus ring of links
    and buttons, without the lift. */
 input[type="checkbox"]:focus-visible,

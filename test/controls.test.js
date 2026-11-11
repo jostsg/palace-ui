@@ -90,3 +90,54 @@ test('a multiple select grows past one control', async () => {
   const [h] = await heights('<select id=s multiple><option>a<option>b<option>c<option>d</select>', ['#s']);
   assert.ok(h > 44, `height ${h}`);
 });
+
+test('a field spaces label, control and hint by 8px', async () => {
+  const page = await render(
+    '<div class="field"><label id=l>Name</label><input type=text id=i><p class="field-hint" id=h>Hint</p></div>',
+  );
+  const [l, i, h] = [await box(page, '#l'), await box(page, '#i'), await box(page, '#h')];
+  await page.close();
+  assert.equal(i.top - l.bottom, 8);
+  assert.equal(h.top - i.bottom, 8);
+});
+
+test('an invalid control and its error', async () => {
+  const page = await render(
+    '<div class="field"><label>x</label><input type=text aria-invalid="true" id=i><p class="field-error" id=e>Wrong</p></div>',
+  );
+  const border = await page.$eval('#i', (el) => getComputedStyle(el).borderTopColor);
+  const color = await page.$eval('#e', (el) => getComputedStyle(el).color);
+  await page.close();
+  assert.equal(border, 'rgb(196, 0, 0)');
+  assert.equal(color, 'rgb(196, 0, 0)');
+});
+
+test('a control-row lines up a field and buttons at the bottom', async () => {
+  const page = await render(
+    '<form class="control-row"><div class="field" id=f><label>Driver</label><select id=s><option>x</select></div><button id=b>Assign</button></form>',
+  );
+  const [s, b, f] = [await box(page, '#s'), await box(page, '#b'), await box(page, '#f')];
+  await page.close();
+  assert.equal(s.bottom, b.bottom);
+  assert.ok(f.width > b.width, `${f.width} vs ${b.width}`);
+});
+
+test('a control-row wraps at 320px without overflow', async () => {
+  const page = await render(
+    `<form class="control-row"><div class="field"><label>Driver</label><select><option>x</select></div>
+     <button>Assign this driver to the transponder now</button><a class="btn" href="#">Cancel and go back to the list</a></form>`,
+    { width: 320 },
+  );
+  const sw = await page.evaluate(() => document.documentElement.scrollWidth);
+  await page.close();
+  assert.ok(sw <= 320, `scrollWidth ${sw}`);
+});
+
+test('an input-action sits in a field as its control', async () => {
+  const page = await render(
+    '<div class="field"><label id=l>Key</label><div class="input-action" id=a><input type=password><button>Show</button></div></div>',
+  );
+  const [l, a] = [await box(page, '#l'), await box(page, '#a')];
+  await page.close();
+  assert.equal(a.top - l.bottom, 8);
+});
