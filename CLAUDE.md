@@ -16,7 +16,7 @@ A CSS-only design system. No build step, no JavaScript, no preprocessor.
 - Transitions are always `0.1s`
 - No CSS preprocessors, no build step — this ships as a single CSS file
 - Test changes by opening the HTML files in `examples/` (when they exist)
-- Spacing between sibling elements uses `margin-bottom` only (single-direction margins). Never `margin-top`, never `padding` for inter-element gaps. Exception: `.stack-*` utilities use the owl selector with `margin-top` — this is the sanctioned pattern for uniform child spacing. Dividers are also exempt. See SPEC.md Spacing Rules.
+- Spacing comes from the container: `space-*` between children, `gap-*` in flex and grid rows. Margin only for a single exception, said in a comment; padding only for the inside of a box. Components set no outer margin; a component that spaces its own children does it in `:where()` so the utilities win. Missing values become `--p-` tokens, not raw numbers. Dividers and `margin: auto` centring are exempt. See SPEC.md Spacing Rules.
 
 ## Design Source of Truth
 
