@@ -408,7 +408,9 @@ A `<select>` is styled like the text inputs, with a drawn chevron:
 </div>
 ```
 
-A `.control-row` puts inputs, fields and buttons on one line, aligned to the bottom, 8px apart. Inputs, selects and fields grow and share the width, starting from `--control-row-min` (12rem); buttons keep their natural width, may wrap their label, and the row wraps when it is narrow.
+A `.control-row` puts inputs, fields and buttons on one line, aligned to the bottom, 8px apart. Inputs, selects, textareas, `.input-action`s and fields grow and share the width, starting from `--control-row-min` (12rem); buttons keep their natural width, may wrap their label, and the row wraps when it is narrow.
+
+The row aligns its items to the bottom of each `.field`, so a field in a row holds only its label and control. Put the row's hint or error below the row, not inside the `.field`, or the button no longer lines up with the control. Space them with `space-sm` on a wrapper.
 
 ```html
 <div class="control-row">
@@ -426,6 +428,17 @@ A `.control-row` puts inputs, fields and buttons on one line, aligned to the bot
     <select id="car"><option>Red</option><option>Blue</option></select>
   </div>
   <button class="btn btn-primary">Add Driver</button>
+</div>
+
+<div class="space-sm">
+  <div class="control-row">
+    <div class="field">
+      <label for="code">Transponder</label>
+      <input type="text" id="code" aria-invalid="true" aria-describedby="code-error">
+    </div>
+    <button class="btn btn-primary">Assign</button>
+  </div>
+  <p class="field-error" id="code-error">That transponder is already assigned.</p>
 </div>
 ```
 
@@ -699,9 +712,22 @@ Lists inside `.container` or `.container-narrow` are automatically styled with p
 
 ### Dialog
 
-A native `<dialog>` styled as a card: border, purple offset shadow, overlay backdrop. It spaces its own children: 4px below the heading, 8px after a paragraph, 24px after the subtitle and before the actions. Actions go in a `<menu>`; its buttons share the width equally.
+A native `<dialog>` styled as a card: border, purple offset shadow, overlay backdrop. It spaces its own children — its direct children, or children of a direct `<form>` (`<form method="dialog">`): 4px below the heading, 8px after a paragraph, 24px after the subtitle and before the actions. Actions go in a `<menu>`, one `<li>` per button; the buttons share the width equally. A modal dialog stays centred in any container.
 
 ```html
+<dialog>
+  <form method="dialog">
+    <h2>Title</h2>
+    <p class="subtitle">Supporting line</p>
+    <p>Body text.</p>
+    <menu>
+      <li><button class="btn" value="cancel">Cancel</button></li>
+      <li><button class="btn btn-primary" value="confirm">Confirm</button></li>
+    </menu>
+  </form>
+</dialog>
+
+<!-- Without a form, the same rhythm on its direct children -->
 <dialog>
   <h2>Title</h2>
   <p class="subtitle">Supporting line</p>
@@ -890,9 +916,11 @@ Palace CSS handles h1, container, and card adjustments automatically. For page-s
 
 0.14 moves spacing from components to containers. Check every page:
 
-- Rename `stack-*` to `space-*`. `.stack-*` still works for now, as a deprecated alias.
-- Cards have no margin. Wrap a list of cards in `space-md`, or `gap-md` in a flex or grid container.
+- Rename `stack-*` to `space-*`. `.stack-*` is deprecated: it still works for now, as an alias of `space-*`, and will be removed in a later major version.
+- `.card` and `.card-static` have no margin. Wrap a list of cards in `space-md`, or `gap-md` in a flex or grid container.
 - Labels have no margin. Put each label and its control in a `.field`.
 - `.page-header`, `.stat-row`, `.code-reveal` and dialog parts set no outer margin. Give the space after them from the parent with `space-*` or `gap-*`.
-- Inputs, selects and buttons are now 44px tall (32px small, 52px large). Check rows of fields and buttons against them; a `.control-row` lines them up.
+- A dialog, `.page-header` and `.code-reveal` now space only their own children (a dialog: its direct children, or those of a direct `<form>`), with `:where()` rules, so a `space-*` on them wins. Content nested deeper gets no space from them: give its wrapper a `space-*`.
+- Inputs, selects and the number input are exactly 44px tall. Buttons are at least 44px (32px `.btn-sm`, 52px `.btn-lg` and `.cta`) and grow when a label wraps. Check rows of fields and buttons against them; a `.control-row` lines them up.
+- In a `.control-row`, put a field's hint or error below the row, not inside the `.field`.
 - Replace a margin that spaced siblings with `space-*` or `gap-*` on their parent.

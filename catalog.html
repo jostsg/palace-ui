@@ -13,7 +13,7 @@
 <nav class="navbar">
   <a href="#" class="navbar-brand">Palace UI</a>
   <div class="navbar-right">
-    <span class="navbar-user">v0.8.0</span>
+    <span class="navbar-user">v0.14.0</span>
   </div>
 </nav>
 
@@ -541,7 +541,7 @@
 
   <div class="space-sm">
     <h3>Control Row</h3>
-    <p>Inputs, fields and buttons on one line, aligned to the bottom. Inputs grow and share the width; the row wraps when it is narrow.</p>
+    <p>Inputs, fields and buttons on one line, aligned to the bottom. Inputs grow and share the width; the row wraps when it is narrow. A hint or error for the row goes below it, not inside the field, so the button stays in line with the control.</p>
     <div data-source id="control-row" class="control-row">
       <input type="text" placeholder="Add a label" aria-label="Add a label">
       <button class="btn btn-primary">Create</button>
@@ -556,6 +556,16 @@
         <select id="cat-car"><option>Red</option><option>Blue</option></select>
       </div>
       <button class="btn btn-primary">Add Driver</button>
+    </div>
+    <div data-source id="control-row-error" class="space-sm">
+      <div class="control-row">
+        <div class="field">
+          <label for="cat-code">Transponder</label>
+          <input type="text" id="cat-code" value="4821" aria-invalid="true" aria-describedby="cat-code-error">
+        </div>
+        <button class="btn btn-primary">Assign</button>
+      </div>
+      <p class="field-error" id="cat-code-error">Transponder 4821 is already assigned to Ada.</p>
     </div>
   </div>
 
@@ -741,7 +751,7 @@
       <div class="status status-success" role="status">Account created successfully</div>
       <div class="status status-error" role="alert">Something went wrong — please try again</div>
       <div class="status status-warning" role="alert">Your session will expire in 5 minutes</div>
-      <div class="status status-info" role="status">New features are available in v0.8.0</div>
+      <div class="status status-info" role="status">New features are available in v0.14.0</div>
       <div class="status">Neutral status message</div>
     </div>
   </div>
@@ -1127,14 +1137,17 @@
 
   <div class="space-sm">
     <h3>Dialog</h3>
+    <p>Spaces its direct children, or those of a direct <code>&lt;form method="dialog"&gt;</code>. The action buttons share the width.</p>
     <div data-source>
       <dialog open style="position: static;">
-        <h2>Delete project?</h2>
-        <p class="subtitle">This cannot be undone.</p>
-        <menu>
-          <li><button class="btn">Cancel</button></li>
-          <li><button class="btn btn-danger">Delete</button></li>
-        </menu>
+        <form method="dialog">
+          <h2>Delete project?</h2>
+          <p class="subtitle">This cannot be undone.</p>
+          <menu>
+            <li><button class="btn" value="cancel">Cancel</button></li>
+            <li><button class="btn btn-danger" value="delete">Delete</button></li>
+          </menu>
+        </form>
       </dialog>
     </div>
   </div>
@@ -1197,7 +1210,7 @@
 
 <div class="container">
   <div class="footer">
-    Palace UI v0.8.0 &mdash; CSS-only design system. <a href="#">GitHub</a>
+    Palace UI v0.14.0 &mdash; CSS-only design system. <a href="#">GitHub</a>
   </div>
 </div>
 
