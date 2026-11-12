@@ -669,10 +669,12 @@ textarea:focus {
   inset-inline-end: var(--p-space-sm);
   min-height: 0;
   height: var(--p-control-height-sm);
-  padding-block: 0;
   white-space: nowrap;
   margin-block: auto;
+  /* One line centred in the small height, as .btn centres it in its own. */
+  padding-block: calc((var(--p-control-height-sm) - 1.3em - 2 * var(--p-border-width)) / 2);
 }
+.input-action > .btn-sm { padding-block: calc((var(--p-control-height-sm) - 1.3em - 2 * var(--p-border-thin)) / 2); }
 .input-action > input:focus ~ .btn,
 .input-action > input:focus ~ button {
   transform: var(--p-lift-sm);
@@ -1368,3 +1370,7 @@ kbd {
   font: 600 11px/1.5 var(--p-font-mono);
   text-transform: uppercase;
 }
+/* A key in a button's label stays inside the button's one line, so the button
+   keeps the control height: sized from the button's font (11px in a 13px
+   button), with no padding or line height of its own above it. */
+:where(button, .btn, .cta) kbd { padding-block: 0; font-size: 0.85em; line-height: 1; vertical-align: middle; }

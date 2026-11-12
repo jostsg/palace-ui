@@ -213,3 +213,33 @@ for (const type of ['checkbox', 'radio']) {
     assert.doesNotMatch(sh, /rgb\(196, 0, 0\)/);
   });
 }
+
+test('a button with a key in its label stays one control tall', async () => {
+  const hs = await heights(
+    `<button id=a>Pair <kbd>P</kbd></button><a class="btn" id=b href="#">Pair <kbd>P</kbd></a>
+     <button class="btn btn-sm" id=c>Pair <kbd>P</kbd></button><a class="btn btn-lg" id=d href="#">Pair <kbd>P</kbd></a>`,
+    ['#a', '#b', '#c', '#d'],
+  );
+  assert.deepEqual(hs, [44, 44, 32, 52]);
+});
+
+for (const [name, html] of [
+  ['a link button', '<a class="btn btn-sm" href="#" id=b><span id=t>Show</span></a>'],
+  ['a small button', '<button class="btn btn-sm" id=b><span id=t>Show</span></button>'],
+  ['a bare button', '<button id=b><span id=t>Show</span></button>'],
+]) {
+  test(`${name} in .input-action centres its label`, async () => {
+    // The label sits where it sits in the same button on its own: font metrics
+    // put a text box a fraction off centre, the layout must add nothing.
+    const offset = async (markup) => {
+      const page = await render(markup);
+      const [b, t] = [await box(page, '#b'), await box(page, '#t')];
+      await page.close();
+      return { height: b.height, offset: (t.top + t.bottom) / 2 - (b.top + b.bottom) / 2 };
+    };
+    const inside = await offset(`<div class="input-action"><input type=password id=i>${html}</div>`);
+    const alone = await offset(html.replace('<button id=b>', '<button class="btn-sm" id=b>'));
+    assert.equal(inside.height, 32);
+    assert.ok(Math.abs(inside.offset - alone.offset) <= 0.5, `inside ${inside.offset}, alone ${alone.offset}`);
+  });
+}
