@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.14.0](https://github.com/jostsg/palace-ui/compare/v0.13.0...v0.14.0) (2026-11-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* components set no outer margin and controls share one height (44px, small 32px, large 52px). Wrap content in space-* or gap-*, put each label and control in .field, and replace .stack-* with space-*. See SPEC.md "Migrating to 0.14".
+
+### Features
+
+* spacing utilities, no outer margins on components, and standard form controls ([#14](https://github.com/jostsg/palace-ui/issues/14)) ([9019e56](https://github.com/jostsg/palace-ui/commit/9019e566c7ebd067ce6563f2062538932eb43ebd))
+
 ## [0.13.0](https://github.com/jostsg/palace-ui/compare/v0.12.2...v0.13.0) (2026-11-10)
 
 
