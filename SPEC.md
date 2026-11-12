@@ -75,25 +75,31 @@ Or if consuming via npm with a build tool:
 | Token | Value | Usage |
 |---|---|---|
 | `--p-space-xs` | `4px` | Tight gaps |
-| `--p-space-sm` | `8px` | Button gaps, small margins |
-| `--p-space-md` | `16px` | Card margins, standard padding |
+| `--p-space-sm` | `8px` | Button gaps, label to control |
+| `--p-space-md` | `16px` | Space between cards and fields, standard padding |
 | `--p-space-lg` | `24px` | Card padding, section spacing |
 | `--p-space-xl` | `32px` | Intermediate section gaps |
 | `--p-space-2xl` | `48px` | Hero padding, major section gaps |
 
 ### Spacing Rules
 
-Three mechanisms for spacing, each with a clear use case:
+Spacing comes from the container, never from the component inside it.
 
-1. **`margin-bottom`** — spacing between sibling elements. All vertical inter-element spacing uses `margin-bottom` only (single-direction margins). Elements push the next sibling down; never pull themselves away with `margin-top`. This keeps spacing predictable, portable, and avoids margin-collapsing surprises.
+1. **`space-*` between children.** A container spaces its direct children vertically with the owl selector (`> * + *` gets `margin-top`). Use it for any column: paragraphs, fields, cards, sections.
 
-2. **`gap`** — spacing inside flex/grid containers. Preferred when the parent is `display: flex` or `display: grid`. No margin needed on children.
+2. **`gap-*` in rows and grids.** A flex or grid container sets its `gap`. Its children get no margin.
 
-3. **`.stack-*`** — spacing between children of a non-flex/grid container. Apply to the parent; children get uniform vertical spacing via the owl selector (`> * + *`). Available sizes: `stack-xs` (4px), `stack-sm` (8px), `stack-md` (16px), `stack-lg` (24px), `stack-xl` (32px), `stack-2xl` (48px).
+3. **Margin only for a single exception.** One element that needs more or less space than its container gives it gets its own margin, with a comment saying why.
 
-**Never** use `padding` to create distance between sibling elements — padding is for internal space within an element.
+4. **Padding is the inside of a box**, never the space between things.
 
-**Exceptions:** dividers (`.divider`, `.divider-danger`, `.gradient-stripe`) use top+bottom margin because they are structural separators by nature. Tight optical adjustments inside components (e.g. `.stat-label` 2px nudge) are exempt.
+5. **Components set no outer margin.** A component styles its inside only: `.card`, `.card-static`, `label`, `.stat-row`, `.page-header` and dialog parts have no margin around them. An outer margin would add to a `gap` or fight a `space-*`. Components that space their own children (`.page-header`, `.code-reveal`, `dialog`, list items in a container) do it with `:where()` rules, so a `space-*` utility on them always wins.
+
+6. **Missing values become tokens.** When a value is missing, add it to palace as a token instead of writing a raw number in an app. A raw value is only for a genuine one-off, with a comment saying why.
+
+Sizes for both: `xs` (4px), `sm` (8px), `md` (16px), `lg` (24px), `xl` (32px), `2xl` (48px), the `--p-space-*` scale.
+
+**Exceptions:** dividers (`.divider`, `.divider-danger`, `.gradient-stripe`) use top and bottom margin because they are separators by nature. `margin: auto` centres containers and dialogs. The `.stat-label` 2px optical nudge and the rules between the navbar menu's groups are part of those components.
 
 ### Layout
 
@@ -102,6 +108,14 @@ Three mechanisms for spacing, each with a clear use case:
 | `--p-container-width` | `640px` |
 | `--p-container-narrow` | `420px` |
 | `--p-navbar-height` | `52px` |
+
+### Controls
+
+| Token | Value | Usage |
+|---|---|---|
+| `--p-control-height` | `44px` | Text inputs, selects, number input, buttons |
+| `--p-control-height-sm` | `32px` | `.btn-sm`, a button inside `.input-action` |
+| `--p-control-height-lg` | `52px` | `.btn-lg`, `.cta` |
 
 ## Component Catalog
 
@@ -198,7 +212,7 @@ Light variant for pages that need a white navbar:
 
 ### Page Header
 
-Standard spacing for non-hero pages (after navbar). Provides `48px` top padding and consistent gaps between h1, subtitle, and content.
+Standard spacing for non-hero pages (after navbar). Provides `48px` top padding and `8px` between its children.
 
 ```html
 <div class="container page-header">
@@ -218,18 +232,30 @@ Combines with any container class:
 </div>
 ```
 
-Spacing: `48px` top padding, `8px` below h1, `32px` below `.subtitle`. Do **not** use on landing/hero pages (those use custom hero spacing).
+Spacing: `48px` top padding and `8px` between its children; it has no outer margin. To give the content more room than the heading, group the heading and subtitle and put a `space-*` class on the header:
+
+```html
+<div class="container page-header space-xl">
+  <div class="space-sm">
+    <h1>Page Title</h1>
+    <p class="subtitle">Helpful subtitle</p>
+  </div>
+  <!-- content -->
+</div>
+```
+
+Do **not** use on landing/hero pages (those use custom hero spacing).
 
 ### Hero Section (Landing Pages)
 
 ```html
-<div class="container" style="padding-top: 80px; padding-bottom: 48px;">
+<div class="container space-lg" style="padding-top: 80px; padding-bottom: 48px;">
   <p class="brand">App Name</p>
   <h1 class="h1-hero">Main Headline Here</h1>
   <p class="tagline">
     A sentence or two explaining what this does. Keep it short.
   </p>
-  <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px;">
+  <div class="gap-sm" style="display: flex; flex-wrap: wrap;">
     <a href="/signup" class="cta cta-primary">Sign Up</a>
     <a href="/login" class="cta cta-secondary">Log In</a>
   </div>
@@ -239,8 +265,8 @@ Spacing: `48px` top padding, `8px` below h1, `32px` below `.subtitle`. Do **not*
 When the app has a visual mark/icon, use `.brand-lockup` instead of a standalone `.brand`:
 
 ```html
-<div class="container" style="padding-top: 80px; padding-bottom: 48px;">
-  <div class="brand-lockup" style="margin-bottom: 32px;">
+<div class="container space-xl" style="padding-top: 80px; padding-bottom: 48px;">
+  <div class="brand-lockup">
     <img src="/icons/app-icon.svg" alt="">
     <div>
       <p class="brand" style="font-size: 17px; letter-spacing: 3px;">App Name</p>
@@ -270,10 +296,10 @@ Use in hero sections and landing pages where the app has a visual mark. The `.br
 
 ### Card List (3-Color Rotation)
 
-When you have a list of cards, the accent color auto-rotates via `nth-child`:
+When you have a list of cards, the accent color auto-rotates via `nth-child`. Cards have no margin; the list spaces them with `space-md` (or `gap-md` in a grid):
 
 ```html
-<div class="container">
+<div class="container space-md">
   <div class="card">
     <h2>First Card</h2>
     <p>Description goes here. Color will be accent-1 (pink).</p>
@@ -302,9 +328,11 @@ For explicit accent control (e.g. server-rendered cards), use the `--accent` cus
 For cards used as form containers or static content that should not lift on hover:
 
 ```html
-<div class="card-static">
-  <label for="name">Name</label>
-  <input type="text" id="name" placeholder="Enter your name">
+<div class="card-static space-md">
+  <div class="field">
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Enter your name">
+  </div>
 </div>
 ```
 
@@ -312,7 +340,7 @@ Use `.card-static` instead of `.card` when the card is a container (e.g. auth fo
 
 ### Buttons
 
-Size modifiers compose with any color variant. `.btn` works on `<button>` and on `<a>` alike: each size sets its own line height, so a button and a link button of the same size are the same height (41px default, 28px `.btn-sm`, 51px `.btn-lg` and `.cta`) and line up side by side.
+Size modifiers compose with any color variant. `.btn` works on `<button>` and on `<a>` alike: a button and a link button of the same size are the same height (44px default, 32px `.btn-sm`, 52px `.btn-lg` and `.cta`, from the control height tokens) and line up side by side. The height is a minimum: a button grows when its label wraps.
 
 ```html
 <!-- Size modifiers -->
@@ -345,37 +373,86 @@ Size modifiers compose with any color variant. `.btn` works on `<button>` and on
 
 ### Forms
 
+A `.field` holds a label, its control and an optional hint or error, with 8px between them. Labels have no margin of their own; always put a label and its control in a `.field`. Space a column of fields with `space-md`.
+
 ```html
-<div class="card">
-  <label for="name">Your Name</label>
-  <input type="text" id="name" placeholder="Enter your name" style="margin-bottom: 16px;">
-  <button class="btn-primary" style="width: 100%;">Submit</button>
-</div>
+<form class="card-static space-md">
+  <div class="field">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" placeholder="Enter your name">
+  </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input type="email" id="email" aria-invalid="true" aria-describedby="email-error">
+    <p class="field-error" id="email-error">Enter an email address with a domain, like you@example.com.</p>
+  </div>
+  <div class="field">
+    <label for="pass">Password</label>
+    <input type="password" id="pass" aria-describedby="pass-hint">
+    <p class="field-hint" id="pass-hint">At least 8 characters.</p>
+  </div>
+  <button class="btn btn-primary btn-block">Submit</button>
+</form>
 ```
+
+`.field-hint` is muted small text; `.field-error` is small red text. Connect either to the control with `aria-describedby`. `aria-invalid="true"` on an input, select or textarea gives it a red border, and a red shadow on focus.
+
+All controls share one height. Text inputs, selects and the number input are exactly `--p-control-height` (44px) tall; buttons have it as a minimum and grow when a label wraps. A textarea starts at the control height. A field and a button beside it line up by construction.
 
 A `<select>` is styled like the text inputs, with a drawn chevron:
 
 ```html
-<label for="direction">Direction</label>
-<select id="direction"><option>Anticlockwise</option><option>Clockwise</option></select>
-```
-
-Inline form (input + button side by side):
-
-```html
-<div style="display: flex; gap: 8px;">
-  <input type="text" placeholder="Label" style="flex: 1;">
-  <button class="btn-primary">Create</button>
+<div class="field">
+  <label for="direction">Direction</label>
+  <select id="direction"><option>Anticlockwise</option><option>Clockwise</option></select>
 </div>
 ```
 
-A field with a button inside, at its right end (show/hide a password, paste, copy). The input reserves the button's width plus its 8px inset from the edge (`--input-action-width` is the button's width, default `4.75rem`); the button is centred in the input's box and lifts with the input on focus, so they stay aligned. Use `.btn-sm`, a real `<button type="button">`, and for a toggle let the visible text and the accessible name change together ("Show" / `aria-label="Show password"` and "Hide" / "Hide password"). Pick one way to say the state: a changing name, or a fixed name with `aria-pressed` — never both.
+A `.control-row` puts inputs, fields and buttons on one line, aligned to the bottom, 8px apart. Inputs, selects, textareas, `.input-action`s and fields grow and share the width, starting from `--control-row-min` (12rem); buttons keep their natural width, may wrap their label, and the row wraps when it is narrow.
+
+The row aligns its items to the bottom of each `.field`, so a field in a row holds only its label and control. Put the row's hint or error below the row, not inside the `.field`, or the button no longer lines up with the control. Space them with `space-sm` on a wrapper.
 
 ```html
-<label for="pw">Password</label>
-<div class="input-action">
-  <input type="password" id="pw" autocomplete="off">
-  <button type="button" class="btn btn-sm btn-outline" aria-label="Show password">Show</button>
+<div class="control-row">
+  <input type="text" placeholder="Label" aria-label="Label">
+  <button class="btn btn-primary">Create</button>
+</div>
+
+<div class="control-row">
+  <div class="field">
+    <label for="driver">Driver</label>
+    <input type="text" id="driver">
+  </div>
+  <div class="field">
+    <label for="car">Car</label>
+    <select id="car"><option>Red</option><option>Blue</option></select>
+  </div>
+  <button class="btn btn-primary">Add Driver</button>
+</div>
+
+<div class="space-sm">
+  <div class="control-row">
+    <div class="field">
+      <label for="code">Transponder</label>
+      <input type="text" id="code" aria-invalid="true" aria-describedby="code-error">
+    </div>
+    <button class="btn btn-primary">Assign</button>
+  </div>
+  <p class="field-error" id="code-error">That transponder is already assigned.</p>
+</div>
+```
+
+Form grids and column layouts are not part of palace: build them with `gap-*` and `space-*`.
+
+A field with a button inside, at its right end (show/hide a password, paste, copy). The input reserves the button's width plus its 8px inset from the edge (`--input-action-width` is the button's width, default `4.75rem`); the button is centred in the input's box and lifts with the input on focus, so they stay aligned. The button is the small control height. Use `.btn-sm`, a real `<button type="button">`, and for a toggle let the visible text and the accessible name change together ("Show" / `aria-label="Show password"` and "Hide" / "Hide password"). Pick one way to say the state: a changing name, or a fixed name with `aria-pressed` — never both.
+
+```html
+<div class="field">
+  <label for="pw">Password</label>
+  <div class="input-action">
+    <input type="password" id="pw" autocomplete="off">
+    <button type="button" class="btn btn-sm btn-outline" aria-label="Show password">Show</button>
+  </div>
 </div>
 ```
 
@@ -441,14 +518,14 @@ Standard code block:
 };</pre>
 ```
 
-Dark reveal panel (for secrets, API keys, terminal output):
+Dark reveal panel (for secrets, API keys, terminal output). It puts 8px between its children:
 ```html
 <div class="code-reveal">
-  <p class="eyebrow" style="color: var(--p-accent-3); margin-bottom: 10px;">
+  <p class="eyebrow" style="color: var(--p-accent-3);">
     Copy this — you won't see it again
   </p>
   <code>sk_live_abc123def456</code>
-  <div style="display: flex; gap: 8px; margin-top: 12px;">
+  <div class="gap-sm" style="display: flex;">
     <button class="btn-secondary">Copy</button>
   </div>
 </div>
@@ -483,21 +560,30 @@ Dark reveal panel (for secrets, API keys, terminal output):
 </div>
 ```
 
-### Stack Spacing
+### Space and Gap
 
-Uniform vertical spacing between direct children. Apply to the parent element.
+`space-*` puts the same vertical space between the direct children of a container. Apply it to the parent.
 
 ```html
-<div class="stack-md">
+<div class="space-md">
   <p>First item</p>
-  <p>16px gap</p>
-  <p>16px gap</p>
+  <p>16px above</p>
+  <p>16px above</p>
 </div>
 ```
 
-Available: `stack-xs` (4px) · `stack-sm` (8px) · `stack-md` (16px) · `stack-lg` (24px) · `stack-xl` (32px) · `stack-2xl` (48px)
+`gap-*` sets the gap of a flex or grid container, for rows and grids.
 
-For flex/grid parents, prefer `gap` instead. `.stack-*` is for flow-layout contexts where children are block-level elements stacked vertically.
+```html
+<div class="gap-sm" style="display: flex; flex-wrap: wrap;">
+  <span class="tag">One</span>
+  <span class="tag">Two</span>
+</div>
+```
+
+Available: `xs` (4px) · `sm` (8px) · `md` (16px) · `lg` (24px) · `xl` (32px) · `2xl` (48px), as `space-md`, `gap-md` and so on.
+
+`.stack-*` is a deprecated alias of `space-*` and will be removed in a later release.
 
 ### Dividers
 
@@ -513,7 +599,7 @@ For flex/grid parents, prefer `gap` instead. `.stack-*` is for flow-layout conte
 
 ```html
 <hr class="divider-danger">
-<div class="danger-zone">
+<div class="danger-zone space-sm">
   <h2>Danger Zone</h2>
   <p>This will permanently delete your account. This cannot be undone.</p>
   <button class="btn btn-danger btn-block">Delete My Account</button>
@@ -626,9 +712,22 @@ Lists inside `.container` or `.container-narrow` are automatically styled with p
 
 ### Dialog
 
-A native `<dialog>` styled as a card: border, purple offset shadow, overlay backdrop. Actions go in a `<menu>`; its buttons share the width equally.
+A native `<dialog>` styled as a card: border, purple offset shadow, overlay backdrop. It spaces its own children — its direct children, or children of a direct `<form>` (`<form method="dialog">`): 4px below the heading, 8px after a paragraph, 24px after the subtitle and before the actions. Actions go in a `<menu>`, one `<li>` per button; the buttons share the width equally. A modal dialog stays centred in any container.
 
 ```html
+<dialog>
+  <form method="dialog">
+    <h2>Title</h2>
+    <p class="subtitle">Supporting line</p>
+    <p>Body text.</p>
+    <menu>
+      <li><button class="btn" value="cancel">Cancel</button></li>
+      <li><button class="btn btn-primary" value="confirm">Confirm</button></li>
+    </menu>
+  </form>
+</dialog>
+
+<!-- Without a form, the same rhythm on its direct children -->
 <dialog>
   <h2>Title</h2>
   <p class="subtitle">Supporting line</p>
@@ -668,7 +767,7 @@ It is absolutely positioned where the text would have been, with no `top` or `le
 
 ### Focus Visible
 
-All interactive elements (buttons, links, inputs, checkboxes, radio buttons, `<summary>`) have `:focus-visible` styles with a `2px` outline in accent-2 (purple) and `2px` offset. Buttons also get a lift + shadow on focus. Text inputs show focus with a purple border and shadow instead. The navbar menu's summary keeps its own cyan ring.
+All interactive elements (buttons, links, inputs, checkboxes, radio buttons, `<summary>`) have `:focus-visible` styles with a `2px` outline in accent-2 (purple) and `2px` offset. Buttons also get a lift + shadow on focus. Text inputs show focus with a purple border and shadow instead; an input with `aria-invalid="true"` shows a red border and shadow. The navbar menu's summary keeps its own cyan ring.
 
 ### Reduced Motion
 
@@ -696,14 +795,16 @@ Use `container-narrow page-header` (420px). No navbar. Centered with top padding
 
 ```html
 <body>
-  <div class="container-narrow page-header">
-    <p class="brand">App Name</p>
-    <h1>Page Title</h1>
-    <p class="subtitle">Helpful subtitle</p>
-    <div class="card">
-      <!-- form contents -->
+  <div class="container-narrow page-header space-lg">
+    <div class="space-sm">
+      <p class="brand">App Name</p>
+      <h1>Page Title</h1>
+      <p class="subtitle">Helpful subtitle</p>
     </div>
-    <p style="margin-top: 20px; text-align: center; font-size: 13px; color: var(--p-text-muted);">
+    <form class="card-static space-md">
+      <!-- fields -->
+    </form>
+    <p style="text-align: center; font-size: 13px; color: var(--p-text-muted);">
       Already in? <a href="/login">Log in</a>
     </p>
   </div>
@@ -717,9 +818,11 @@ Navbar + container with `page-header`. Use `divider` between major sections.
 ```html
 <body>
   <nav class="navbar">...</nav>
-  <div class="container page-header">
-    <h1>Dashboard</h1>
-    <p class="subtitle">Manage your stuff</p>
+  <div class="container page-header space-xl">
+    <div class="space-sm">
+      <h1>Dashboard</h1>
+      <p class="subtitle">Manage your stuff</p>
+    </div>
     <!-- content sections -->
     <hr class="divider">
     <!-- more sections -->
@@ -808,3 +911,16 @@ Palace CSS handles h1, container, and card adjustments automatically. For page-s
   .cta-row { flex-direction: column; }
 }
 ```
+
+## Migrating to 0.14
+
+0.14 moves spacing from components to containers. Check every page:
+
+- Rename `stack-*` to `space-*`. `.stack-*` is deprecated: it still works for now, as an alias of `space-*`, and will be removed in a later major version.
+- `.card` and `.card-static` have no margin. Wrap a list of cards in `space-md`, or `gap-md` in a flex or grid container.
+- Labels have no margin. Put each label and its control in a `.field`.
+- `.page-header`, `.stat-row`, `.code-reveal` and dialog parts set no outer margin. Give the space after them from the parent with `space-*` or `gap-*`.
+- A dialog, `.page-header` and `.code-reveal` now space only their own children (a dialog: its direct children, or those of a direct `<form>`), with `:where()` rules, so a `space-*` on them wins. Content nested deeper gets no space from them: give its wrapper a `space-*`.
+- Inputs, selects and the number input are exactly 44px tall. Buttons are at least 44px (32px `.btn-sm`, 52px `.btn-lg` and `.cta`) and grow when a label wraps. Check rows of fields and buttons against them; a `.control-row` lines them up.
+- In a `.control-row`, put a field's hint or error below the row, not inside the `.field`.
+- Replace a margin that spaced siblings with `space-*` or `gap-*` on their parent.

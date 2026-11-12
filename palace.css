@@ -1,4 +1,4 @@
-/*! palace-ui v0.12.0 | MIT License | fonts: SIL OFL 1.1, see fonts/ */
+/*! palace-ui v0.14.0 | MIT License | fonts: SIL OFL 1.1, see fonts/ */
 
 /* ══════════════════════════════════════════
    FONTS (self-hosted; no third-party requests)
@@ -68,6 +68,11 @@
   --p-space-lg: 24px;
   --p-space-xl: 32px;
   --p-space-2xl: 48px;
+
+  /* ── Controls ── */
+  --p-control-height: 44px;
+  --p-control-height-sm: 32px;
+  --p-control-height-lg: 52px;
 
   /* ── Layout ── */
   --p-container-width: 640px;
@@ -239,27 +244,31 @@ h3, .h3 {
   padding: 32px 16px;
 }
 
-/* Page header — standard spacing after navbar for non-hero pages */
+/* Page header — top padding for non-hero pages; no outer margin, the
+   space after it comes from the parent's space-* or gap-* */
 .page-header {
   padding-top: var(--p-space-2xl);
 }
 
-.page-header h1,
-.page-header .h1 {
-  margin-bottom: var(--p-space-sm);
-}
+:where(.page-header) > * + * { margin-top: var(--p-space-sm); }
 
-.page-header .subtitle {
-  margin-bottom: 32px;
-}
+/* ── Space and gap (the spacing scale between children) ──
+   space-*: vertical rhythm between children, with the owl selector.
+   gap-*: the gap of a flex or grid container.
+   stack-*: deprecated alias of space-*, kept so existing markup works. */
+.space-xs > * + *, .stack-xs > * + * { margin-top: var(--p-space-xs); }
+.space-sm > * + *, .stack-sm > * + * { margin-top: var(--p-space-sm); }
+.space-md > * + *, .stack-md > * + * { margin-top: var(--p-space-md); }
+.space-lg > * + *, .stack-lg > * + * { margin-top: var(--p-space-lg); }
+.space-xl > * + *, .stack-xl > * + * { margin-top: var(--p-space-xl); }
+.space-2xl > * + *, .stack-2xl > * + * { margin-top: var(--p-space-2xl); }
 
-/* ── Stack spacing (vertical rhythm between children) ── */
-.stack-xs > * + * { margin-top: var(--p-space-xs); }
-.stack-sm > * + * { margin-top: var(--p-space-sm); }
-.stack-md > * + * { margin-top: var(--p-space-md); }
-.stack-lg > * + * { margin-top: var(--p-space-lg); }
-.stack-xl > * + * { margin-top: var(--p-space-xl); }
-.stack-2xl > * + * { margin-top: var(--p-space-2xl); }
+.gap-xs { gap: var(--p-space-xs); }
+.gap-sm { gap: var(--p-space-sm); }
+.gap-md { gap: var(--p-space-md); }
+.gap-lg { gap: var(--p-space-lg); }
+.gap-xl { gap: var(--p-space-xl); }
+.gap-2xl { gap: var(--p-space-2xl); }
 
 /* ── Lists (restore styling inside containers) ── */
 .container ul,
@@ -281,10 +290,12 @@ h3, .h3 {
 
 .container li,
 .container-narrow li {
-  margin-bottom: 4px;
   font-size: 14px;
   line-height: 1.5;
 }
+
+/* Items of a list, never items laid out by a component (a dialog's <menu>). */
+:where(.container, .container-narrow) :where(ul, ol) > :where(li + li) { margin-top: var(--p-space-xs); }
 
 
 /* ══════════════════════════════════════════
@@ -314,8 +325,15 @@ a:focus-visible {
    BUTTONS
    ══════════════════════════════════════════ */
 
+/* Buttons are inline blocks, so the spaces between inline children (a label
+   and its <kbd>, <strong>) stay. One line of label is centred by padding
+   derived from the control height: (height - one line - both borders) / 2.
+   A label that wraps grows the button past min-height. */
 button, .btn {
-  padding: 10px 16px;
+  min-height: var(--p-control-height);
+  padding: calc((var(--p-control-height) - 1.3em - 2 * var(--p-border-width)) / 2) 16px;
+  /* One line height for <button> and <a class="btn">, so a long label wraps the same in both. */
+  line-height: 1.3;
   font-family: var(--p-font);
   font-size: 13px;
   font-weight: 700;
@@ -331,25 +349,22 @@ button, .btn {
   transition-property: background-color, border-color, color, box-shadow, transform, outline-color;
   text-decoration: none;
   display: inline-block;
-  /* One line height for <button> and <a class="btn">, so both are the same
-     height: a button does not inherit the body's line height, a link does. */
-  line-height: calc(17 / 13);
   text-align: center;
 }
 
 /* Size modifiers */
 .btn-sm {
-  padding: 6px 14px;
+  min-height: var(--p-control-height-sm);
+  padding: calc((var(--p-control-height-sm) - 1.3em - 2 * var(--p-border-thin)) / 2) 14px;
   font-size: 11px;
-  line-height: calc(14 / 11);
   letter-spacing: 1px;
   border-width: var(--p-border-thin);
 }
 
 .btn-lg {
-  padding: 14px 28px;
+  min-height: var(--p-control-height-lg);
+  padding: calc((var(--p-control-height-lg) - 1.3em - 2 * var(--p-border-width)) / 2) 28px;
   font-size: 15px;
-  line-height: calc(19 / 15);
   letter-spacing: 1px;
 }
 
@@ -409,11 +424,13 @@ button, .btn {
 
 /* CTA buttons (larger, for hero sections) */
 .cta {
+  /* An inline block like .btn, centred by padding from the large control height. */
   display: inline-block;
-  padding: 14px 28px;
+  min-height: var(--p-control-height-lg);
+  padding: calc((var(--p-control-height-lg) - 1.3em - 2 * var(--p-border-width)) / 2) 28px;
+  line-height: 1.3;
   font-family: var(--p-font);
   font-size: 15px;
-  line-height: calc(19 / 15);
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;
@@ -474,7 +491,6 @@ button:disabled, .btn:disabled, .cta:disabled {
   background: var(--p-surface);
   border: var(--p-border-width) solid var(--p-text);
   padding: var(--p-space-lg);
-  margin-bottom: var(--p-space-md);
   transition: var(--p-transition);
 }
 
@@ -515,7 +531,6 @@ button:disabled, .btn:disabled, .cta:disabled {
   background: var(--p-surface);
   border: var(--p-border-width) solid var(--p-text);
   padding: var(--p-space-lg);
-  margin-bottom: var(--p-space-md);
 }
 
 .card-static:hover {
@@ -535,7 +550,6 @@ label {
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--p-text-muted);
-  margin-bottom: 6px;
 }
 
 input[type="text"],
@@ -545,7 +559,8 @@ input[type="search"],
 input[type="url"],
 input[type="tel"] {
   width: 100%;
-  padding: 12px;
+  height: var(--p-control-height);
+  padding: 0 12px;
   border: var(--p-border-width) solid var(--p-text);
   border-radius: var(--p-radius);
   font-family: var(--p-font);
@@ -569,7 +584,8 @@ input[type="tel"]:focus {
 select {
   width: 100%;
   appearance: none;
-  padding: 12px 2.5rem 12px 12px;
+  height: var(--p-control-height);
+  padding: 0 2.5rem 0 12px;
   border: var(--p-border-width) solid var(--p-text);
   border-radius: var(--p-radius);
   background-color: var(--p-surface);
@@ -584,7 +600,7 @@ select {
   outline: none;
   transition: var(--p-transition);
 }
-select[multiple], select[size]:not([size="1"]) { padding-right: 12px; background-image: none; }
+select[multiple], select[size]:not([size="1"]) { height: auto; padding: 12px; background-image: none; }
 
 select:focus {
   border-color: var(--p-accent-2);
@@ -604,7 +620,8 @@ input[type="number"] {
   text-align: center;
   border: var(--p-border-width) solid var(--p-text);
   border-radius: var(--p-radius);
-  padding: 4px;
+  height: var(--p-control-height);
+  padding: 0 4px;
   outline: none;
   background: var(--p-surface);
   transition: var(--p-transition);
@@ -624,7 +641,7 @@ textarea {
   border-radius: var(--p-radius);
   padding: var(--p-space-sm);
   resize: vertical;
-  min-height: 50px;
+  min-height: var(--p-control-height);
   background: var(--p-surface);
   outline: none;
   transition: var(--p-transition);
@@ -637,26 +654,72 @@ textarea:focus {
 }
 
 /* A field with a button inside, at its right end (show/hide a password, paste,
-   copy). The input reserves the button's width plus its 8px inset; the button is centred in the
+   copy). The input reserves the button's width plus its --p-space-sm inset; the button is centred in the
    input's box and lifts with it, so the two stay aligned on focus. Set
    --input-action-width to the button's width when it is wider. */
 .input-action {
   position: relative;
   --input-action-width: 4.75rem;
 }
-.input-action > input[type] { padding-inline-end: calc(var(--input-action-width) + 8px); }
+.input-action > input[type] { padding-inline-end: calc(var(--input-action-width) + var(--p-space-sm)); }
 .input-action > .btn,
 .input-action > button {
   position: absolute;
   inset-block: 0;
-  inset-inline-end: 8px;
-  height: fit-content;
+  inset-inline-end: var(--p-space-sm);
+  min-height: 0;
+  height: var(--p-control-height-sm);
   white-space: nowrap;
   margin-block: auto;
+  /* One line centred in the small height, as .btn centres it in its own. */
+  padding-block: calc((var(--p-control-height-sm) - 1.3em - 2 * var(--p-border-width)) / 2);
 }
+.input-action > .btn-sm { padding-block: calc((var(--p-control-height-sm) - 1.3em - 2 * var(--p-border-thin)) / 2); }
 .input-action > input:focus ~ .btn,
 .input-action > input:focus ~ button {
   transform: var(--p-lift-sm);
+}
+
+/* A label, its control and an optional hint or error, spaced by --p-space-sm. */
+.field {
+  display: grid;
+  gap: var(--p-space-sm);
+}
+.field-hint,
+.field-error {
+  /* palace has no font-size tokens; 12px matches the file's other small text */
+  font-size: 12px;
+}
+.field-hint { color: var(--p-text-muted); }
+.field-error {
+  color: var(--p-error-text);
+  font-weight: 600;
+}
+:is(input, select, textarea)[aria-invalid="true"],
+:is(input, select, textarea)[aria-invalid="true"]:focus {
+  border-color: var(--p-error-text);
+}
+:is(input:not([type="checkbox"], [type="radio"]), select, textarea)[aria-invalid="true"]:focus {
+  box-shadow: var(--p-shadow-md) var(--p-error-text);
+}
+
+/* Fields and buttons in one row, bottoms aligned; the row wraps when narrow.
+   Fields, inputs, selects and textareas grow from --control-row-min; buttons keep their
+   natural width but may shrink and wrap their label. */
+.control-row {
+  --control-row-min: 12rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--p-space-sm);
+}
+.control-row > :is(.field, .input-action, input, select, textarea) {
+  flex: 1 1 var(--control-row-min);
+  min-width: 0;
+}
+.control-row > :is(button, .btn) {
+  flex: 0 1 auto;
+  max-width: 100%;
 }
 
 /* Checkboxes, radio buttons and disclosure summaries: the focus ring of links
@@ -850,9 +913,11 @@ summary:focus-visible {
   border: var(--p-border-width) solid var(--p-text);
   box-shadow: var(--p-shadow-md) var(--p-accent-2);
 }
-.navbar-menu-panel ul { list-style: none; margin: 0; padding: 0; display: grid; }
+/* The margin resets sit in :where() so a space-* utility on the panel beats them. */
+:where(.navbar-menu-panel ul) { margin: 0; }
+.navbar-menu-panel ul { list-style: none; padding: 0; display: grid; }
+:where(.navbar-menu-label) { margin: 0; }
 .navbar-menu-label {
-  margin: 0;
   padding: var(--p-space-sm) var(--p-space-md) var(--p-space-xs);
   font-size: 11px;
   font-weight: 600;
@@ -864,6 +929,8 @@ summary:focus-visible {
 .navbar-menu-panel button {
   display: block;
   width: 100%;
+  height: auto;
+  min-height: 0;
   box-sizing: border-box;
   padding: var(--p-space-sm) var(--p-space-md);
   border: 0;
@@ -988,13 +1055,14 @@ pre {
 .code-reveal code {
   word-break: break-all;
   display: block;
-  margin-bottom: 12px;
   background: var(--p-code-bg);
   padding: 12px;
   border: var(--p-border-thin) solid var(--p-border-dark);
   color: var(--p-code-highlight);
   user-select: all;
 }
+
+:where(.code-reveal) > * + * { margin-top: var(--p-space-sm); }
 
 
 /* ══════════════════════════════════════════
@@ -1213,14 +1281,14 @@ pre {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--p-text-faint);
-  margin-top: 2px;
 }
+/* Optical: 2px off the stat above. In :where() so space-* wins. */
+:where(.stat-label) { margin-top: 2px; }
 
 .stat-row {
   display: flex;
   flex-wrap: wrap;
   gap: var(--p-space-lg);
-  margin-bottom: 12px;
 }
 
 
@@ -1264,21 +1332,30 @@ dialog {
      which is what centres a modal dialog. Restored here. */
   margin: auto;
 }
+/* An open modal stays centred even in a space-* container, whose
+   `> * + *` margin is more specific than `dialog`. */
+dialog:modal { margin: auto; }
 
 dialog::backdrop { background: var(--p-overlay); }
-dialog h2 { margin-bottom: var(--p-space-xs); }
-dialog .subtitle { margin-bottom: var(--p-space-lg); }
-dialog p { margin-bottom: var(--p-space-sm); }
+/* The dialog spaces its own children, or those of a direct <form>.
+   Specificity decides first: `.subtitle + *` has a class and beats the
+   element rules. Among those (p, h2, menu), all equally specific, the later
+   one in this file wins, so a <menu> after a <p> still gets lg. */
+:where(dialog, dialog > form) > p + * { margin-top: var(--p-space-sm); }
+:where(dialog, dialog > form) > h2 + * { margin-top: var(--p-space-xs); }
+:where(dialog, dialog > form) > .subtitle + *,
+:where(dialog, dialog > form) > menu { margin-top: var(--p-space-lg); }
 
 dialog menu {
   display: flex;
   gap: var(--p-space-sm);
   padding: 0;
-  margin: var(--p-space-lg) 0 0;
   list-style: none;
 }
 
-dialog menu .btn { flex: 1; }
+/* The buttons share the row's width. */
+dialog menu > li { flex: 1; }
+dialog menu > li > :is(button, .btn) { width: 100%; }
 
 /* ══════════════════════════════════════════
    KBD
@@ -1290,6 +1367,12 @@ kbd {
   border: var(--p-border-thin) solid var(--p-text);
   box-shadow: 1px 1px 0 var(--p-accent-1);
   background: var(--p-surface-inset);
+  /* Its own text colour: on its light background, a key must not take a button's white. */
+  color: var(--p-text);
   font: 600 11px/1.5 var(--p-font-mono);
   text-transform: uppercase;
 }
+/* A key in a button's label stays inside the button's one line, so the button
+   keeps the control height: sized from the button's font (11px in a 13px
+   button), with no padding or line height of its own above it. */
+:where(button, .btn, .cta) kbd { padding-block: 0; font-size: 0.85em; line-height: 1; vertical-align: middle; }
