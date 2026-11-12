@@ -1367,6 +1367,8 @@ kbd {
   border: var(--p-border-thin) solid var(--p-text);
   box-shadow: 1px 1px 0 var(--p-accent-1);
   background: var(--p-surface-inset);
+  /* Its own text colour: on its light background, a key must not take a button's white. */
+  color: var(--p-text);
   font: 600 11px/1.5 var(--p-font-mono);
   text-transform: uppercase;
 }

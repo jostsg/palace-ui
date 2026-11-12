@@ -243,3 +243,10 @@ for (const [name, html] of [
     assert.ok(Math.abs(inside.offset - alone.offset) <= 0.5, `inside ${inside.offset}, alone ${alone.offset}`);
   });
 }
+
+test('a key keeps dark text in a button with white text', async () => {
+  const page = await render('<button class="btn btn-primary">Pair <kbd id=k>P</kbd></button>');
+  const color = await page.$eval('#k', (el) => getComputedStyle(el).color);
+  await page.close();
+  assert.equal(color, 'rgb(10, 10, 10)');
+});
