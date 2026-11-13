@@ -302,3 +302,34 @@ test('a small tag is a smaller .tag', async () => {
   assert.equal(a.size, '12px');
   assert.deepEqual(b, { size: '10px', pad: '2px 6px', border: a.border });
 });
+
+test('a small input and select match .btn-sm in a control row', async () => {
+  const page = await render(
+    `<div class="control-row"><input id=a type=search class="input-sm"><select id=b class="input-sm"><option>x</select>
+     <input id=c type=text class="input-sm"><button id=d class="btn btn-sm">Go</button></div>`,
+  );
+  const bs = [];
+  for (const s of ['#a', '#b', '#c', '#d']) bs.push(await box(page, s));
+  await page.close();
+  assert.deepEqual(bs.map((b) => b.height), [32, 32, 32, 32]);
+  assert.deepEqual(bs.map((b) => b.top), [bs[0].top, bs[0].top, bs[0].top, bs[0].top]);
+});
+
+test('a small select leaves room for its caret; coarse pointers get 16px text', async () => {
+  const page = await render('<select id=s class="input-sm"><option>x</select><input id=i type=text class="input-sm">');
+  const pad = await page.$eval('#s', (el) => getComputedStyle(el).paddingRight);
+  const fine = await page.$eval('#i', (el) => getComputedStyle(el).fontSize);
+  await page.close();
+  assert.equal(pad, '28px');
+  assert.equal(fine, '13px');
+  const { chromium } = await import('playwright-core');
+  const b = await chromium.launch({ channel: 'chrome', headless: true });
+  const ctx = await b.newContext({ hasTouch: true, isMobile: true, viewport: { width: 500, height: 600 } });
+  const p = await ctx.newPage();
+  await p.setContent('<input id=i type=text class="input-sm"><select id=s class="input-sm"><option>x</select>');
+  await p.addStyleTag({ path: new URL('../palace.css', import.meta.url).pathname });
+  await p.evaluate(() => Promise.allSettled(document.getAnimations().map((a) => a.finished)));
+  const sizes = await p.$$eval('#i,#s', (els) => els.map((e) => [getComputedStyle(e).fontSize, e.getBoundingClientRect().height]));
+  await b.close();
+  assert.deepEqual(sizes, [['16px', 32], ['16px', 32]]);
+});

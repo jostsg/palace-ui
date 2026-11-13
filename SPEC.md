@@ -136,7 +136,7 @@ A shadow reaches 4px right and below its box. Leave that room inside a container
 | Token | Value | Usage |
 |---|---|---|
 | `--p-control-height` | `44px` | Text inputs, selects, number input, buttons |
-| `--p-control-height-sm` | `32px` | `.btn-sm`, a button inside `.input-action` |
+| `--p-control-height-sm` | `32px` | `.btn-sm`, `.input-sm`, a button inside `.input-action` |
 | `--p-control-height-lg` | `52px` | `.btn-lg`, `.cta` |
 
 ## Component Catalog
@@ -427,6 +427,16 @@ A `<select>` is styled like the text inputs, with a drawn chevron:
 <div class="field">
   <label for="direction">Direction</label>
   <select id="direction"><option>Anticlockwise</option><option>Clockwise</option></select>
+</div>
+```
+
+For a compact row (a filter, an inline rename) add `.input-sm` to an input or a select: it is `--p-control-height-sm` (32px) tall with a 1px border and 13px text, the height of `.btn-sm`, so they line up in a `.control-row`. On touch screens (`pointer: coarse`) the text is 16px, because iOS zooms the page when a smaller field is focused. A select keeps 28px of padding at its end for the caret. Use it for the whole row: do not mix it with default-height controls.
+
+```html
+<div class="control-row">
+  <input type="search" class="input-sm" placeholder="Filter" aria-label="Filter">
+  <select class="input-sm" aria-label="Direction"><option>Anticlockwise</option><option>Clockwise</option></select>
+  <button class="btn btn-sm btn-primary">Apply</button>
 </div>
 ```
 
