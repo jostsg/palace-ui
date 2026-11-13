@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://github.com/jostsg/palace-ui/compare/v0.14.0...v0.15.0) (2026-11-13)
+
+
+### Features
+
+* shadow sizes as t-shirt tokens; static cards and the menu panel take the large shadow ([#18](https://github.com/jostsg/palace-ui/issues/18)) ([606d79e](https://github.com/jostsg/palace-ui/commit/606d79ee8f6b8adcb37d3b276b43ceb491694b76)), closes [#17](https://github.com/jostsg/palace-ui/issues/17)
+
 ## [0.14.0](https://github.com/jostsg/palace-ui/compare/v0.13.0...v0.14.0) (2026-11-12)
 
 
