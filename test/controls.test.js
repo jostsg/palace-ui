@@ -287,3 +287,18 @@ test('a long navbar menu label still truncates, without the default marker', asy
   assert.equal(r.h, 32);
   assert.ok(r.w <= 224, `width ${r.w}`);
 });
+
+test('a small tag is a smaller .tag', async () => {
+  const page = await render('<span id=a class="tag">Tag</span><span id=b class="tag tag-sm">Tag</span>');
+  const [a, b] = await Promise.all(
+    ['#a', '#b'].map((s) =>
+      page.$eval(s, (el) => {
+        const c = getComputedStyle(el);
+        return { size: c.fontSize, pad: `${c.paddingTop} ${c.paddingRight}`, border: c.borderTopWidth };
+      }),
+    ),
+  );
+  await page.close();
+  assert.equal(a.size, '12px');
+  assert.deepEqual(b, { size: '10px', pad: '2px 6px', border: a.border });
+});
