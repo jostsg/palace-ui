@@ -105,6 +105,8 @@ Sizes for both: `xs` (4px), `sm` (8px), `md` (16px), `lg` (24px), `xl` (32px), `
 
 Offsets only; combine with a colour: `box-shadow: var(--p-shadow-md) var(--p-accent-2)`. Pick a size by role, never write a raw offset. Inset indicator lines (`inset 3px 0 0`) are not offset shadows and stay as they are.
 
+Shadows mark boxes that lie on the page: a bordered box inside a card or another shadowed box keeps its border and has no shadow.
+
 | Token | Usage |
 |---|---|
 | `--p-shadow-xs` | Keys (`kbd`) |
