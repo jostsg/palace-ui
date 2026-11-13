@@ -7,8 +7,8 @@ after(close);
 
 const css = readFileSync(new URL('../palace.css', import.meta.url), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
 
-const scale = { '3xs': 10, '2xs': 11, xs: 12, sm: 13, md: 14, lg: 16, xl: 18, '2xl': 24, '3xl': 32, '4xl': 40 };
-const token = /^var\(--p-text-(3xs|2xs|xs|sm|md|lg|xl|2xl|3xl|4xl)\)$/;
+const scale = { '2xs': 11, xs: 12, sm: 13, md: 14, lg: 16, xl: 18, '2xl': 24, '3xl': 32, '4xl': 40 };
+const token = /^var\(--p-text-(2xs|xs|sm|md|lg|xl|2xl|3xl|4xl)\)$/;
 // A size relative to the parent (a key inside a button) follows the text around it.
 const relative = /^(inherit|[\d.]+em)$/;
 
@@ -30,10 +30,14 @@ test('every font shorthand in palace.css takes its size from a --p-text-* token'
   assert.deepEqual(bad, []);
 });
 
-test('the type scale runs 10, 11, 12, 13, 14, 16, 18, 24, 32 and 40px', () => {
+test('the type scale runs 11, 12, 13, 14, 16, 18, 24, 32 and 40px', () => {
   for (const [name, px] of Object.entries(scale)) {
     assert.match(css, new RegExp(`--p-text-${name}:\\s*${px}px;`));
   }
+});
+
+test('there is no step below 2xs', () => {
+  assert.doesNotMatch(css, /--p-text-3xs/);
 });
 
 test('the line heights are tight 1.1, text 1.5 and prose 1.6', () => {
@@ -53,7 +57,7 @@ test('components render at their step', async () => {
   await page.close();
   assert.deepEqual(sizes, {
     h1: '32px', hero: '40px', h2: '18px', body: '14px', label: '11px', input: '16px', btn: '13px',
-    lg: '16px', num: '24px', th: '10px', td: '13px', hint: '12px',
+    lg: '16px', num: '24px', th: '11px', td: '13px', hint: '12px',
   });
 });
 

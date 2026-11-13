@@ -63,8 +63,7 @@
   --p-font-mono: 'JetBrains Mono', monospace;
 
   /* ── Type scale (sizes in px, like the body; pick a step by role) ── */
-  --p-text-3xs: 10px;  /* micro caps: eyebrows, table heads, stat labels */
-  --p-text-2xs: 11px;  /* caps labels: form labels, brand, small buttons, badges, keys */
+  --p-text-2xs: 11px;  /* caps labels: form labels, eyebrows, table heads, stat labels, brand, small buttons, badges, keys */
   --p-text-xs: 12px;   /* meta: hints, errors, tags, footer, code blocks */
   --p-text-sm: 13px;   /* controls and dense data: buttons, table cells, code, status */
   --p-text-md: 14px;   /* body text, h3, subtitles */
@@ -76,7 +75,7 @@
 
   /* ── Line heights ── */
   --p-leading-tight: 1.1;  /* display headings, 2xl to 4xl */
-  --p-leading: 1.5;        /* text, 3xs to xl: the body's, inherited everywhere */
+  --p-leading: 1.5;        /* text, 2xs to xl: the body's, inherited everywhere */
   --p-leading-prose: 1.6;  /* paragraphs in boxes (cards, the danger zone) and code blocks */
 
   /* ── Spacing ── */
@@ -227,7 +226,7 @@ h3, .h3 {
 
 /* Step/category eyebrow */
 .eyebrow {
-  font-size: var(--p-text-3xs);
+  font-size: var(--p-text-2xs);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -1062,7 +1061,7 @@ th {
   border-bottom: var(--p-border-thin) solid var(--p-border);
   font-weight: 700;
   color: var(--p-text-faint);
-  font-size: var(--p-text-3xs);
+  font-size: var(--p-text-2xs);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -1336,7 +1335,7 @@ pre {
 }
 
 .stat-label {
-  font-size: var(--p-text-3xs);
+  font-size: var(--p-text-2xs);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;

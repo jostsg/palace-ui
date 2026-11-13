@@ -73,28 +73,34 @@ Or if consuming via npm with a build tool:
 
 ### Type Scale
 
-Sizes go by role, in the same t-shirt names as spacing. Pick the step for what the text is, never a raw size. Sizes are in px, like the body. The text steps sit 1px apart because UI text is dense and a pixel shows; the display steps open out.
+Nine sizes in the same t-shirt names as spacing, in px like the body. Pick the step for what the text is, never a raw size. A new kind of text goes into one of these roles, not into a new step.
+
+**UI sizes** sit 1px or 2px apart, because UI text is dense and a pixel shows. Each has one role:
 
 | Token | Size | Line height | Role |
 |---|---|---|---|
-| `--p-text-3xs` | `10px` | `--p-leading` | Micro caps: `.eyebrow`, `th`, `.stat-label` |
-| `--p-text-2xs` | `11px` | `--p-leading` | Caps labels: `label`, `.brand`, `.navbar-brand`, `.btn-sm`, `.badge`, `.tag-sticker`, `kbd`, the navbar menu's summary and group labels |
+| `--p-text-2xs` | `11px` | `--p-leading` | Caps labels: `label`, `.eyebrow`, `th`, `.stat-label`, `.brand`, `.navbar-brand`, `.btn-sm`, `.badge`, `.tag-sticker`, `kbd`, the navbar menu's summary and group labels |
 | `--p-text-xs` | `12px` | `--p-leading` (`pre`: `--p-leading-prose`) | Meta: `.field-hint`, `.field-error`, `.tag`, `.footer`, `.navbar-user`, `pre` |
 | `--p-text-sm` | `13px` | `--p-leading` (boxed paragraphs: `--p-leading-prose`) | Controls and dense data: buttons, `td`, `code`, `.status`, `textarea`, `.empty`, `.danger-zone p`, the navbar menu's items |
 | `--p-text-md` | `14px` | `--p-leading` (`.card p`: `--p-leading-prose`) | Body: `body`, `h3`, `.subtitle`, list items, `.step p` |
 | `--p-text-lg` | `16px` | `--p-leading` | Input text (16px keeps phones from zooming in on focus), `.btn-lg`, `.cta` |
+
+**Display sizes** open out, about 1.33 apart (18, 24, 32, then 40 for the hero):
+
+| Token | Size | Line height | Role |
+|---|---|---|---|
 | `--p-text-xl` | `18px` | `--p-leading` | `h2`, `.tagline` |
-| `--p-text-2xl` | `24px` | `--p-leading-tight` for headings | Display: `.step-num`, the number input, `h1` and `.stat` on phones |
-| `--p-text-3xl` | `32px` | `--p-leading-tight` | Display: `h1`, `.stat`, `.h1-hero` on phones |
-| `--p-text-4xl` | `40px` | `--p-leading-tight` | Display: `.h1-hero` |
+| `--p-text-2xl` | `24px` | `--p-leading-tight` for headings | `.step-num`, the number input, `h1` and `.stat` on phones |
+| `--p-text-3xl` | `32px` | `--p-leading-tight` | `h1`, `.stat`, `.h1-hero` on phones |
+| `--p-text-4xl` | `40px` | `--p-leading-tight` | `.h1-hero` |
 
 | Token | Value | Usage |
 |---|---|---|
 | `--p-leading-tight` | `1.1` | Display headings (`h1`, `.h1-hero`) |
-| `--p-leading` | `1.5` | Text: set on `body` and inherited by every step from 3xs to xl |
+| `--p-leading` | `1.5` | Text: set on `body` and inherited by every step from 2xs to xl |
 | `--p-leading-prose` | `1.6` | Paragraphs inside boxes (`.card p`, `.danger-zone p`) and `pre` |
 
-Three line heights are set by their component rather than the scale: buttons and `.cta` use `1.3` and the navbar menu `1.4`, because their padding is derived from that one line to centre it in the control height; `.stat` uses `1`, a number with no second line.
+Some line heights are set by their component rather than the scale: buttons and `.cta` use `1.3`, because their padding is derived from that one line to centre it in the control height; the navbar menu's summary takes the small control height as its line height, and its items use `1.4`; `.stat` uses `1`, a number with no second line.
 
 A size relative to its parent (`em`) is fine where something must scale with the text around it, such as a `kbd` inside a button (`0.85em`). A test fails on any other font size in `palace.css` that is not a `--p-text-*` token.
 
