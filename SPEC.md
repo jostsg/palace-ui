@@ -71,6 +71,33 @@ Or if consuming via npm with a build tool:
 | `--p-font` | `'Space Grotesk', system-ui, sans-serif` |
 | `--p-font-mono` | `'JetBrains Mono', monospace` |
 
+### Type Scale
+
+Sizes go by role, in the same t-shirt names as spacing. Pick the step for what the text is, never a raw size. Sizes are in px, like the body. The text steps sit 1px apart because UI text is dense and a pixel shows; the display steps open out.
+
+| Token | Size | Line height | Role |
+|---|---|---|---|
+| `--p-text-3xs` | `10px` | `--p-leading` | Micro caps: `.eyebrow`, `th`, `.stat-label` |
+| `--p-text-2xs` | `11px` | `--p-leading` | Caps labels: `label`, `.brand`, `.navbar-brand`, `.btn-sm`, `.badge`, `.tag-sticker`, `kbd`, the navbar menu's summary and group labels |
+| `--p-text-xs` | `12px` | `--p-leading` (`pre`: `--p-leading-prose`) | Meta: `.field-hint`, `.field-error`, `.tag`, `.footer`, `.navbar-user`, `pre` |
+| `--p-text-sm` | `13px` | `--p-leading` (boxed paragraphs: `--p-leading-prose`) | Controls and dense data: buttons, `td`, `code`, `.status`, `textarea`, `.empty`, `.danger-zone p`, the navbar menu's items |
+| `--p-text-md` | `14px` | `--p-leading` (`.card p`: `--p-leading-prose`) | Body: `body`, `h3`, `.subtitle`, list items, `.step p` |
+| `--p-text-lg` | `16px` | `--p-leading` | Input text (16px keeps phones from zooming in on focus), `.btn-lg`, `.cta` |
+| `--p-text-xl` | `18px` | `--p-leading` | `h2`, `.tagline` |
+| `--p-text-2xl` | `24px` | `--p-leading-tight` for headings | Display: `.step-num`, the number input, `h1` and `.stat` on phones |
+| `--p-text-3xl` | `32px` | `--p-leading-tight` | Display: `h1`, `.stat`, `.h1-hero` on phones |
+| `--p-text-4xl` | `40px` | `--p-leading-tight` | Display: `.h1-hero` |
+
+| Token | Value | Usage |
+|---|---|---|
+| `--p-leading-tight` | `1.1` | Display headings (`h1`, `.h1-hero`) |
+| `--p-leading` | `1.5` | Text: set on `body` and inherited by every step from 3xs to xl |
+| `--p-leading-prose` | `1.6` | Paragraphs inside boxes (`.card p`, `.danger-zone p`) and `pre` |
+
+Three line heights are set by their component rather than the scale: buttons and `.cta` use `1.3` and the navbar menu `1.4`, because their padding is derived from that one line to centre it in the control height; `.stat` uses `1`, a number with no second line.
+
+A size relative to its parent (`em`) is fine where something must scale with the text around it, such as a `kbd` inside a button (`0.85em`). A test fails on any other font size in `palace.css` that is not a `--p-text-*` token.
+
 ### Spacing
 
 | Token | Value | Usage |
@@ -291,7 +318,7 @@ When the app has a visual mark/icon, use `.brand-lockup` instead of a standalone
   <div class="brand-lockup">
     <img src="/icons/app-icon.svg" alt="">
     <div>
-      <p class="brand" style="font-size: 17px; letter-spacing: 3px;">App Name</p>
+      <p class="brand" style="font-size: var(--p-text-xl); letter-spacing: 3px;">App Name</p>
       <p class="subtitle">Short descriptor</p>
     </div>
   </div>
@@ -841,7 +868,7 @@ Use `container-narrow page-header` (420px). No navbar. Centered with top padding
     <form class="card-static space-md">
       <!-- fields -->
     </form>
-    <p style="text-align: center; font-size: 13px; color: var(--p-text-muted);">
+    <p style="text-align: center; font-size: var(--p-text-sm); color: var(--p-text-muted);">
       Already in? <a href="/login">Log in</a>
     </p>
   </div>
