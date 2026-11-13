@@ -101,6 +101,17 @@ Sizes for both: `xs` (4px), `sm` (8px), `md` (16px), `lg` (24px), `xl` (32px), `
 
 **Exceptions:** dividers (`.divider`, `.divider-danger`, `.gradient-stripe`) use top and bottom margin because they are separators by nature. `margin: auto` centres containers and dialogs. The `.stat-label` 2px optical nudge and the rules between the navbar menu's groups are part of those components.
 
+### Shadows
+
+Offsets only; combine with a colour: `box-shadow: var(--p-shadow-md) var(--p-accent-2)`. Pick a size by role, never write a raw offset. Inset indicator lines (`inset 3px 0 0`) are not offset shadows and stay as they are.
+
+| Token | Usage |
+|---|---|
+| `--p-shadow-xs` | Keys (`kbd`) |
+| `--p-shadow-sm` | Small chips |
+| `--p-shadow-md` | Controls: hover and focus |
+| `--p-shadow-lg` | Boxes and cards: status boxes, cards, dialogs |
+
 ### Layout
 
 | Token | Value |
@@ -741,7 +752,7 @@ A native `<dialog>` styled as a card: border, purple offset shadow, overlay back
 
 ### Kbd
 
-Inline keyboard key: bordered, uppercase mono, with a small pink offset shadow.
+Inline keyboard key: bordered, uppercase mono, with a pink `--p-shadow-xs` shadow.
 
 ```html
 <kbd>Ctrl</kbd> + <kbd>Z</kbd>
@@ -853,7 +864,7 @@ Full container, no navbar. Hero section, then card list, then footer.
 ## Interaction Rules
 
 1. **Hover = lift + shadow.** Elements move `translate(-1px, -1px)` or `translate(-2px, -2px)` and cast a hard shadow in the opposite direction. Shadow color matches the element's accent.
-2. **Focus = border-color + shadow.** Input focus changes border to accent-2 (purple) and adds a `3px 3px 0` shadow. Number inputs focus to accent-1 (pink).
+2. **Focus = border-color + shadow.** Input focus changes border to accent-2 (purple) and adds the `--p-shadow-md` shadow. Number inputs focus to accent-1 (pink).
 3. **Disabled = flat gray.** `#ddd` background, `#999` text, `#ccc` border. No transform, no shadow, `cursor: not-allowed`.
 4. **Transitions are 0.1s.** Never slower. The UI should feel mechanical and responsive.
 5. **Links underline with border-bottom**, not `text-decoration`. Hover swaps from accent-2 (purple) to accent-1 (pink).
@@ -876,7 +887,7 @@ Full container, no navbar. Hero section, then card list, then footer.
 - Use the 3-color card rotation for any list of cards
 - Keep `border-radius: 0` everywhere
 - Use `2px solid` borders on cards, buttons, inputs
-- Use hard shadows (`Npx Npx 0 color`) — never blurred shadows
+- Use hard shadows (a `--p-shadow-*` size and a colour) — never blurred shadows
 - Use `font-weight: 700` for headings and buttons
 - Use `letter-spacing` on all uppercase text (0.5px to 2px)
 - Keep containers at 640px max width

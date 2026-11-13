@@ -85,6 +85,7 @@
   --p-radius: 0;
 
   /* ── Shadows (offsets only — combine with color) ── */
+  --p-shadow-xs: 1px 1px 0;
   --p-shadow-sm: 2px 2px 0;
   --p-shadow-md: 3px 3px 0;
   --p-shadow-lg: 4px 4px 0;
@@ -1365,7 +1366,7 @@ kbd {
   display: inline-block;
   padding: 1px 5px;
   border: var(--p-border-thin) solid var(--p-text);
-  box-shadow: 1px 1px 0 var(--p-accent-1);
+  box-shadow: var(--p-shadow-xs) var(--p-accent-1);
   background: var(--p-surface-inset);
   /* Its own text colour: on its light background, a key must not take a button's white. */
   color: var(--p-text);

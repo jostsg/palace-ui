@@ -340,11 +340,16 @@
   <div class="space-xs">
     <p class="eyebrow" style="color: var(--p-accent-1);">Tokens</p>
     <h2 id="shadows">Shadows</h2>
-    <p class="subtitle">Hard shadows only. Zero blur, always.</p>
+    <p class="subtitle">Hard shadows only. Zero blur, always. Keys take xs, small chips sm, controls md, boxes and cards lg.</p>
   </div>
 
   <div class="space-sm">
     <div data-source class="gap-lg" style="display: flex; flex-wrap: wrap;">
+      <div class="gap-sm" style="display: grid; justify-items: center;">
+        <div style="width: 100px; height: 100px; background: var(--p-surface); border: 2px solid var(--p-text); box-shadow: var(--p-shadow-xs) var(--p-accent-3);"></div>
+        <div class="stat-label">--p-shadow-xs</div>
+        <code style="font-size: 11px;">1px 1px 0</code>
+      </div>
       <div class="gap-sm" style="display: grid; justify-items: center;">
         <div style="width: 100px; height: 100px; background: var(--p-surface); border: 2px solid var(--p-text); box-shadow: var(--p-shadow-sm) var(--p-accent-1);"></div>
         <div class="stat-label">--p-shadow-sm</div>
