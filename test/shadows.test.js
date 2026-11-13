@@ -19,3 +19,10 @@ test('the shadow sizes are xs 1px, sm 2px, md 3px, lg 4px', () => {
     assert.match(css, new RegExp(`--p-shadow-${name}:\\s*${px}px ${px}px 0;`));
   }
 });
+
+test('.card-static keeps the large text shadow at rest and on hover', () => {
+  for (const sel of ['\\.card-static', '\\.card-static:hover']) {
+    const rule = css.match(new RegExp(`${sel}\\s*\\{([^}]*)\\}`))[1];
+    assert.match(rule, /box-shadow:\s*var\(--p-shadow-lg\) var\(--p-text\);/);
+  }
+});

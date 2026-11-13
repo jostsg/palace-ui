@@ -112,6 +112,14 @@ Offsets only; combine with a colour: `box-shadow: var(--p-shadow-md) var(--p-acc
 | `--p-shadow-md` | Controls: hover and focus |
 | `--p-shadow-lg` | Boxes and cards: status boxes, cards, dialogs |
 
+Boxes, by component:
+
+- **`lg`:** `.card-static` (`--p-text`, at rest and on hover; it never lifts), `.status` (`--p-text`), `dialog` (`--p-accent-2`), and `.card` on hover (the lift casts its accent; at rest a `.card` is flat, so a list of cards shows the shadow where the pointer is).
+- **`md`:** the navbar menu panel, a popover that sits with the controls that open it (`--p-accent-2`).
+- **Deliberately none:** tables (rules between rows, no outer box), `pre` and `.code-reveal` (they scroll sideways, which would clip a shadow), `.tag-sticker` and other tags (small chips, flat), and the disabled state of any control.
+
+A shadow reaches 4px right and below its box. Leave that room inside a container that clips (`overflow: hidden`, `auto` or `scroll`); palace's own layouts clip nothing a box sits in.
+
 ### Layout
 
 | Token | Value |
@@ -336,7 +344,7 @@ For explicit accent control (e.g. server-rendered cards), use the `--accent` cus
 
 ### Static Card
 
-For cards used as form containers or static content that should not lift on hover:
+For cards used as form containers or static content that should not lift on hover. It keeps its `--p-shadow-lg` shadow in `--p-text`, at rest and on hover:
 
 ```html
 <div class="card-static space-md">

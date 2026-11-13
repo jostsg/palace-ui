@@ -527,16 +527,17 @@ button:disabled, .btn:disabled, .cta:disabled {
   line-height: 1.6;
 }
 
-/* Static card — no hover lift/shadow (for form containers) */
+/* Static card — no hover lift (for form containers); its large shadow stays, at rest and on hover */
 .card-static {
   background: var(--p-surface);
   border: var(--p-border-width) solid var(--p-text);
+  box-shadow: var(--p-shadow-lg) var(--p-text);
   padding: var(--p-space-lg);
 }
 
 .card-static:hover {
   transform: none;
-  box-shadow: none;
+  box-shadow: var(--p-shadow-lg) var(--p-text);
 }
 
 
