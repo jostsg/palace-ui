@@ -12,7 +12,7 @@ A CSS-only design system. No build step, no JavaScript, no preprocessor.
 
 - All design tokens use the `--p-` prefix
 - `border-radius: 0` everywhere, no exceptions
-- Shadows are always hard (0 blur): `Npx Npx 0 color`
+- Shadows are always hard (0 blur): a `--p-shadow-*` size and a colour, never a raw offset
 - Transitions are always `0.1s`
 - No CSS preprocessors, no build step — this ships as a single CSS file
 - Test changes by opening the HTML files in `examples/` (when they exist)
