@@ -174,7 +174,7 @@ Every page follows this structure:
 </nav>
 ```
 
-A navbar menu for the signed-in user is a `<details class="navbar-menu">`: the summary looks like `.navbar-user`, and the panel's links and buttons are its items. A form in the panel (sign out) sits under a thin rule. It works without JavaScript; a script can add Escape and closing from outside.
+A navbar menu for the signed-in user is a `<details class="navbar-menu">`: the summary looks like `.navbar-user` and is as tall as `.btn-sm` (`--p-control-height-sm`, 32px), so a menu and a small button in the navbar line up, and the panel's links and buttons are its items. A form in the panel (sign out) sits under a thin rule. It works without JavaScript; a script can add Escape and closing from outside.
 
 ```html
 <nav class="navbar">
