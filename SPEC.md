@@ -49,6 +49,7 @@ Or if consuming via npm with a build tool:
 | `--p-text-secondary` | `#444` | Body copy in cards, descriptions |
 | `--p-text-muted` | `#666` | Subtitles, labels |
 | `--p-text-faint` | `#6b6b6b` | Table headers, brand labels, meta text |
+| `--p-text-on-fill` | `#fff` | Text on an accent or dark fill: filled buttons, the navbar brand, `.code-reveal`, `.badge`, `.tag-sticker`. A text colour, not a surface: use it instead of `#fff` or `--p-surface` |
 | `--p-bg` | `#f0f0f0` | Page background |
 | `--p-surface` | `#fff` | Card/container backgrounds |
 | `--p-surface-inset` | `#f7f7f7` | Inset/recessed surfaces |
@@ -558,7 +559,7 @@ Dark reveal panel (for secrets, API keys, terminal output). It puts 8px between 
 <!-- Tag (bordered, light background) -->
 <span class="tag">Volume Spacer</span>
 
-<!-- Badge (dark background, white text) -->
+<!-- Badge (dark background, --p-text-on-fill text) -->
 <span class="badge">clicks</span>
 ```
 

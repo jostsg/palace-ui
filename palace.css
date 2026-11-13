@@ -32,6 +32,7 @@
   --p-surface: #fff;
   --p-surface-inset: #f7f7f7;
   --p-dark: #0a0a0a;
+  --p-text-on-fill: #fff; /* text on an accent or dark fill: filled buttons, dark bands, badges, sticker tags */
 
   /* ── Borders ── */
   --p-border: #ddd;
@@ -378,7 +379,7 @@ button, .btn {
 
 .btn-primary {
   background: var(--p-accent-1);
-  color: #fff;
+  color: var(--p-text-on-fill);
   border-color: var(--p-accent-1);
 }
 .btn-primary:hover {
@@ -391,12 +392,12 @@ button, .btn {
 
 .btn-secondary {
   background: var(--p-accent-2);
-  color: #fff;
+  color: var(--p-text-on-fill);
   border-color: var(--p-accent-2);
 }
 .btn-secondary:hover {
   background: var(--p-dark);
-  color: #fff;
+  color: var(--p-text-on-fill);
   border-color: var(--p-dark);
   transform: var(--p-lift-sm);
   box-shadow: var(--p-shadow-md) var(--p-accent-2);
@@ -409,7 +410,7 @@ button, .btn {
 }
 .btn-outline:hover {
   background: var(--p-dark);
-  color: #fff;
+  color: var(--p-text-on-fill);
   transform: var(--p-lift-lg);
   box-shadow: var(--p-shadow-lg) var(--p-accent-2);
 }
@@ -446,7 +447,7 @@ button, .btn {
 }
 .cta-primary {
   background: var(--p-accent-1);
-  color: #fff;
+  color: var(--p-text-on-fill);
   border-color: var(--p-accent-1);
 }
 .cta-primary:hover {
@@ -796,7 +797,7 @@ summary:focus-visible {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #fff;
+  color: var(--p-text-on-fill);
   text-decoration: none;
   border-bottom: none;
 }
@@ -1054,7 +1055,7 @@ pre {
   padding: 20px;
   background: var(--p-dark);
   border: var(--p-border-width) solid var(--p-accent-3);
-  color: #fff;
+  color: var(--p-text-on-fill);
 }
 
 .code-reveal code {
@@ -1086,7 +1087,7 @@ pre {
 .badge {
   font-size: 11px;
   font-weight: 600;
-  color: #fff;
+  color: var(--p-text-on-fill);
   background: var(--p-dark);
   padding: 2px 6px;
   text-transform: uppercase;
@@ -1254,7 +1255,7 @@ pre {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 3px 10px;
-  color: #fff;
+  color: var(--p-text-on-fill);
   background: var(--accent, var(--p-accent-1));
   border: var(--p-border-width) solid var(--p-text);
   transform: rotate(-1.5deg);
