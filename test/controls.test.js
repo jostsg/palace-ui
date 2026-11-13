@@ -333,3 +333,23 @@ test('a small select leaves room for its caret; coarse pointers get 16px text', 
   await b.close();
   assert.deepEqual(sizes, [['16px', 32], ['16px', 32]]);
 });
+
+test('checkbox and radio labels are sentence case; field labels stay uppercase', async () => {
+  const page = await render(
+    `<label id=a><input type=checkbox> Email me when my record falls</label>
+     <label id=b><input type=radio name=r> Clockwise</label>
+     <label id=c for=t>Name</label><input id=t type=text>
+     <label id=d for=k>Beside</label><input id=k type=checkbox>`,
+  );
+  const st = await page.$$eval('#a,#b,#c,#d', (els) =>
+    els.map((el) => {
+      const c = getComputedStyle(el);
+      return [c.textTransform, c.letterSpacing];
+    }),
+  );
+  await page.close();
+  assert.deepEqual(st[0], ['none', 'normal']);
+  assert.deepEqual(st[1], ['none', 'normal']);
+  assert.deepEqual(st[2], ['uppercase', '1px']);
+  assert.deepEqual(st[3], ['uppercase', '1px']); // a for= label beside its checkbox keeps the field-label style
+});

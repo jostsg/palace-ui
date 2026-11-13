@@ -558,6 +558,17 @@ label {
   color: var(--p-text-muted);
 }
 
+/* A checkbox or radio label is a sentence, not a field name: sentence case,
+   body colour, no tracking. Only a label that wraps its input (or an input
+   directly inside it) counts. */
+label:has(> input[type="checkbox"], > input[type="radio"]) {
+  font-size: 14px; /* a type scale is palace-ui#21 */
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--p-text);
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"],

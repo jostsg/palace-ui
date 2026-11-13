@@ -9,7 +9,7 @@
 - **Retro-technical.** Hard edges (border-radius: 0 everywhere), thick 2px borders, chunky offset box-shadows. Gradients on text, thin decorative stripes (≤3px), and narrow fixed bars (e.g. sticky CTAs) only — never on large surfaces or card backgrounds.
 - **Three-color accent system.** Hot pink `#ff2d9b`, electric purple `#5b4cff`, cyan `#00e5ff`. These rotate across card lists and provide visual rhythm.
 - **Snappy interactions.** All transitions are `0.1s`. Hovers lift elements up-left and cast a hard shadow down-right. Fast, mechanical feedback.
-- **Uppercase everything.** All headings, labels and buttons are `text-transform: uppercase` with tracked letter-spacing. Body text and status messages, which are sentences, are the exception.
+- **Uppercase everything.** All headings, labels and buttons are `text-transform: uppercase` with tracked letter-spacing. Body text and status messages, which are sentences, are the exception, and so are the labels of checkboxes and radio buttons (see Forms).
 - **Dark on light.** `#0a0a0a` text on `#f0f0f0` background. Cards are white `#fff`. Code blocks invert to dark `#0a0a0a` backgrounds.
 - **No border radius.** Ever. `border-radius: 0` is the rule, not the exception.
 - **Content-width containers.** Max-width `640px` for main content, `420px` for auth/narrow forms.
@@ -420,6 +420,8 @@ A `.field` holds a label, its control and an optional hint or error, with 8px be
 `.field-hint` is muted small text; `.field-error` is small red text. Connect either to the control with `aria-describedby`. `aria-invalid="true"` on an input, select or textarea gives it a red border, and a red shadow on focus.
 
 All controls share one height. Text inputs, selects and the number input are exactly `--p-control-height` (44px) tall; buttons have it as a minimum and grow when a label wraps. A textarea starts at the control height. A field and a button beside it line up by construction.
+
+A label that wraps a checkbox or radio button (`<label><input type="checkbox"> Email me when my record falls</label>`) is a sentence, so it is sentence case at 14px in the body text colour, not the uppercase tracked field label. This is the default for `label:has(> input[type="checkbox"], > input[type="radio"])`; a label that only sits beside its checkbox or radio button (`<label for="x">` next to `<input id="x">`) keeps the uppercase field-label style.
 
 A `<select>` is styled like the text inputs, with a drawn chevron:
 
