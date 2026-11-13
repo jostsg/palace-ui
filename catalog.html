@@ -538,9 +538,14 @@
 
   <div class="space-sm">
     <h3>Checkboxes, radio buttons and disclosures</h3>
-    <p>Tab through them: each gets the same focus ring as links and buttons.</p>
+    <p>Tab through them: each gets the same focus ring as links and buttons. A label that wraps a checkbox or radio button is sentence case, so a long one stays readable.</p>
     <div data-source id="focus-controls" class="card-static space-md">
       <label><input type="checkbox" checked> Show lap times</label>
+      <label><input type="checkbox"> Email me when my record falls</label>
+      <div class="gap-sm" style="display: flex; align-items: center;">
+        <label for="cat-beside">Beside its control</label>
+        <input type="checkbox" id="cat-beside">
+      </div>
       <fieldset class="gap-sm" style="display: grid; border: 0;">
         <legend class="visually-hidden">Direction</legend>
         <label><input type="radio" name="cat-dir" checked> Anticlockwise</label>
