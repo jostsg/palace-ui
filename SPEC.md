@@ -79,7 +79,7 @@ Nine sizes in the same t-shirt names as spacing, in px like the body. Pick the s
 
 | Token | Size | Line height | Role |
 |---|---|---|---|
-| `--p-text-2xs` | `11px` | `--p-leading` | Caps labels: `label`, `.eyebrow`, `th`, `.stat-label`, `.brand`, `.navbar-brand`, `.btn-sm`, `.badge`, `.tag-sticker`, `kbd`, the navbar menu's summary and group labels |
+| `--p-text-2xs` | `11px` | `--p-leading` | Small labels, mostly caps: `label`, `.tag-sm`, `.eyebrow`, `th`, `.stat-label`, `.brand`, `.navbar-brand`, `.btn-sm`, `.badge`, `.tag-sticker`, `kbd`, the navbar menu's summary and group labels |
 | `--p-text-xs` | `12px` | `--p-leading` (`pre`: `--p-leading-prose`) | Meta: `.field-hint`, `.field-error`, `.tag`, `.footer`, `.navbar-user`, `pre` |
 | `--p-text-sm` | `13px` | `--p-leading` (boxed paragraphs: `--p-leading-prose`) | Controls and dense data: buttons, `td`, `code`, `.status`, `textarea`, `.empty`, `.danger-zone p`, the navbar menu's items |
 | `--p-text-md` | `14px` | `--p-leading` (`.card p`: `--p-leading-prose`) | Body: `body`, `h3`, `.subtitle`, list items, `.step p` |
@@ -604,7 +604,7 @@ Dark reveal panel (for secrets, API keys, terminal output). It puts 8px between 
 <!-- Tag (bordered, light background) -->
 <span class="tag">Volume Spacer</span>
 
-<!-- Small tag (10px text, --p-space-2xs 6px padding) for dense rows and meta lines; compose with .tag -->
+<!-- Small tag (--p-text-2xs 11px text, --p-space-2xs 6px padding) for dense rows and meta lines; compose with .tag -->
 <span class="tag tag-sm">Not counted</span>
 
 <!-- Badge (dark background, --p-text-on-fill text) -->

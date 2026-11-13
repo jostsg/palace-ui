@@ -1133,7 +1133,7 @@ pre {
 
 /* The small tag: for dense rows and meta lines. Compose with .tag. */
 .tag-sm {
-  font-size: 10px; /* a type scale is palace-ui#21 */
+  font-size: var(--p-text-2xs);
   padding: var(--p-space-2xs) 6px;
 }
 
