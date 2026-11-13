@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.16.0](https://github.com/jostsg/palace-ui/compare/v0.15.0...v0.16.0) (2026-11-13)
+
+
+### Features
+
+* --p-space-2xs (2px) with space-2xs and gap-2xs ([#28](https://github.com/jostsg/palace-ui/issues/28)) ([dd60c8e](https://github.com/jostsg/palace-ui/commit/dd60c8e423b5c97329e23bd976680351151838bd)), closes [#22](https://github.com/jostsg/palace-ui/issues/22)
+* --p-text-on-fill, the text colour on accent and dark fills ([#32](https://github.com/jostsg/palace-ui/issues/32)) ([ea00520](https://github.com/jostsg/palace-ui/commit/ea005208258660830aa056bda897e38305492398)), closes [#26](https://github.com/jostsg/palace-ui/issues/26)
+* .input-sm, a small input and select the height of .btn-sm ([#31](https://github.com/jostsg/palace-ui/issues/31)) ([dcafbbc](https://github.com/jostsg/palace-ui/commit/dcafbbc596ff997e02a67fd8d409f1afcc7458b3)), closes [#25](https://github.com/jostsg/palace-ui/issues/25)
+* .tag-sm, a small tag ([#29](https://github.com/jostsg/palace-ui/issues/29)) ([c537602](https://github.com/jostsg/palace-ui/commit/c5376021cc0d3a5e6065c7d4e3987fcd675aa908)), closes [#23](https://github.com/jostsg/palace-ui/issues/23)
+* a type scale as t-shirt tokens ([#35](https://github.com/jostsg/palace-ui/issues/35)) ([494c774](https://github.com/jostsg/palace-ui/commit/494c7740ebc1f5eb8135cf56b56e2c78b2e77074)), closes [#21](https://github.com/jostsg/palace-ui/issues/21)
+* sentence-case labels for checkboxes and radio buttons ([#33](https://github.com/jostsg/palace-ui/issues/33)) ([df3ec57](https://github.com/jostsg/palace-ui/commit/df3ec579968b3ace0d477f6ffdb854e54eab79ee)), closes [#27](https://github.com/jostsg/palace-ui/issues/27)
+
+
+### Bug Fixes
+
+* the navbar menu's height comes from --p-control-height-sm, level with .btn-sm ([#30](https://github.com/jostsg/palace-ui/issues/30)) ([35983ab](https://github.com/jostsg/palace-ui/commit/35983ab3108fa460b572386545fea3078838b6de)), closes [#24](https://github.com/jostsg/palace-ui/issues/24)
+
 ## [0.15.0](https://github.com/jostsg/palace-ui/compare/v0.14.0...v0.15.0) (2026-11-13)
 
 
