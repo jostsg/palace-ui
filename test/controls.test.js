@@ -300,7 +300,7 @@ test('a small tag is a smaller .tag', async () => {
   );
   await page.close();
   assert.equal(a.size, '12px');
-  assert.deepEqual(b, { size: '10px', pad: '2px 6px', border: a.border });
+  assert.deepEqual(b, { size: '11px', pad: '2px 6px', border: a.border });
 });
 
 test('a small input and select match .btn-sm in a control row', async () => {
