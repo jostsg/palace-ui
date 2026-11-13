@@ -250,3 +250,17 @@ test('a key keeps dark text in a button with white text', async () => {
   await page.close();
   assert.equal(color, 'rgb(10, 10, 10)');
 });
+
+test('filled controls take their text from --p-text-on-fill', async () => {
+  const html = `<button id=a class="btn btn-primary">x</button><button id=b class="btn btn-secondary">x</button>
+    <a id=c class="cta cta-primary" href="#">x</a><span id=d class="badge">x</span><span id=e class="tag-sticker">x</span>
+    <div id=f class="code-reveal">x</div><a id=g class="navbar-brand" href="#">x</a>`;
+  const page = await render(html);
+  const colours = await page.$$eval('#a,#b,#c,#d,#e,#f,#g', (els) => els.map((el) => getComputedStyle(el).color));
+  assert.deepEqual(colours, Array(7).fill('rgb(255, 255, 255)'));
+  await page.addStyleTag({ content: ':root { --p-text-on-fill: rgb(1, 2, 3); }' });
+  await page.evaluate(() => Promise.allSettled(document.getAnimations().map((a) => a.finished)));
+  const changed = await page.$$eval('#a,#b,#c,#d,#e,#f,#g', (els) => els.map((el) => getComputedStyle(el).color));
+  await page.close();
+  assert.deepEqual(changed, Array(7).fill('rgb(1, 2, 3)'));
+});
