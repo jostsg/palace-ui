@@ -4,7 +4,7 @@ import { render, close, box } from './render.js';
 
 after(close);
 
-const sizes = { xs: 4, sm: 8, md: 16, lg: 24, xl: 32, '2xl': 48 };
+const sizes = { '2xs': 2, xs: 4, sm: 8, md: 16, lg: 24, xl: 32, '2xl': 48 };
 
 async function between(cls) {
   const page = await render(`<div class="${cls}"><p id=a>a</p><p id=b>b</p></div>`);
