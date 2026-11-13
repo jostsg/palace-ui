@@ -74,6 +74,7 @@ Or if consuming via npm with a build tool:
 
 | Token | Value | Usage |
 |---|---|---|
+| `--p-space-2xs` | `2px` | Hairline gaps and padding: tight chips, mark offsets, an icon beside its text |
 | `--p-space-xs` | `4px` | Tight gaps |
 | `--p-space-sm` | `8px` | Button gaps, label to control |
 | `--p-space-md` | `16px` | Space between cards and fields, standard padding |
@@ -97,7 +98,7 @@ Spacing comes from the container, never from the component inside it.
 
 6. **Missing values become tokens.** When a value is missing, add it to palace as a token instead of writing a raw number in an app. A raw value is only for a genuine one-off, with a comment saying why.
 
-Sizes for both: `xs` (4px), `sm` (8px), `md` (16px), `lg` (24px), `xl` (32px), `2xl` (48px), the `--p-space-*` scale.
+Sizes for both: `2xs` (2px), `xs` (4px), `sm` (8px), `md` (16px), `lg` (24px), `xl` (32px), `2xl` (48px), the `--p-space-*` scale.
 
 **Exceptions:** dividers (`.divider`, `.divider-danger`, `.gradient-stripe`) use top and bottom margin because they are separators by nature. `margin: auto` centres containers and dialogs. The `.stat-label` 2px optical nudge and the rules between the navbar menu's groups are part of those components.
 
@@ -601,7 +602,7 @@ Dark reveal panel (for secrets, API keys, terminal output). It puts 8px between 
 </div>
 ```
 
-Available: `xs` (4px) · `sm` (8px) · `md` (16px) · `lg` (24px) · `xl` (32px) · `2xl` (48px), as `space-md`, `gap-md` and so on.
+Available: `2xs` (2px) · `xs` (4px) · `sm` (8px) · `md` (16px) · `lg` (24px) · `xl` (32px) · `2xl` (48px), as `space-md`, `gap-md` and so on.
 
 `.stack-*` is a deprecated alias of `space-*` and will be removed in a later release.
 

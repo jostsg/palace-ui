@@ -299,11 +299,15 @@
   <div class="space-xs">
     <p class="eyebrow" style="color: var(--p-accent-3);">Tokens</p>
     <h2 id="spacing">Spacing</h2>
-    <p class="subtitle">6-step scale from 4px to 48px.</p>
+    <p class="subtitle">7-step scale from 2px to 48px.</p>
   </div>
 
   <div class="space-sm">
     <div data-source class="space-md">
+      <div class="gap-sm" style="display: flex; align-items: center;">
+        <div style="width: 2px; height: 24px; background: var(--p-accent-1);"></div>
+        <code style="font-size: 12px;">--p-space-2xs: 2px</code>
+      </div>
       <div class="gap-sm" style="display: flex; align-items: center;">
         <div style="width: 4px; height: 24px; background: var(--p-accent-1);"></div>
         <code style="font-size: 12px;">--p-space-xs: 4px</code>
@@ -904,6 +908,14 @@
     <p><code>space-*</code> on a container puts the same space between its direct children, top to bottom. Use it for a column of anything: paragraphs, fields, cards.</p>
     <div data-source id="space-demo" class="gap-lg" style="display: flex; flex-wrap: wrap;">
       <div class="space-sm">
+        <div class="stat-label">space-2xs (2px)</div>
+        <div class="space-2xs">
+          <div style="background: var(--p-accent-1); height: 20px; width: 100px;"></div>
+          <div style="background: var(--p-accent-1); height: 20px; width: 100px;"></div>
+          <div style="background: var(--p-accent-1); height: 20px; width: 100px;"></div>
+        </div>
+      </div>
+      <div class="space-sm">
         <div class="stat-label">space-xs (4px)</div>
         <div class="space-xs">
           <div style="background: var(--p-accent-1); height: 20px; width: 100px;"></div>
@@ -958,6 +970,14 @@
     <h3>Gap (rows and grids)</h3>
     <p><code>gap-*</code> sets the gap of a flex or grid container. Use it for rows of buttons or tags and for grids.</p>
     <div data-source id="gap-demo" class="gap-lg" style="display: flex; flex-wrap: wrap;">
+      <div class="space-sm">
+        <div class="stat-label">gap-2xs (2px)</div>
+        <div class="gap-2xs" style="display: flex;">
+          <div style="background: var(--p-accent-1); height: 20px; width: 20px;"></div>
+          <div style="background: var(--p-accent-1); height: 20px; width: 20px;"></div>
+          <div style="background: var(--p-accent-1); height: 20px; width: 20px;"></div>
+        </div>
+      </div>
       <div class="space-sm">
         <div class="stat-label">gap-xs (4px)</div>
         <div class="gap-xs" style="display: flex;">

@@ -62,6 +62,7 @@
   --p-font-mono: 'JetBrains Mono', monospace;
 
   /* ── Spacing ── */
+  --p-space-2xs: 2px;
   --p-space-xs: 4px;
   --p-space-sm: 8px;
   --p-space-md: 16px;
@@ -257,6 +258,7 @@ h3, .h3 {
    space-*: vertical rhythm between children, with the owl selector.
    gap-*: the gap of a flex or grid container.
    stack-*: deprecated alias of space-*, kept so existing markup works. */
+.space-2xs > * + * { margin-top: var(--p-space-2xs); }
 .space-xs > * + *, .stack-xs > * + * { margin-top: var(--p-space-xs); }
 .space-sm > * + *, .stack-sm > * + * { margin-top: var(--p-space-sm); }
 .space-md > * + *, .stack-md > * + * { margin-top: var(--p-space-md); }
@@ -264,6 +266,7 @@ h3, .h3 {
 .space-xl > * + *, .stack-xl > * + * { margin-top: var(--p-space-xl); }
 .space-2xl > * + *, .stack-2xl > * + * { margin-top: var(--p-space-2xl); }
 
+.gap-2xs { gap: var(--p-space-2xs); }
 .gap-xs { gap: var(--p-space-xs); }
 .gap-sm { gap: var(--p-space-sm); }
 .gap-md { gap: var(--p-space-md); }
