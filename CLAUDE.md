@@ -27,4 +27,4 @@ palace-ui is the design source of truth. App-specific CSS may extend behavior bu
 - Follow semver: breaking class/token renames or removals = major bump
 - Adding new classes or tokens = minor bump
 - Fixing existing styles = patch bump
-- Update the version comment at the top of `palace.css` when bumping
+- The version comment at the top of `palace.css` is bumped by release-please (`extra-files`, the `x-release-please-version` marker); keep the marker on that line
