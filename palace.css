@@ -1090,6 +1090,12 @@ pre {
   display: inline-block;
 }
 
+/* The small tag: for dense rows and meta lines. Compose with .tag. */
+.tag-sm {
+  font-size: 10px; /* a type scale is palace-ui#21 */
+  padding: var(--p-space-2xs) 6px;
+}
+
 .badge {
   font-size: 11px;
   font-weight: 600;

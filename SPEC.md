@@ -559,6 +559,9 @@ Dark reveal panel (for secrets, API keys, terminal output). It puts 8px between 
 <!-- Tag (bordered, light background) -->
 <span class="tag">Volume Spacer</span>
 
+<!-- Small tag (10px text, --p-space-2xs 6px padding) for dense rows and meta lines; compose with .tag -->
+<span class="tag tag-sm">Not counted</span>
+
 <!-- Badge (dark background, --p-text-on-fill text) -->
 <span class="badge">clicks</span>
 ```
