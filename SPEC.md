@@ -81,9 +81,9 @@ Nine sizes in the same t-shirt names as spacing, in px like the body. Pick the s
 |---|---|---|---|
 | `--p-text-2xs` | `11px` | `--p-leading` | Small labels, mostly caps: `label`, `.tag-sm`, `.eyebrow`, `th`, `.stat-label`, `.brand`, `.navbar-brand`, `.btn-sm`, `.badge`, `.tag-sticker`, `kbd`, the navbar menu's summary and group labels |
 | `--p-text-xs` | `12px` | `--p-leading` (`pre`: `--p-leading-prose`) | Meta: `.field-hint`, `.field-error`, `.tag`, `.footer`, `.navbar-user`, `pre` |
-| `--p-text-sm` | `13px` | `--p-leading` (boxed paragraphs: `--p-leading-prose`) | Controls and dense data: buttons, `td`, `code`, `.status`, `textarea`, `.empty`, `.danger-zone p`, the navbar menu's items |
-| `--p-text-md` | `14px` | `--p-leading` (`.card p`: `--p-leading-prose`) | Body: `body`, `h3`, `.subtitle`, list items, `.step p` |
-| `--p-text-lg` | `16px` | `--p-leading` | Input text (16px keeps phones from zooming in on focus), `.btn-lg`, `.cta` |
+| `--p-text-sm` | `13px` | `--p-leading` (boxed paragraphs: `--p-leading-prose`) | Controls and dense data: buttons, `.input-sm`, `td`, `code`, `.status`, `textarea`, `.empty`, `.danger-zone p`, the navbar menu's items |
+| `--p-text-md` | `14px` | `--p-leading` (`.card p`: `--p-leading-prose`) | Body: `body`, checkbox and radio labels, `h3`, `.subtitle`, list items, `.step p` |
+| `--p-text-lg` | `16px` | `--p-leading` | Input text (16px keeps phones from zooming in on focus; `.input-sm` too on touch screens), `.btn-lg`, `.cta` |
 
 **Display sizes** open out, about 1.33 apart (18, 24, 32, then 40 for the hero):
 

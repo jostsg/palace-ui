@@ -578,7 +578,7 @@ label {
    body colour, no tracking. Only a label that wraps its input (or an input
    directly inside it) counts. */
 label:has(> input[type="checkbox"], > input[type="radio"]) {
-  font-size: 14px; /* a type scale is palace-ui#21 */
+  font-size: var(--p-text-md);
   font-weight: 600;
   text-transform: none;
   letter-spacing: normal;
@@ -692,13 +692,13 @@ textarea:focus {
   height: var(--p-control-height-sm);
   padding-inline-start: 10px;
   border-width: var(--p-border-thin);
-  font-size: 13px; /* a type scale is palace-ui#21 */
+  font-size: var(--p-text-sm);
 }
 /* A select's caret sits 0.9rem-1.25rem from the right; its text stops short of it. */
 select.input-sm { padding-inline-end: 28px; }
 /* iOS zooms the page when a field under 16px is focused; 16px still fits 32px. */
 @media (pointer: coarse) {
-  :is(input, select).input-sm { font-size: 16px; }
+  :is(input, select).input-sm { font-size: var(--p-text-lg); }
 }
 
 /* A field with a button inside, at its right end (show/hide a password, paste,
