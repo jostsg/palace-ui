@@ -26,3 +26,8 @@ test('.card-static keeps the large text shadow at rest and on hover', () => {
     assert.match(rule, /box-shadow:\s*var\(--p-shadow-lg\) var\(--p-text\);/);
   }
 });
+
+test('.navbar-menu-panel takes the large accent shadow', () => {
+  const rule = css.match(/\.navbar-menu-panel\s*\{([^}]*)\}/)[1];
+  assert.match(rule, /box-shadow:\s*var\(--p-shadow-lg\) var\(--p-accent-2\);/);
+});

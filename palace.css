@@ -913,7 +913,7 @@ summary:focus-visible {
   background: var(--p-surface);
   color: var(--p-text);
   border: var(--p-border-width) solid var(--p-text);
-  box-shadow: var(--p-shadow-md) var(--p-accent-2);
+  box-shadow: var(--p-shadow-lg) var(--p-accent-2);
 }
 /* The margin resets sit in :where() so a space-* utility on the panel beats them. */
 :where(.navbar-menu-panel ul) { margin: 0; }
