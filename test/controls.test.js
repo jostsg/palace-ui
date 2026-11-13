@@ -264,3 +264,26 @@ test('filled controls take their text from --p-text-on-fill', async () => {
   await page.close();
   assert.deepEqual(changed, Array(7).fill('rgb(1, 2, 3)'));
 });
+
+test('a navbar menu summary is as tall as a small button beside it', async () => {
+  const page = await render(
+    `<nav class="navbar"><div class="navbar-right"><details class="navbar-menu"><summary id=s>Username</summary></details>
+     <button id=b class="btn btn-sm">Log Out</button></div></nav>`,
+  );
+  const [s, b] = [await box(page, '#s'), await box(page, '#b')];
+  await page.close();
+  assert.equal(s.height, 32);
+  assert.equal(s.height, b.height);
+  assert.equal(s.top, b.top);
+});
+
+test('a long navbar menu label still truncates, without the default marker', async () => {
+  const page = await render(
+    `<nav class="navbar"><div class="navbar-right"><details class="navbar-menu"><summary id=s>An extremely long account name that cannot fit</summary></details></div></nav>`,
+  );
+  const r = await page.$eval('#s', (el) => ({ w: el.getBoundingClientRect().width, sw: el.scrollWidth, ls: getComputedStyle(el).listStyleType, h: el.getBoundingClientRect().height }));
+  await page.close();
+  assert.equal(r.ls, 'none');
+  assert.equal(r.h, 32);
+  assert.ok(r.w <= 224, `width ${r.w}`);
+});
