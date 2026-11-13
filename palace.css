@@ -659,6 +659,21 @@ textarea:focus {
   transform: var(--p-lift-sm);
 }
 
+/* The small control: an input or select as tall as .btn-sm (--p-control-height-sm),
+   for a compact row (a filter, an inline rename). Same 1px border as .btn-sm. */
+:is(input, select).input-sm {
+  height: var(--p-control-height-sm);
+  padding-inline-start: 10px;
+  border-width: var(--p-border-thin);
+  font-size: 13px; /* a type scale is palace-ui#21 */
+}
+/* A select's caret sits 0.9rem-1.25rem from the right; its text stops short of it. */
+select.input-sm { padding-inline-end: 28px; }
+/* iOS zooms the page when a field under 16px is focused; 16px still fits 32px. */
+@media (pointer: coarse) {
+  :is(input, select).input-sm { font-size: 16px; }
+}
+
 /* A field with a button inside, at its right end (show/hide a password, paste,
    copy). The input reserves the button's width plus its --p-space-sm inset; the button is centred in the
    input's box and lifts with it, so the two stay aligned on focus. Set
