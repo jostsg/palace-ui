@@ -1135,9 +1135,11 @@ pre {
   display: inline-block;
 }
 
-/* The small tag: for dense rows and meta lines. Compose with .tag. */
+/* The small tag: for dense rows and meta lines. Compose with .tag. Its line
+   height is 1, so a row with a tag is as tall as one without. */
 .tag-sm {
   font-size: var(--p-text-2xs);
+  line-height: 1;
   padding: var(--p-space-2xs) 6px;
 }
 
