@@ -114,7 +114,7 @@ A size relative to its parent (`em`) is fine where something must scale with the
 | `--p-space-md` | `16px` | Space between cards and fields, standard padding |
 | `--p-space-lg` | `24px` | Card padding, section spacing |
 | `--p-space-xl` | `32px` | Intermediate section gaps |
-| `--p-space-2xl` | `48px` | Hero padding, major section gaps |
+| `--p-space-2xl` | `48px` | Between page-level columns and sections, hero padding |
 
 ### Spacing Rules
 
