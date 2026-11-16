@@ -303,6 +303,19 @@ test('a small tag is a smaller .tag', async () => {
   assert.deepEqual(b, { size: '11px', pad: '2px 6px', border: a.border });
 });
 
+test('a small tag fits a dense row: a row with one is as tall as a row without', async () => {
+  const page = await render(
+    `<ul style="list-style:none;margin:0;padding:0;font-size:var(--p-text-md)">
+       <li id=a style="display:flex;gap:8px;align-items:baseline">Ana <span>8.900</span></li>
+       <li id=b style="display:flex;gap:8px;align-items:baseline">Ana <span class="tag tag-sm" id=t>Not counted</span> <span>8.900</span></li>
+     </ul>`,
+  );
+  const [a, b, t] = [await box(page, '#a'), await box(page, '#b'), await box(page, '#t')];
+  await page.close();
+  assert.ok(t.height <= 18, `tag ${t.height}px`);
+  assert.equal(b.height, a.height);
+});
+
 test('a small input and select match .btn-sm in a control row', async () => {
   const page = await render(
     `<div class="control-row"><input id=a type=search class="input-sm"><select id=b class="input-sm"><option>x</select>
