@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.1](https://github.com/jostsg/palace-ui/compare/v0.16.0...v0.16.1) (2026-11-16)
+
+
+### Bug Fixes
+
+* a small tag keeps a dense row's height ([#37](https://github.com/jostsg/palace-ui/issues/37)) ([0a42773](https://github.com/jostsg/palace-ui/commit/0a4277377ce1e97f97b2d82c528df649814a37cd))
+
 ## [0.16.0](https://github.com/jostsg/palace-ui/compare/v0.15.0...v0.16.0) (2026-11-13)
 
 
