@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.17.0](https://github.com/jostsg/palace-ui/compare/v0.16.1...v0.17.0) (2026-11-18)
+
+
+### Features
+
+* .btn-danger-fill, and a button focus ring that never changes height ([#44](https://github.com/jostsg/palace-ui/issues/44)) ([db3fbfe](https://github.com/jostsg/palace-ui/commit/db3fbfee8febffd73e4934bf7483cefd8ff3c383))
+
+
+### Bug Fixes
+
+* a tag or badge inside a heading keeps its own look ([#41](https://github.com/jostsg/palace-ui/issues/41)) ([bde847b](https://github.com/jostsg/palace-ui/commit/bde847b4e0b0c3fe4b2ec4aa4a2fb8d2bc89d987))
+* drop the merge-conflict lines that cost the first [@font-face](https://github.com/font-face) ([#42](https://github.com/jostsg/palace-ui/issues/42)) ([fda110f](https://github.com/jostsg/palace-ui/commit/fda110f72f17004c9aae3be9251caa18c58e670c))
+
 ## [0.16.1](https://github.com/jostsg/palace-ui/compare/v0.16.0...v0.16.1) (2026-11-16)
 
 
