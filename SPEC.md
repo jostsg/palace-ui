@@ -609,6 +609,9 @@ Dark reveal panel (for secrets, API keys, terminal output). It puts 8px between 
 
 <!-- Badge (dark background, --p-text-on-fill text) -->
 <span class="badge">clicks</span>
+
+<!-- Inside a heading, a tag, badge or sticker keeps its own look: not the h1's gradient fill, nor a heading's case, tracking or colour -->
+<h1>Abbey Road <span class="tag">Practice</span></h1>
 ```
 
 ### Steps (Numbered Instructions)
