@@ -398,12 +398,14 @@ button, .btn {
   color: var(--p-text-on-fill);
   border-color: var(--p-accent-1);
 }
+/* Hover lifts a button and drops its shadow. A focused button's ring is its
+   edge while hovered, so the shadow grows by --focus-spread to start there. */
 .btn-primary:hover {
   background: var(--p-dark);
   color: var(--p-accent-1);
   border-color: var(--p-dark);
   transform: var(--p-lift-sm);
-  box-shadow: var(--p-shadow-md) var(--p-accent-1);
+  box-shadow: var(--p-shadow-md) var(--focus-spread, 0) var(--p-accent-1);
 }
 
 .btn-secondary {
@@ -416,7 +418,7 @@ button, .btn {
   color: var(--p-text-on-fill);
   border-color: var(--p-dark);
   transform: var(--p-lift-sm);
-  box-shadow: var(--p-shadow-md) var(--p-accent-2);
+  box-shadow: var(--p-shadow-md) var(--focus-spread, 0) var(--p-accent-2);
 }
 
 .btn-outline {
@@ -428,7 +430,7 @@ button, .btn {
   background: var(--p-dark);
   color: var(--p-text-on-fill);
   transform: var(--p-lift-lg);
-  box-shadow: var(--p-shadow-lg) var(--p-accent-2);
+  box-shadow: var(--p-shadow-lg) var(--focus-spread, 0) var(--p-accent-2);
 }
 
 .btn-danger {
@@ -440,7 +442,22 @@ button, .btn {
   background: var(--p-error);
   color: var(--p-text);
   transform: var(--p-lift-sm);
-  box-shadow: var(--p-shadow-sm) var(--p-dark);
+  box-shadow: var(--p-shadow-sm) var(--focus-spread, 0) var(--p-dark);
+}
+
+/* The filled danger button: the main action of a confirmation ("Delete this
+   track?"). Black label and border on the error fill, as .status-error. */
+.btn-danger-fill {
+  background: var(--p-error);
+  color: var(--p-text);
+  border-color: var(--p-text);
+}
+.btn-danger-fill:hover {
+  background: var(--p-dark);
+  color: var(--p-error);
+  border-color: var(--p-dark);
+  transform: var(--p-lift-sm);
+  box-shadow: var(--p-shadow-md) var(--focus-spread, 0) var(--p-error);
 }
 
 /* CTA buttons (larger, for hero sections) */
@@ -471,7 +488,7 @@ button, .btn {
   color: var(--p-accent-1);
   border-color: var(--p-dark);
   transform: var(--p-lift-lg);
-  box-shadow: var(--p-shadow-lg) var(--p-accent-1);
+  box-shadow: var(--p-shadow-lg) var(--focus-spread, 0) var(--p-accent-1);
 }
 .cta-secondary {
   background: transparent;
@@ -482,15 +499,20 @@ button, .btn {
   background: var(--p-dark);
   color: var(--p-accent-2);
   transform: var(--p-lift-lg);
-  box-shadow: var(--p-shadow-lg) var(--p-accent-2);
+  box-shadow: var(--p-shadow-lg) var(--focus-spread, 0) var(--p-accent-2);
 }
 
-/* Focus-visible (keyboard accessibility) */
+/* Focus-visible (keyboard accessibility). Height belongs to the pointer: focus
+   is a ring and never lifts a button or drops a shadow. Focused and hovered,
+   the button keeps hover's lift and shadow; the ring closes onto its edge and
+   lifts with it, and the shadow starts outside the ring. */
 button:focus-visible, .btn:focus-visible, .cta:focus-visible {
   outline: var(--p-border-width) solid var(--p-accent-2);
-  outline-offset: 2px;
-  transform: var(--p-lift-sm);
-  box-shadow: var(--p-shadow-md) var(--p-accent-2);
+  outline-offset: var(--p-space-2xs);
+  --focus-spread: var(--p-border-width);
+}
+button:focus-visible:hover, .btn:focus-visible:hover, .cta:focus-visible:hover {
+  outline-offset: 0;
 }
 
 /* Disabled state (all buttons) */
@@ -727,6 +749,8 @@ select.input-sm { padding-inline-end: 28px; }
 .input-action > input:focus ~ button {
   transform: var(--p-lift-sm);
 }
+/* The button's ring sits on its edge, inside the field. */
+.input-action > :is(.btn, button):focus-visible { outline-offset: 0; }
 
 /* A label, its control and an optional hint or error, spaced by --p-space-sm. */
 .field {
@@ -767,6 +791,15 @@ select.input-sm { padding-inline-end: 28px; }
 .control-row > :is(button, .btn) {
   flex: 0 1 auto;
   max-width: 100%;
+}
+
+/* A focused field shows itself by its border and shadow, not an outline. In
+   forced-colors mode both are lost (colours forced, shadows dropped), so it
+   takes an outline there instead. */
+@media (forced-colors: active) {
+  :is(input:not([type="checkbox"], [type="radio"]), select, textarea):focus {
+    outline: var(--p-border-width) solid;
+  }
 }
 
 /* Checkboxes, radio buttons and disclosure summaries: the focus ring of links
