@@ -146,7 +146,7 @@ Shadows mark boxes that lie on the page: a bordered box inside a card or another
 |---|---|
 | `--p-shadow-xs` | Keys (`kbd`) |
 | `--p-shadow-sm` | Small chips |
-| `--p-shadow-md` | Controls: hover and focus |
+| `--p-shadow-md` | Controls: button hover, field focus |
 | `--p-shadow-lg` | Boxes and cards: status boxes, cards, dialogs, the navbar menu panel |
 
 Boxes, by component:
@@ -417,6 +417,11 @@ Size modifiers compose with any color variant. `.btn` works on `<button>` and on
 
 <!-- Danger full-width — destructive section actions -->
 <button class="btn btn-danger btn-block">Delete My Account</button>
+
+<!-- Danger filled — the main action of a confirmation, beside Cancel.
+     Error fill, black label and border (as .status-error); dark with a red label on hover -->
+<button class="btn btn-danger-fill">Delete track</button>
+<a class="btn btn-outline" href="/tracks/office">Cancel</a>
 
 <!-- CTA (larger) — hero sections. `.cta` is a semantic alias for `.btn-lg` -->
 <a href="/signup" class="cta cta-primary">Sign Up</a>
@@ -840,7 +845,9 @@ It is absolutely positioned where the text would have been, with no `top` or `le
 
 ### Focus Visible
 
-All interactive elements (buttons, links, inputs, checkboxes, radio buttons, `<summary>`) have `:focus-visible` styles with a `2px` outline in accent-2 (purple) and `2px` offset. Buttons also get a lift + shadow on focus. Text inputs show focus with a purple border and shadow instead; an input with `aria-invalid="true"` shows a red border and shadow. The navbar menu's summary keeps its own cyan ring.
+Buttons, links, checkboxes, radio buttons and `<summary>` show `:focus-visible` as a `2px` outline in accent-2 (purple), `2px` out. Height belongs to the pointer: focus never lifts a button or gives it a shadow. A focused button under the pointer keeps hover's fill, lift and shadow; its ring closes onto its edge (offset 0) and lifts with it, and the shadow grows by the ring's width so it starts outside the ring. A button inside `.input-action` has its ring on its edge, so it stays inside the field.
+
+Fields keep their own focus style: a field is where you type, so it shows focus (also from a click) with a purple border, shadow and lift; an input with `aria-invalid="true"` shows a red border and shadow. In forced-colors mode, where borders take system colours and shadows are dropped, a focused field takes an outline. The navbar menu's summary keeps its own cyan ring.
 
 ### Reduced Motion
 
@@ -926,7 +933,7 @@ Full container, no navbar. Hero section, then card list, then footer.
 ## Interaction Rules
 
 1. **Hover = lift + shadow.** Elements move `translate(-1px, -1px)` or `translate(-2px, -2px)` and cast a hard shadow in the opposite direction. Shadow color matches the element's accent.
-2. **Focus = border-color + shadow.** Input focus changes border to accent-2 (purple) and adds the `--p-shadow-md` shadow. Number inputs focus to accent-1 (pink).
+2. **Focus never changes height.** Buttons and links focus with a purple ring and no lift; lift and shadow come only from the pointer. Fields are the exception, with their own focus: the border turns accent-2 (purple), with the `--p-shadow-md` shadow and a small lift. Number inputs focus to accent-1 (pink).
 3. **Disabled = flat gray.** `#ddd` background, `#999` text, `#ccc` border. No transform, no shadow, `cursor: not-allowed`.
 4. **Transitions are 0.1s.** Never slower. The UI should feel mechanical and responsive.
 5. **Links underline with border-bottom**, not `text-decoration`. Hover swaps from accent-2 (purple) to accent-1 (pink).

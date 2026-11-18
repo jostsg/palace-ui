@@ -429,7 +429,7 @@
   <div class="space-xs">
     <p class="eyebrow" style="color: var(--p-accent-2);">Components</p>
     <h2 id="buttons">Buttons</h2>
-    <p class="subtitle">4 variants, 3 sizes, disabled + CTA.</p>
+    <p class="subtitle">5 variants, 3 sizes, focus, disabled + CTA.</p>
   </div>
 
   <div class="space-sm">
@@ -439,6 +439,37 @@
       <button class="btn btn-secondary">Secondary</button>
       <button class="btn btn-outline">Outline</button>
       <button class="btn btn-danger">Danger</button>
+      <button class="btn btn-danger-fill">Danger fill</button>
+    </div>
+  </div>
+
+  <div class="space-sm">
+    <h3>Confirmation</h3>
+    <p>On a page that asks before something destructive, the destructive action is the main one: <code>.btn-danger-fill</code>, beside a Cancel.</p>
+    <div data-source class="gap-sm" style="display: flex; flex-wrap: wrap;">
+      <button class="btn btn-danger-fill">Delete track</button>
+      <a href="#" class="btn btn-outline">Cancel</a>
+    </div>
+  </div>
+
+  <div class="space-sm">
+    <h3>Focus</h3>
+    <p>Tab to a button: a purple ring, 2px out, and the button stays put. Point at it while it is focused: it lifts and casts hover's shadow, and the ring closes onto its edge. A button in a field keeps its ring inside the field.</p>
+    <div data-source id="focus-buttons" class="space-md">
+      <div class="gap-md" style="display: flex; flex-wrap: wrap; align-items: center;">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-danger">Danger</button>
+        <button class="btn btn-danger-fill">Danger fill</button>
+        <button class="btn btn-sm btn-primary">Small</button>
+        <a href="#" class="cta cta-primary">Sign Up</a>
+        <a href="#" class="cta cta-secondary">Learn More</a>
+      </div>
+      <div class="input-action" style="max-width: 24rem;">
+        <input type="password" aria-label="Password" value="hunter22">
+        <button type="button" class="btn btn-sm btn-outline" aria-label="Show password">Show</button>
+      </div>
     </div>
   </div>
 
@@ -470,6 +501,7 @@
       <button class="btn btn-primary" disabled>Disabled</button>
       <button class="btn btn-secondary" disabled>Disabled</button>
       <button class="btn btn-outline" disabled>Disabled</button>
+      <button class="btn btn-danger-fill" disabled>Disabled</button>
     </div>
   </div>
 
@@ -1253,8 +1285,8 @@
           <h2>Delete project?</h2>
           <p class="subtitle">This cannot be undone.</p>
           <menu>
-            <li><button class="btn" value="cancel">Cancel</button></li>
-            <li><button class="btn btn-danger" value="delete">Delete</button></li>
+            <li><button class="btn btn-outline" value="cancel">Cancel</button></li>
+            <li><button class="btn btn-danger-fill" value="delete">Delete</button></li>
           </menu>
         </form>
       </dialog>
