@@ -1149,9 +1149,17 @@ pre {
   display: inline-block;
 }
 
-
-/* ══════════════════════════════════════════
-   DIVIDERS
+/* A tag or badge inside a heading keeps its own look. The h1 paints its text
+   with a transparent fill, and headings set their own case, tracking, colour
+   and line height; all of these inherit. In :where(), so a tag's or badge's
+   own declarations (the badge's uppercase and colour) still win. */
+:where(h1, h2, h3, .h1, .h2, .h3) :where(.tag, .badge, .tag-sticker) {
+  -webkit-text-fill-color: currentColor;
+  color: var(--p-text);
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: var(--p-leading);
+}
    ══════════════════════════════════════════ */
 
 .divider {
