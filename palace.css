@@ -429,6 +429,7 @@ button, .btn {
 .btn-outline:hover {
   background: var(--p-dark);
   color: var(--p-text-on-fill);
+  border-color: var(--p-text);
   transform: var(--p-lift-lg);
   box-shadow: var(--p-shadow-lg) var(--focus-spread, 0) var(--p-accent-2);
 }
@@ -441,6 +442,7 @@ button, .btn {
 .btn-danger:hover {
   background: var(--p-error);
   color: var(--p-text);
+  border-color: var(--p-error);
   transform: var(--p-lift-sm);
   box-shadow: var(--p-shadow-sm) var(--focus-spread, 0) var(--p-dark);
 }
@@ -498,6 +500,7 @@ button, .btn {
 .cta-secondary:hover {
   background: var(--p-dark);
   color: var(--p-accent-2);
+  border-color: var(--p-text);
   transform: var(--p-lift-lg);
   box-shadow: var(--p-shadow-lg) var(--focus-spread, 0) var(--p-accent-2);
 }
