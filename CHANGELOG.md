@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.1](https://github.com/jostsg/palace-ui/compare/v0.17.0...v0.17.1) (2026-11-19)
+
+
+### Bug Fixes
+
+* a link styled as a button keeps the button's border on hover ([#45](https://github.com/jostsg/palace-ui/issues/45)) ([7547d73](https://github.com/jostsg/palace-ui/commit/7547d73037132ac2f89bc713ff8a37c17c79f215))
+
 ## [0.17.0](https://github.com/jostsg/palace-ui/compare/v0.16.1...v0.17.0) (2026-11-18)
 
 
